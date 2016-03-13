@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour {
     StateMachine animation_state_machine;
 	StateMachine control_state_machine;
     public EntityState current_state = EntityState.NORMAL;
-    private float iH, iV;
+    private float iH;
     public float moveSpeed = 5f;
     // Use this for initialization
     void Start ()
@@ -31,11 +31,20 @@ public class PlayerControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        iV = Input.GetAxis("Vertical");
+        if(Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            rigid.velocity = new Vector3(-1f, rigid.velocity.y, 0f);
+        }
+        else if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
+        {
+            rigid.velocity = new Vector3(0f, rigid.velocity.y, 0f);
+        }
         iH = Input.GetAxis("Horizontal");
+        animation_state_machine.Update();
+        control_state_machine.Update();
     }
     void FixedUpdate()
     {
-        rigid.velocity = new Vector3(iH * moveSpeed, 0f, 0f);
+        rigid.velocity = new Vector3(iH * moveSpeed, rigid.velocity.y, 0f);
     }
 }

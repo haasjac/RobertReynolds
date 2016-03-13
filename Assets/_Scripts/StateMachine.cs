@@ -11,8 +11,7 @@ public class StateMachine
 		{
 			_current_state.OnFinish();
 		}
-		
-		_current_state = new_state;
+        _current_state = new_state;
 		// States sometimes need to reset their machine. 
 		// This reference makes that possible.
 		_current_state.state_machine = this;
@@ -28,7 +27,7 @@ public class StateMachine
 	
 	public void Update()
 	{
-		if(_current_state != null)
+        if (_current_state != null)
 		{
 			float time_delta_fraction = Time.deltaTime / (1.0f / Application.targetFrameRate);
 			_current_state.OnUpdate(time_delta_fraction);
@@ -81,18 +80,19 @@ public class StateIdleWithSprite : State
 	
 	public override void OnUpdate(float time_delta_fraction)
 	{
-		if(pc.current_state == EntityState.ATTACKING)
+        if (pc.current_state == EntityState.ATTACKING)
 			return;
-
-		// Transition to walking animations on key press.
-		if(Input.GetKeyDown(KeyCode.DownArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.crouch, 6, KeyCode.DownArrow));
+        // Transition to walking animations on key press.
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.crouch, 20, KeyCode.DownArrow));
 		if(Input.GetKeyDown(KeyCode.UpArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.jump, 6, KeyCode.UpArrow));
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.jump, 20, KeyCode.UpArrow));
 		if(Input.GetKeyDown(KeyCode.RightArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runRight, 6, KeyCode.RightArrow));
+        {
+            state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runRight, 20, KeyCode.RightArrow));
+        }
 		if(Input.GetKeyDown(KeyCode.LeftArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runLeft, 6, KeyCode.LeftArrow));
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runLeft, 20, KeyCode.LeftArrow));
 	}
 }
 
@@ -129,7 +129,11 @@ public class StatePlayAnimationForHeldKey : State
         {
             pc.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-	}
+        else if (key == KeyCode.RightArrow)
+        {
+            pc.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+    }
 	
 	public override void OnUpdate(float time_delta_fraction)
 	{
@@ -141,24 +145,24 @@ public class StatePlayAnimationForHeldKey : State
 			Debug.LogError("Empty animation submitted to state machine!");
 			return;
 		}
-		
-		// Modulus is necessary so we don't overshoot the length of the animation.
+
+        // Modulus is necessary so we don't overshoot the length of the animation.
 		int current_frame_index = ((int)((Time.time - animation_start_time) / (1.0 / fps)) % animation_length);
 		renderer.sprite = animation[current_frame_index];
 		
 		// If another key is pressed, we need to transition to a different walking animation.
 		if(Input.GetKeyDown(KeyCode.DownArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.crouch, 6, KeyCode.DownArrow));
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.crouch, 20, KeyCode.DownArrow));
 		else if(Input.GetKeyDown(KeyCode.UpArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.jump, 6, KeyCode.UpArrow));
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.jump, 20, KeyCode.UpArrow));
 		else if(Input.GetKeyDown(KeyCode.RightArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runRight, 6, KeyCode.RightArrow));
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runRight, 20, KeyCode.RightArrow));
 		else if(Input.GetKeyDown(KeyCode.LeftArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runLeft, 6, KeyCode.LeftArrow));
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runLeft, 20, KeyCode.LeftArrow));
 		
 		// If we detect the specified key has been released, return to the idle state.
 		else if(!Input.GetKey(key))
-			state_machine.ChangeState(new StateIdleWithSprite(pc, renderer, animation[1]));
+			state_machine.ChangeState(new StateIdleWithSprite(pc, renderer, animation[0]));
 	}
 }
 
