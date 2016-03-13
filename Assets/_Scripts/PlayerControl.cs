@@ -13,7 +13,6 @@ public class PlayerControl : MonoBehaviour {
     SpriteRenderer sr;
     Rigidbody2D rigid;
     StateMachine animation_state_machine;
-	StateMachine control_state_machine;
     public EntityState current_state = EntityState.NORMAL;
     private float iH;
     public float moveSpeed = 5f;
@@ -24,14 +23,12 @@ public class PlayerControl : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
         animation_state_machine = new StateMachine();
         animation_state_machine.ChangeState(new StateIdleWithSprite(this, sr, idle[0]));
-        control_state_machine = new StateMachine();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         animation_state_machine.Update();
-        //control_state_machine.Update();
     }
     void FixedUpdate()
     {
