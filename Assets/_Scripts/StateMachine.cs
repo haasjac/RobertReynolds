@@ -92,7 +92,7 @@ public class StateIdleWithSprite : State
             state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runRight, 20, KeyCode.RightArrow));
         }
 		if(Input.GetKeyDown(KeyCode.LeftArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runLeft, 20, KeyCode.LeftArrow));
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runRight, 20, KeyCode.LeftArrow));
 	}
 }
 
@@ -158,7 +158,7 @@ public class StatePlayAnimationForHeldKey : State
 		else if(Input.GetKeyDown(KeyCode.RightArrow))
 			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runRight, 20, KeyCode.RightArrow));
 		else if(Input.GetKeyDown(KeyCode.LeftArrow))
-			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runLeft, 20, KeyCode.LeftArrow));
+			state_machine.ChangeState(new StatePlayAnimationForHeldKey(pc, renderer, pc.runRight, 20, KeyCode.LeftArrow));
 		
 		// If we detect the specified key has been released, return to the idle state.
 		else if(!Input.GetKey(key))
