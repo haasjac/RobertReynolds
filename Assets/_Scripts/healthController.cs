@@ -26,9 +26,9 @@ public class healthController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         sm.Update();
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             sm.ChangeState(new together(this, player1.GetComponent<jakePlayer>(), player2.GetComponent<jakePlayer>()));
-        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        } else if (Input.GetKeyDown(KeyCode.Space)) {
             sm.ChangeState(new apart(this, player1.GetComponent<jakePlayer>(), player2.GetComponent<jakePlayer>()));
         }
 	}
