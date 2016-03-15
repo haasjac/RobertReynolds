@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 
+public enum playerState { TOGETEHER, APART };
+
 public class healthController : MonoBehaviour {
 
     public GameObject BothHealth;
@@ -10,6 +12,8 @@ public class healthController : MonoBehaviour {
 
     public GameObject player1;
     public GameObject player2;
+
+    public playerState pState;
 
     public StateMachine sm;
 
