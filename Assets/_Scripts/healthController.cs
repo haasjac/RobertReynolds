@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public enum playerState { TOGETEHER, APART };
+
 
 public class healthController : MonoBehaviour {
 
@@ -12,8 +12,6 @@ public class healthController : MonoBehaviour {
 
     public GameObject player1;
     public GameObject player2;
-
-    public playerState pState;
 
     public StateMachine sm;
 
@@ -26,9 +24,9 @@ public class healthController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         sm.Update();
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
             sm.ChangeState(new together(this, player1.GetComponent<jakePlayer>(), player2.GetComponent<jakePlayer>()));
-        } else if (Input.GetKeyDown(KeyCode.Space)) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
             sm.ChangeState(new apart(this, player1.GetComponent<jakePlayer>(), player2.GetComponent<jakePlayer>()));
         }
 	}

@@ -34,7 +34,7 @@ public class jakePlayer : MonoBehaviour {
 
     void Update() {
         animation_state_machine.Update();
-        control_state_machine.Update();
+
     }
 	
 	void OnMouseDown() {
