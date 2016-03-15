@@ -14,17 +14,23 @@ public class PlayerControl : MonoBehaviour {
     Rigidbody2D rigid;
     StateMachine animation_state_machine;
     public EntityState current_state = EntityState.NORMAL;
-    private float iH;
     public float moveSpeed = 5f;
 
-    static bool split = false; //false = together, true = split
-    public GameObject top;// = Instantiate(Resources.Load("_prefabs/head")) as GameObject;
-    public GameObject bottom;// = Instantiate(Resources.Load("_prefabs/bottom")) as GameObject;
-    public GameObject wholebody;// = Instantiate(Resources.Load("_prefabs/full body")) as GameObject;
+    //horizontal movement
+    private float iH_together; 
+
+
+    static public bool split = false; //false = together, true = split
+    public GameObject top;
+    public GameObject bottom;
+    public GameObject wholebody;
+
+    public static PlayerControl S; //player control singlton
 
     // Use this for initialization
     void Start ()
     {
+        S = this;
         rigid = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animation_state_machine = new StateMachine();
@@ -36,27 +42,36 @@ public class PlayerControl : MonoBehaviour {
     {
         animation_state_machine.Update();
         //iV = Input.GetAxis("A");
-        iH = Input.GetAxis("Left Joystick X") * 5f;
-
-        if (Input.GetButtonDown("Right Bumper")) {
+        iH_together = Input.GetAxis("L_XAxis_2") * 5f;
+        rigid.velocity = new Vector3(iH_together * moveSpeed, rigid.velocity.y, 0f);
+        if (Input.GetButtonDown("RB_1") || Input.GetButtonDown("RB_2")) {
             //call split funcation
             split = !split;
             splitOrCombine(split);
         }
 
-        if (Input.GetButtonDown("B")) {
+        if (Input.GetButtonDown("A_2")) {
             //Jump
-            rigid.velocity = new Vector3(iH * moveSpeed, rigid.velocity.y + 5f, 0f);
+            rigid.velocity = new Vector3(iH_together * moveSpeed, rigid.velocity.y + 5f, 0f);
             Debug.Log("Jumping");
         }
 
-        if (Input.GetButtonDown("A")) {
+        if (Input.GetButtonDown("B_1")) {
             //Attack
             Debug.Log("Attacking");
         }
+        
+ 
     }
 
-    void splitOrCombine(bool breakup) {
+    static public bool SplitGetter() {
+        //Flips & returns !split from PlayerControl
+        split = !split;
+        return split;
+
+    }
+
+    public void splitOrCombine(bool breakup) {
         Debug.Log("Split Var: " + breakup);
         if (breakup) {
             //split
@@ -72,14 +87,7 @@ public class PlayerControl : MonoBehaviour {
             wholebody.SetActive(true);
             Debug.Log("Combine");
         }
-        //DestroyObject(gameObject); //may need to hide
-        //gameObject.GetComponent<Renderer>().enabled = false;
 
     }
 
-    void FixedUpdate()
-    {
-        iH = Input.GetAxis("Left Joystick X");
-        rigid.velocity = new Vector3(iH * moveSpeed, rigid.velocity.y, 0f);
-    }
 }
