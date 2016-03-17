@@ -4,10 +4,10 @@ using System.Collections;
 public class together : State {
 
     healthController hc;
-    jakePlayer p1;
-    jakePlayer p2;
+    partController p1;
+    partController p2;
 
-	public together(healthController hc, jakePlayer p1, jakePlayer p2) {
+	public together(healthController hc, partController p1, partController p2) {
         this.hc = hc;
         this.p1 = p1;
         this.p2 = p2;
@@ -38,10 +38,10 @@ public class together : State {
 public class apart : State {
 
     healthController hc;
-    jakePlayer p1;
-    jakePlayer p2;
+    partController p1;
+    partController p2;
 
-    public apart(healthController hc, jakePlayer p1, jakePlayer p2) {
+    public apart(healthController hc, partController p1, partController p2) {
         this.hc = hc;
         this.p1 = p1;
         this.p2 = p2;

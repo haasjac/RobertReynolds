@@ -11,6 +11,8 @@ public class playerController : MonoBehaviour {
     public partController bottomController;
     public partController fullController;
 
+    public healthController hc;
+
     public playerState pState;
 
     public StateMachine sm;
@@ -20,8 +22,10 @@ public class playerController : MonoBehaviour {
         S = this;
 
         sm = new StateMachine();
+
         sm.ChangeState(new Apart(this));
-	}
+        hc.sm.ChangeState(new apart(hc, hc.player1.GetComponent<partController>(), hc.player2.GetComponent<partController>()));
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,8 +38,10 @@ public class playerController : MonoBehaviour {
     public void change() {
         if (pState == playerState.TOGETEHER) {
             sm.ChangeState(new Apart(this));
+            hc.sm.ChangeState(new apart(hc, hc.player1.GetComponent<partController>(), hc.player2.GetComponent<partController>()));
         } else if (pState == playerState.APART) {
             sm.ChangeState(new Together(this));
+            hc.sm.ChangeState(new together(hc, hc.player1.GetComponent<partController>(), hc.player2.GetComponent<partController>()));
         }
     }
 }

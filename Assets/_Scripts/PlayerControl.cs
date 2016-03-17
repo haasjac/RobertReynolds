@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 
 public enum EntityState {NORMAL, ATTACKING};
@@ -90,4 +90,4 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
-}
+}*/

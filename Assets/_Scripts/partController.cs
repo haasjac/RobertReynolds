@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum EntityState { NORMAL, ATTACKING };
+
 public class partController : MonoBehaviour {
 
     public GameObject part;
@@ -17,6 +19,8 @@ public class partController : MonoBehaviour {
     StateMachine animation_state_machine;
     public StateMachine control_state_machine;
 
+    public EntityState current_state;
+
     public float moveSpeed = 5f;    
 
     // Use this for initialization
@@ -24,9 +28,11 @@ public class partController : MonoBehaviour {
         health = 1;
 
         animation_state_machine = new StateMachine();
-        //animation_state_machine.ChangeState(new StateIdleWithSprite(this, sr, idle[0]));
+        animation_state_machine.ChangeState(new StateIdleWithSprite(this, part.GetComponent<SpriteRenderer>(), idle[0]));
 
         control_state_machine = new StateMachine();
+
+        current_state = EntityState.NORMAL;
     }
 
     void Update() {
