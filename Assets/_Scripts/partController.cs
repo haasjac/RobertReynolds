@@ -9,6 +9,7 @@ public class partController : MonoBehaviour {
 
     public int playerNum = 1;
 
+    public float max_health = 1;
     public float health;
 
     public Sprite[] runRight;
@@ -21,11 +22,11 @@ public class partController : MonoBehaviour {
 
     public EntityState current_state;
 
-    public float moveSpeed = 5f;    
+    public float moveSpeed = 5f;
 
     // Use this for initialization
     void Awake() {
-        health = 1;
+        health = max_health;
 
         animation_state_machine = new StateMachine();
         animation_state_machine.ChangeState(new StateIdleWithSprite(this, part.GetComponent<SpriteRenderer>(), idle[0]));
@@ -39,8 +40,5 @@ public class partController : MonoBehaviour {
         animation_state_machine.Update();
         control_state_machine.Update();
     }
-
-    void OnMouseDown() {
-        //health -= 0.1f;
-    }
+    
 }

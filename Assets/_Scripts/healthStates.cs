@@ -4,30 +4,25 @@ using System.Collections;
 public class together : State {
 
     healthController hc;
-    partController p1;
-    partController p2;
 
-	public together(healthController hc, partController p1, partController p2) {
+	public together(healthController hc) {
         this.hc = hc;
-        this.p1 = p1;
-        this.p2 = p2;
     }
 
     public override void OnStart() {
-        p1.health = Mathf.Max(p1.health, p2.health);
-        p2.health = Mathf.Max(p1.health, p2.health);
-        Vector2 size = hc.BothHealth.GetComponent<RectTransform>().sizeDelta;
-        size.x = p1.health * 150;
-        hc.BothHealth.GetComponent<RectTransform>().sizeDelta = size;
-        hc.OneHealth.transform.parent.gameObject.SetActive(false);
-        hc.TwoHealth.transform.parent.gameObject.SetActive(false);
-        hc.BothHealth.transform.parent.gameObject.SetActive(true);
+        hc.full.health = Mathf.Max(hc.top.health / hc.top.max_health, hc.bottom.health / hc.bottom.max_health) * hc.full.max_health;
+        Vector2 size = hc.FullHealth.GetComponent<RectTransform>().sizeDelta;
+        size.x = hc.full.health / hc.full.max_health * 150;
+        hc.FullHealth.GetComponent<RectTransform>().sizeDelta = size;
+        hc.TopHealth.transform.parent.gameObject.SetActive(false);
+        hc.BottomHealth.transform.parent.gameObject.SetActive(false);
+        hc.FullHealth.transform.parent.gameObject.SetActive(true);
     }
 
     public override void OnUpdate(float time_delta_fraction) {
-        Vector2 size = hc.BothHealth.GetComponent<RectTransform>().sizeDelta;
-        size.x = p1.health * 150;
-        hc.BothHealth.GetComponent<RectTransform>().sizeDelta = size;
+        Vector2 size = hc.FullHealth.GetComponent<RectTransform>().sizeDelta;
+        size.x = hc.full.health / hc.full.max_health * 150;
+        hc.FullHealth.GetComponent<RectTransform>().sizeDelta = size;
     }
 
     public override void OnFinish() {
@@ -38,35 +33,32 @@ public class together : State {
 public class apart : State {
 
     healthController hc;
-    partController p1;
-    partController p2;
 
-    public apart(healthController hc, partController p1, partController p2) {
+    public apart(healthController hc) {
         this.hc = hc;
-        this.p1 = p1;
-        this.p2 = p2;
     }
 
     public override void OnStart() {
-        p2.health = p1.health;
-        Vector2 size1 = hc.OneHealth.GetComponent<RectTransform>().sizeDelta;
-        size1.x = p1.health * 150;
-        hc.OneHealth.GetComponent<RectTransform>().sizeDelta = size1;
-        Vector2 size2 = hc.TwoHealth.GetComponent<RectTransform>().sizeDelta;
-        size2.x = p2.health * 150;
-        hc.TwoHealth.GetComponent<RectTransform>().sizeDelta = size2;
-        hc.OneHealth.transform.parent.gameObject.SetActive(true);
-        hc.TwoHealth.transform.parent.gameObject.SetActive(true);
-        hc.BothHealth.transform.parent.gameObject.SetActive(false);
+        hc.top.health = hc.full.health / hc.full.max_health * hc.top.max_health;
+        hc.bottom.health = hc.full.health / hc.full.max_health * hc.bottom.max_health;
+        Vector2 size1 = hc.TopHealth.GetComponent<RectTransform>().sizeDelta;
+        size1.x = hc.top.health / hc.top.max_health * 150;
+        hc.TopHealth.GetComponent<RectTransform>().sizeDelta = size1;
+        Vector2 size2 = hc.BottomHealth.GetComponent<RectTransform>().sizeDelta;
+        size2.x = hc.bottom.health / hc.bottom.max_health * 150;
+        hc.BottomHealth.GetComponent<RectTransform>().sizeDelta = size2;
+        hc.TopHealth.transform.parent.gameObject.SetActive(true);
+        hc.BottomHealth.transform.parent.gameObject.SetActive(true);
+        hc.FullHealth.transform.parent.gameObject.SetActive(false);
     }
 
     public override void OnUpdate(float time_delta_fraction) {
-        Vector2 size1 = hc.OneHealth.GetComponent<RectTransform>().sizeDelta;
-        size1.x = p1.health * 150;
-        hc.OneHealth.GetComponent<RectTransform>().sizeDelta = size1;
-        Vector2 size2 = hc.TwoHealth.GetComponent<RectTransform>().sizeDelta;
-        size2.x = p2.health * 150;
-        hc.TwoHealth.GetComponent<RectTransform>().sizeDelta = size2;
+        Vector2 size1 = hc.TopHealth.GetComponent<RectTransform>().sizeDelta;
+        size1.x = hc.top.health / hc.top.max_health * 150;
+        hc.TopHealth.GetComponent<RectTransform>().sizeDelta = size1;
+        Vector2 size2 = hc.BottomHealth.GetComponent<RectTransform>().sizeDelta;
+        size2.x = hc.bottom.health / hc.bottom.max_health * 150;
+        hc.BottomHealth.GetComponent<RectTransform>().sizeDelta = size2;
     }
 
     public override void OnFinish() {
