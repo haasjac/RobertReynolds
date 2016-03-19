@@ -39,3 +39,20 @@ public class StateMachine
 		return _current_state == null;
 	}
 }
+
+// A State is merely a bundle of behavior listening to specific events, such as...
+// OnUpdate -- Fired every frame of the game.
+// OnStart -- Fired once when the state is transitioned to.
+// OnFinish -- Fired as the state concludes.
+// State Constructors often store data that will be used during the execution of the State.
+public class State {
+    // A reference to the State Machine processing the state.
+    public StateMachine state_machine;
+
+    public virtual void OnStart() { }
+    public virtual void OnUpdate(float time_delta_fraction) { } // time_delta_fraction is a float near 1.0 indicating how much more / less time this frame took than expected.
+    public virtual void OnFinish() { }
+
+    // States may call ConcludeState on themselves to end their processing.
+    public void ConcludeState() { state_machine.Reset(); }
+}

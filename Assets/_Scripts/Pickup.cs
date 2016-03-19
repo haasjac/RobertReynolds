@@ -3,19 +3,15 @@ using System.Collections;
 
 public class Pickup : MonoBehaviour {
     public bool health = false;
-    public float speed = 2f;
-    Rigidbody2D rigid;
-	// Use this for initialization
-	void Start () {
-        rigid = GetComponent<Rigidbody2D>();
-	}
-	
+    public float speed = .001f;
+    public float healthAmount = 1f;
 	// Update is called once per frame
 	void Update ()
     {
-        transform.position += (Vector3.up + new Vector3(0, Mathf.Cos(Time.timeSinceLevelLoad)) * speed) * Time.deltaTime * 60;
+        transform.Rotate(0f, 0f, 2f);
+        transform.position -= (new Vector3(0, Mathf.Cos(2 * Mathf.PI * Time.timeSinceLevelLoad) * speed, 0f));
     }
-    void OnTriggerEnter2D(Collider coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if(coll.tag == "Whole" || coll.tag == "Top" || coll.tag == "Bottom")
         {
@@ -23,6 +19,7 @@ public class Pickup : MonoBehaviour {
             {
                 //TODO: Play Health Sound
                 //IncHealth
+                coll.GetComponent<partController>().health += healthAmount;
             }
             else
             {

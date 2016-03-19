@@ -24,7 +24,7 @@ public class playerController : MonoBehaviour {
         sm = new StateMachine();
 
         sm.ChangeState(new Apart(this));
-        hc.sm.ChangeState(new apart(hc, hc.player1.GetComponent<partController>(), hc.player2.GetComponent<partController>()));
+        hc.sm.ChangeState(new apart(hc));
     }
 	
 	// Update is called once per frame
@@ -38,10 +38,10 @@ public class playerController : MonoBehaviour {
     public void change() {
         if (pState == playerState.TOGETEHER) {
             sm.ChangeState(new Apart(this));
-            hc.sm.ChangeState(new apart(hc, hc.player1.GetComponent<partController>(), hc.player2.GetComponent<partController>()));
+            hc.sm.ChangeState(new apart(hc));
         } else if (pState == playerState.APART) {
             sm.ChangeState(new Together(this));
-            hc.sm.ChangeState(new together(hc, hc.player1.GetComponent<partController>(), hc.player2.GetComponent<partController>()));
+            hc.sm.ChangeState(new together(hc));
         }
     }
 }

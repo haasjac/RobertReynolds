@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class healthController : MonoBehaviour {
 
-    public GameObject BothHealth;
-    public GameObject OneHealth;
-    public GameObject TwoHealth;
+    public GameObject FullHealth;
+    public GameObject TopHealth;
+    public GameObject BottomHealth;
 
-    public GameObject player1;
-    public GameObject player2;
+    public partController top;
+    public partController bottom;
+    public partController full;
 
     public StateMachine sm;
 
