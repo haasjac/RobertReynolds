@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
     public float existTime = 5f;
     public float startTime;
     public float speed = 3f;
+    public float damage = 0.1f;
     // Use this for initialization
     void Start()
     {

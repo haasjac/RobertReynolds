@@ -19,8 +19,9 @@ public class half_movement : State {
         x_input = Input.GetAxis("L_XAxis_" + pc.playerNum.ToString());
         rb.velocity = new Vector3(x_input * pc.moveSpeed, rb.velocity.y);
 
-        if (Input.GetButtonDown("A_" + pc.playerNum.ToString())) {
+        if (Input.GetButtonDown("A_" + pc.playerNum.ToString()) && pc.grounded) {
             //Jump
+            pc.grounded = false;
             rb.velocity = new Vector3(x_input * pc.moveSpeed, rb.velocity.y + 5f, 0f);
             Debug.Log("Player " + pc.playerNum.ToString() + " Jumping");
         }
@@ -54,8 +55,9 @@ public class full_movement : State {
         x_input = Input.GetAxis("L_XAxis_" + bottompc.playerNum.ToString());
         rb.velocity = new Vector3(x_input * pc.moveSpeed, rb.velocity.y);
 
-        if (Input.GetButtonDown("A_" + bottompc.playerNum.ToString())) {
+        if (Input.GetButtonDown("A_" + bottompc.playerNum.ToString()) && pc.grounded) {
             //Jump
+            pc.grounded = false;
             rb.velocity = new Vector3(x_input * pc.moveSpeed, rb.velocity.y + 5f, 0f);
             Debug.Log("Together Jumping");
         }
