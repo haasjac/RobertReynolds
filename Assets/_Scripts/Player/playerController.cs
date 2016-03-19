@@ -44,4 +44,8 @@ public class playerController : MonoBehaviour {
             hc.sm.ChangeState(new together(hc));
         }
     }
+
+    public void dead() {
+        gameObject.SetActive(false);
+    }
 }

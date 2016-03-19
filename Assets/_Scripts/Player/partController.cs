@@ -23,6 +23,7 @@ public class partController : MonoBehaviour {
     public EntityState current_state;
 
     public float moveSpeed = 5f;
+    public bool grounded;
 
     // Use this for initialization
     void Awake() {
@@ -34,11 +35,15 @@ public class partController : MonoBehaviour {
         control_state_machine = new StateMachine();
 
         current_state = EntityState.NORMAL;
+        grounded = false;
     }
 
     void Update() {
         animation_state_machine.Update();
         control_state_machine.Update();
+        if (health <= 0) {
+            GetComponentInParent<playerController>().dead();
+        }
     }
     
 }
