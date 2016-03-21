@@ -22,7 +22,8 @@ public class half_movement : State {
         if (Input.GetButtonDown("A_" + pc.playerNum.ToString()) && pc.grounded) {
             //Jump
             pc.grounded = false;
-            rb.velocity = new Vector3(x_input * pc.moveSpeed, rb.velocity.y + 5f, 0f);
+            rb.AddForce(Vector2.up * pc.jumpForce);
+            //rb.velocity = new Vector3(x_input * pc.moveSpeed, rb.velocity.y + 5f, 0f);
             Debug.Log("Player " + pc.playerNum.ToString() + " Jumping");
         }
 
@@ -58,7 +59,8 @@ public class full_movement : State {
         if (Input.GetButtonDown("A_" + bottompc.playerNum.ToString()) && pc.grounded) {
             //Jump
             pc.grounded = false;
-            rb.velocity = new Vector3(x_input * pc.moveSpeed, rb.velocity.y + 5f, 0f);
+            rb.AddForce(Vector2.up * pc.jumpForce);
+            //rb.velocity = new Vector3(x_input * pc.moveSpeed, rb.velocity.y + pc.jumpForce, 0f);
             Debug.Log("Together Jumping");
         }
 

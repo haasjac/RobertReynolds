@@ -17,20 +17,24 @@ public class playerController : MonoBehaviour {
 
     public StateMachine sm;
 
+    public float swtich_dis = 0.05f;
+    float dis;
+
     // Use this for initialization
     void Start () {
         S = this;
 
         sm = new StateMachine();
 
-        sm.ChangeState(new Apart(this));
-        hc.sm.ChangeState(new apart(hc));
+        sm.ChangeState(new Together(this));
+        hc.sm.ChangeState(new together(hc));
     }
 	
 	// Update is called once per frame
 	void Update () {
         sm.Update();
-        if (Input.GetButtonDown("RB_1") || Input.GetButtonDown("RB_2")) {
+        dis = Vector3.Distance(topController.part.transform.position, bottomController.part.transform.position);
+        if (dis < swtich_dis && (Input.GetButtonDown("RB_1") || Input.GetButtonDown("RB_2"))) {
             change();
         }
     }

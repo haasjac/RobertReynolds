@@ -23,6 +23,7 @@ public class partController : MonoBehaviour {
     public EntityState current_state;
 
     public float moveSpeed = 5f;
+    public float jumpForce = 10f;
     public bool grounded;
 
     // Use this for initialization
