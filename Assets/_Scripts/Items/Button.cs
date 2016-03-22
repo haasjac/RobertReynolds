@@ -28,9 +28,7 @@ public class Button : MonoBehaviour {
 	}
 
     void OnCollisionEnter2D(Collision2D coll) {
-        print(coll.contacts[0].normal);
         if (coll.gameObject.tag == "Bottom" && coll.contacts[0].normal == Vector2.down) {
-            print(clicked);
             clicked = true;
             
         }

@@ -20,10 +20,18 @@ public class part : MonoBehaviour {
             case "Ground":
                 pc.grounded = true;
                 break;
+        } 
+    }
+
+    void OnTriggerEnter2D(Collider2D coll) {
+        switch (coll.gameObject.tag) {
             case "Projectile":
-                Destroy(coll.gameObject);
                 pc.health -= coll.gameObject.GetComponent<Projectile>().damage;
                 break;
-        } 
+            case "Star":
+                Destroy(coll.gameObject);
+                playerController.S.stars[coll.GetComponent<Star>().num] = true;
+                break;
+        }
     }
 }

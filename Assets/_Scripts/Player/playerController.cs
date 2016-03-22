@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum playerState { TOGETEHER, APART };
 
@@ -18,6 +19,9 @@ public class playerController : MonoBehaviour {
     public StateMachine sm;
 
     public float swtich_dis = 0.05f;
+
+    public List<bool> stars;
+
     float dis;
 
     // Use this for initialization
@@ -28,6 +32,13 @@ public class playerController : MonoBehaviour {
 
         sm.ChangeState(new Together(this));
         hc.sm.ChangeState(new together(hc));
+
+
+        stars = new List<bool>(4);
+        stars.Add(false);
+        stars.Add(false);
+        stars.Add(false);
+        stars.Add(false);
     }
 	
 	// Update is called once per frame
