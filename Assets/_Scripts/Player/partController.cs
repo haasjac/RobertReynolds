@@ -21,7 +21,7 @@ public class partController : MonoBehaviour {
     public StateMachine control_state_machine;
 
     public EntityState current_state;
-
+    
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     public bool grounded;
