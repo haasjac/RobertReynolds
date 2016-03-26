@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour {
 //enemy capability.
     public GameObject auto_target(GameObject robot, string enemy_type) {
         //have the players split?
-        if (split(robot)) {
+        if (!UI.S.together) {
             //target closest  player within range
             GameObject torso = robot.transform.FindChild("TopController").gameObject;
             GameObject legs = robot.transform.FindChild("BottomController").gameObject;
@@ -122,16 +122,7 @@ public class Enemy : MonoBehaviour {
         }
         this.transform.position = pos;
     }
-
-///////////////////////////////////////////////////////////////////////////////
-//FUNCTION: returns true if the players have split apart
-    public bool split(GameObject robot) {
-        if (robot.GetComponent<playerController>().pState == playerState.APART)
-            return true;
-        else
-            return false;
-    }
-
+    
 ///////////////////////////////////////////////////////////////////////////////
 //FUNCTION: list of collisions for enemies
     public void OnCollisionEnter(Collision coll) {

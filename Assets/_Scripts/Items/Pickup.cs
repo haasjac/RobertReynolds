@@ -13,18 +13,33 @@ public class Pickup : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.tag == "Whole" || coll.tag == "Top" || coll.tag == "Bottom")
+        if(coll.tag == "Whole" ||  coll.tag == "Top" || coll.tag == "Bottom")
         {
             if(health)
             {
                 //TODO: Play Health Sound
                 //IncHealth
-                coll.GetComponent<partController>().health += healthAmount;
+                if(UI.S.together)
+                {
+                    UI.S.fullHealth += healthAmount;
+                }
+                else
+                {
+                    if(coll.tag == "Top")
+                    {
+                        Top.S.health += healthAmount;
+                    }
+                    else if(coll.tag == "Bottom")
+                    {
+                        Bottom.S.health += healthAmount;
+                    }
+                }
             }
             else
             {
                 //TODO: Play Pickup Sound
                 //IncPickup
+                UI.S.Collect();
             }
             Destroy(gameObject);
         }
