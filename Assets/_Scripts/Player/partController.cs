@@ -40,11 +40,8 @@ public class partController : MonoBehaviour {
     }
 
     void Update() {
-        animation_state_machine.Update();
+        //animation_state_machine.Update();
         control_state_machine.Update();
-        if (health <= 0) {
-            GetComponentInParent<playerController>().dead();
-        }
     }
     
 }

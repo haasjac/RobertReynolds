@@ -22,6 +22,9 @@ public class playerController : MonoBehaviour {
 
     public List<bool> stars;
 
+    public float max_stealth = 1;
+    public float stealth;
+
     float dis;
 
     // Use this for initialization
@@ -31,7 +34,7 @@ public class playerController : MonoBehaviour {
         sm = new StateMachine();
 
         sm.ChangeState(new Together(this));
-        hc.sm.ChangeState(new together(hc));
+        //hc.sm.ChangeState(new together(hc));
 
 
         stars = new List<bool>(4);
@@ -39,6 +42,7 @@ public class playerController : MonoBehaviour {
         stars.Add(false);
         stars.Add(false);
         stars.Add(false);
+        stealth = 0.5f * max_stealth;
     }
 	
 	// Update is called once per frame
@@ -48,19 +52,32 @@ public class playerController : MonoBehaviour {
         if (dis < swtich_dis && (Input.GetButtonDown("RB_1") || Input.GetButtonDown("RB_2"))) {
             change();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            stealth -= 0.1f;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            stealth += 0.1f;
+        }
+        
+        if (stealth < 0) {
+            stealth = 0;
+        }
+        if (stealth > max_stealth) {
+            stealth = max_stealth;
+        }
     }
 
     public void change() {
         if (pState == playerState.TOGETEHER) {
             sm.ChangeState(new Apart(this));
-            hc.sm.ChangeState(new apart(hc));
+            //hc.sm.ChangeState(new apart(hc));
         } else if (pState == playerState.APART) {
             sm.ChangeState(new Together(this));
-            hc.sm.ChangeState(new together(hc));
+            //hc.sm.ChangeState(new together(hc));
         }
     }
 
     public void dead() {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }

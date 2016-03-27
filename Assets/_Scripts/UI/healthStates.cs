@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 
 public class together : State {
@@ -65,3 +65,4 @@ public class apart : State {
         base.OnFinish();
     }
 }
+*/
