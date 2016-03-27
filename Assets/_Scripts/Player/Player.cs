@@ -21,11 +21,12 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     protected void SplitOrCombine()
     {
-        UI.S.together = !UI.S.together;
-        UI.S.PlaySound("Jump");
+       
         //Split
-        if (!UI.S.together)
+        if (UI.S.together)
         {
+            UI.S.together = !UI.S.together;
+            UI.S.PlaySound("Jump");
             //Need containers for animations to run correctly
             Top.S.container = Instantiate(Top.S.containerPrefab, Whole.S.transform.position, Quaternion.identity) as GameObject;
             Bottom.S.container = Instantiate(Bottom.S.containerPrefab, Whole.S.transform.position, Quaternion.identity) as GameObject;
@@ -34,7 +35,6 @@ public class Player : MonoBehaviour {
             Top.S.transform.parent = Top.S.container.transform;
             Bottom.S.transform.parent = Bottom.S.container.transform;
             Top.S.fire.gameObject.SetActive(true);
-            print(Whole.S.transform.position);
             Bottom.S.transform.position = Whole.S.transform.position;
             Destroy(Whole.S.gameObject);
             //Split Jump
@@ -43,12 +43,21 @@ public class Player : MonoBehaviour {
         //Join
         else
         {
-            whole = Instantiate(wholePrefab, Top.S.container.transform.position, Quaternion.identity) as GameObject;
-            Top.S.transform.parent = Bottom.S.transform.parent = whole.transform;
-            Destroy(Top.S.container.gameObject);
-            Destroy(Bottom.S.container.gameObject);
-            Top.S.rigid = Whole.S.rigid;
-            Top.S.fire.gameObject.SetActive(false);
+            if (Top.S.grounded && Bottom.S.grounded && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
+            {
+                UI.S.together = !UI.S.together;
+                UI.S.PlaySound("Jump");
+                whole = Instantiate(wholePrefab, Top.S.container.transform.position, Quaternion.identity) as GameObject;
+                Top.S.transform.parent = Bottom.S.transform.parent = whole.transform;
+                Destroy(Top.S.container.gameObject);
+                Destroy(Bottom.S.container.gameObject);
+                Top.S.rigid = Whole.S.rigid;
+                Top.S.fire.gameObject.SetActive(false);
+            }
+            else
+            {
+                UI.S.PlaySound("Reject");
+            }
         }
     }
 }

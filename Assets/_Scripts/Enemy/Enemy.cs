@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour {
             GameObject legs = robot.transform.FindChild("BottomController").gameObject;
 
             if(torso == null || legs == null) {
-                print("ERROR: auto_target");
                 return robot;
             }
 
