@@ -60,7 +60,6 @@ public class EnemyMelee : Enemy {
 
     public void fist() {
         cooldown = reload;
-        print("attack!");
         GetComponent<Animation>().Play("punch");
         attacking = true;
     }

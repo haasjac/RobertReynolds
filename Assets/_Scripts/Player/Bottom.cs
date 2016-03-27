@@ -41,6 +41,7 @@ public class Bottom : Player {
         if(Input.GetKeyDown(KeyCode.UpArrow) && grounded)
         {
             jump = true;
+            UI.S.PlaySound("Feet Jumping");
             anim.SetBool("jumping", true);
         }
         else if(Input.GetKeyUp(KeyCode.UpArrow) && !grounded)
