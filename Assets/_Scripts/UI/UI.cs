@@ -7,6 +7,7 @@ public class UI : MonoBehaviour {
     //Whether or not the players are together
     public bool together;
     public GameObject Suspicion;
+    public float currentSuspicion, maxSuspicion;
     int star = 0;
     public Image star1;
     public Image star2;
@@ -21,11 +22,11 @@ public class UI : MonoBehaviour {
     {
         sound = Camera.main.GetComponent<AudioSource>();
     }
-	void ChangeSuspicion(float toAdd)
+	public void ChangeSuspicion(float toAdd)
     {
-        Vector2 fullSize = FullHealth.GetComponent<RectTransform>().sizeDelta;
-        fullSize.x = (fullHealth / fullMaxHealth) * 150f;
-        FullHealth.GetComponent<RectTransform>().sizeDelta = fullSize;
+        Vector2 fullSize = Suspicion.GetComponent<RectTransform>().sizeDelta;
+        fullSize.x = (currentSuspicion / maxSuspicion) * 150f;
+        Suspicion.GetComponent<RectTransform>().sizeDelta = fullSize;
     }
     public void Collect()
     {

@@ -37,7 +37,7 @@ public class Whole : MonoBehaviour {
                 break;
             case "Projectile":
                 Destroy(coll.gameObject);
-                UI.S.fullHealth -= coll.gameObject.GetComponent<Projectile>().damage;
+                UI.S.ChangeSuspicion(coll.gameObject.GetComponent<Projectile>().damage);
                 break;
         }
     }
