@@ -3,7 +3,7 @@ using UnityEngine;
 //Unity's standard follow script
     public class Camera2DFollow : MonoBehaviour
     {
-        public Transform target;
+        public Vector3 target;
         public float damping = 1;
         public float lookAheadFactor = 3;
         public float lookAheadReturnSpeed = 0.5f;
@@ -17,8 +17,9 @@ using UnityEngine;
         // Use this for initialization
         private void Start()
         {
-            m_LastTargetPosition = target.position;
-            m_OffsetZ = (transform.position - target.position).z;
+            target = Top.S.transform.position;
+            m_LastTargetPosition = target;
+            m_OffsetZ = (transform.position - target).z;
             transform.parent = null;
         }
 
@@ -26,8 +27,16 @@ using UnityEngine;
         // Update is called once per frame
         private void Update()
         {
-            // only update lookahead pos if accelerating or changed direction
-            float xMoveDelta = (target.position - m_LastTargetPosition).x;
+            if (UI.S.together)
+            {
+                target = Top.S.transform.position;
+            }
+            else
+            {
+                target = (Top.S.transform.position + Bottom.S.transform.position / 2f);
+            }
+        // only update lookahead pos if accelerating or changed direction
+        float xMoveDelta = (target - m_LastTargetPosition).x;
 
             bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
 
@@ -40,11 +49,11 @@ using UnityEngine;
                 m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime*lookAheadReturnSpeed);
             }
 
-            Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward*m_OffsetZ;
+            Vector3 aheadTargetPos = target + m_LookAheadPos + Vector3.forward*m_OffsetZ;
             Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
             transform.position = newPos;
 
-            m_LastTargetPosition = target.position;
+            m_LastTargetPosition = target;
     }
 }

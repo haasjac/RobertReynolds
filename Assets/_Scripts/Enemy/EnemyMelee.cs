@@ -10,8 +10,8 @@ public class EnemyMelee : Enemy {
     public float cooldown;
     public float direction = 1.0f;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         health = 3;
         damage = 1;
         armor = 0;
@@ -24,9 +24,9 @@ public class EnemyMelee : Enemy {
         spawn = this.transform.position;
         detection_range = 10f;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         //if you're not on camera, do nothing
         if (!on_screen(cam, this.gameObject))
             return;
@@ -55,7 +55,7 @@ public class EnemyMelee : Enemy {
         }
         else
             patrol();
-	}
+    }
 
 
     public void fist() {
@@ -63,5 +63,12 @@ public class EnemyMelee : Enemy {
         print("attack!");
         GetComponent<Animation>().Play("punch");
         attacking = true;
+    }
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(Top.S.attacking)
+        {
+            Destroy(gameObject);
+        }
     }
 }

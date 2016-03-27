@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: db26c5b641729574eb524dd1c7304221
+timeCreated: 1458629513
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Top Walk 2_0
+    21300002: Top Walk 2_1
+    21300004: Top Walk 2_2
+    21300006: Top Walk 2_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Top Walk 2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5403
+        width: 736
+        height: 1665
+      alignment: 9
+      pivot: {x: 0.48, y: 0.16674057}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 111.26522, y: 208.83447}
+        - {x: 111.26522, y: 311.83447}
+        - {x: 84.26522, y: 329.83447}
+        - {x: 31.26522, y: 402.83447}
+        - {x: 4.2652206, y: 402.83447}
+        - {x: -6.7347794, y: 397.83447}
+        - {x: -8.734779, y: 361.83447}
+        - {x: -84.73478, y: 340.83447}
+        - {x: -102.73478, y: 291.83447}
+        - {x: -102.73478, y: 230.83447}
+        - {x: -74.73478, y: 199.83447}
+        - {x: -16.73478, y: 173.83447}
+        - {x: -75.73478, y: 140.83447}
+        - {x: -81.73478, y: -4.1655273}
+        - {x: -54.73478, y: -80.16553}
+        - {x: 2.2652206, y: -80.16553}
+        - {x: 73.26522, y: -36.165527}
+        - {x: 68.26522, y: 137.83447}
+        - {x: 32.26522, y: 192.83447}
+    - name: Top Walk 2_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3584
+        width: 736
+        height: 1643
+      alignment: 9
+      pivot: {x: 0.48, y: 0.1667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 111.26522, y: 206.66211}
+        - {x: 111.26522, y: 304.6621}
+        - {x: 95.26522, y: 342.6621}
+        - {x: 46.26522, y: 386.6621}
+        - {x: 30.26522, y: 397.6621}
+        - {x: 4.2652206, y: 397.6621}
+        - {x: -7.7347794, y: 384.6621}
+        - {x: -12.734779, y: 327.6621}
+        - {x: -90.73478, y: 322.6621}
+        - {x: -102.73478, y: 284.6621}
+        - {x: -102.73478, y: 224.66211}
+        - {x: -75.73478, y: 192.66211}
+        - {x: -75.73478, y: 13.662109}
+        - {x: -73.73478, y: 12.662109}
+        - {x: -60.73478, y: -76.33789}
+        - {x: -52.73478, y: -79.33789}
+        - {x: 1.2652206, y: -79.33789}
+        - {x: 39.26522, y: -55.33789}
+        - {x: 67.26522, y: 4.6621094}
+        - {x: 68.26522, y: 153.66211}
+    - name: Top Walk 2_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1765
+        width: 734
+        height: 1615
+      alignment: 9
+      pivot: {x: 0.48, y: 0.166}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12.833145, y: -30.78189}
+        - {x: 12.833145, y: 11.218109}
+        - {x: 73.833145, y: 18.21811}
+        - {x: 67.833145, y: 169.21811}
+        - {x: 98.833145, y: 181.21811}
+        - {x: 111.833145, y: 230.21811}
+        - {x: 111.833145, y: 315.2181}
+        - {x: 62.833145, y: 391.2181}
+        - {x: -6.166855, y: 391.2181}
+        - {x: -41.166855, y: 370.2181}
+        - {x: -97.166855, y: 334.2181}
+        - {x: -102.166855, y: 296.2181}
+        - {x: -102.166855, y: 217.21811}
+        - {x: -75.166855, y: 168.21811}
+        - {x: -78.166855, y: 29.21811}
+        - {x: -53.166855, y: -76.78189}
+        - {x: -51.166855, y: -77.78189}
+        - {x: -0.16685486, y: -77.78189}
+        - {x: 13.833145, y: -45.78189}
+        - {x: 14.833145, y: -35.78189}
+        - {x: 14.833145, y: -32.78189}
+    - name: Top Walk 2_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 65
+        width: 736
+        height: 1643
+      alignment: 9
+      pivot: {x: 0.48, y: 0.166}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 68.26522, y: 150.34161}
+        - {x: 111.26522, y: 203.34161}
+        - {x: 111.26522, y: 301.3416}
+        - {x: 95.26522, y: 339.3416}
+        - {x: 46.26522, y: 383.3416}
+        - {x: 30.26522, y: 394.3416}
+        - {x: 27.26522, y: 395.3416}
+        - {x: 5.2652206, y: 395.3416}
+        - {x: -7.7347794, y: 381.3416}
+        - {x: -12.734779, y: 324.3416}
+        - {x: -90.73478, y: 319.3416}
+        - {x: -102.73478, y: 281.3416}
+        - {x: -102.73478, y: 222.34161}
+        - {x: -74.73478, y: 189.34161}
+        - {x: -75.73478, y: 148.34161}
+        - {x: -76.73478, y: 10.341614}
+        - {x: -60.73478, y: -78.65839}
+        - {x: 5.2652206, y: -78.65839}
+        - {x: 22.26522, y: -31.658386}
+        - {x: 61.26522, y: -2.6583862}
+        - {x: 67.26522, y: 1.3416138}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
