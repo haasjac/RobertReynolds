@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour {
     public static UI S;
     //Whether or not the players are together
-    public bool together;
+    public bool together, stopped;
     public GameObject Suspicion;
     public float currentSuspicion, maxSuspicion;
     int star = 0;

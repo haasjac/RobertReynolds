@@ -43,14 +43,16 @@ public class Sign : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.transform.parent.CompareTag("Player")) {
+        if (other.transform.CompareTag("Whole") || other.transform.CompareTag("Top") || other.transform.CompareTag("Bottom")) {
             collided = true;
+            UI.S.stopped = true;
         }
     }
-
+    /* Probably all one time use dialogue
     void OnTriggerExit2D(Collider2D other) {
         if (other.transform.parent.CompareTag("Player")) {
             collided = false;
         }
     }
+    */
 }

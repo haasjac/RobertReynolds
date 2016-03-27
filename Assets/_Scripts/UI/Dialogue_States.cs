@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class State_Dialogue_Play : State {
     Sign s;
     int current;
-    int size;
 
     public State_Dialogue_Play(Sign s) {
         this.s = s;
@@ -17,7 +16,6 @@ public class State_Dialogue_Play : State {
     public override void OnStart() {
         s.isBeingRead = true;
         s.background_go.gameObject.SetActive(true);
-        size = s.messages.Count;
         current = 0;
         s.dialogue_go.text = s.messages[current];
     }
@@ -42,5 +40,6 @@ public class State_Dialogue_Play : State {
     public override void OnFinish() {
         s.background_go.gameObject.SetActive(false);
         s.isBeingRead = false;
+        UI.S.stopped = false;
     }
 }

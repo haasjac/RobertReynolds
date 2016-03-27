@@ -33,28 +33,28 @@ public class Top : Player
             anim.SetBool("walking", false);
             anim.Play("Idle Top");
         }
-        if (facingRight && Input.GetKeyDown(KeyCode.A))
+        if (facingRight && Input.GetKeyDown(KeyCode.A) && !UI.S.stopped)
         {
             facingRight = !facingRight;
             transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         }
-        else if(!facingRight && Input.GetKeyDown(KeyCode.D))
+        else if(!facingRight && Input.GetKeyDown(KeyCode.D) && !UI.S.stopped)
         {
             facingRight = !facingRight;
             transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         }
         //Jump input
-        if(Input.GetKeyDown(KeyCode.W) && grounded)
+        if(Input.GetKeyDown(KeyCode.W) && grounded && !UI.S.stopped)
         {
             jump = true;
             anim.SetBool("jumping", true);
             UI.S.PlaySound("Jump");
         }
-        else if(Input.GetKeyUp(KeyCode.W) && !grounded)
+        else if(Input.GetKeyUp(KeyCode.W) && !grounded && !UI.S.stopped)
         {
             jumpCancel = true;
         }
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !attacking)
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !UI.S.stopped)
         {
             anim.SetBool("attacking", true);
             attacking = true;
@@ -67,7 +67,7 @@ public class Top : Player
             attacking = false;
             anim.SetBool("attacking", false);
         }
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if(Input.GetKeyDown(KeyCode.LeftControl) && !UI.S.stopped)
         {
             SplitOrCombine();
         }
@@ -81,7 +81,10 @@ public class Top : Player
         }
         else
         {
-            iH = Input.GetAxis("Horizontal2");
+            if(!UI.S.stopped)
+            {
+                iH = Input.GetAxis("Horizontal2");
+            }
             Vector2 newVel = rigid.velocity; 
             newVel.x = iH * moveSpeed;
             rigid.velocity = newVel;

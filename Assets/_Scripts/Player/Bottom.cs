@@ -38,17 +38,17 @@ public class Bottom : Player {
             transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         }
         //Jump input
-        if(Input.GetKeyDown(KeyCode.UpArrow) && grounded)
+        if(Input.GetKeyDown(KeyCode.UpArrow) && grounded && !UI.S.stopped)
         {
             jump = true;
             UI.S.PlaySound("Feet Jumping");
             anim.SetBool("jumping", true);
         }
-        else if(Input.GetKeyUp(KeyCode.UpArrow) && !grounded)
+        else if(Input.GetKeyUp(KeyCode.UpArrow) && !grounded && !UI.S.stopped)
         {
             jumpCancel = true;
         }
-        if (Input.GetKeyDown(KeyCode.RightControl))
+        if (Input.GetKeyDown(KeyCode.RightControl) && !UI.S.stopped)
         {
             SplitOrCombine();
         }
@@ -57,7 +57,10 @@ public class Bottom : Player {
     {
         Rigidbody2D currentRigid = UI.S.together ? Whole.S.rigid : rigid;
         //Move left or right
-        iH = Input.GetAxis("Horizontal");
+        if(!UI.S.stopped)
+        {
+            iH = Input.GetAxis("Horizontal");
+        }
         Vector2 newVel = currentRigid.velocity;
         newVel.x = iH * moveSpeed;
         currentRigid.velocity = newVel;
