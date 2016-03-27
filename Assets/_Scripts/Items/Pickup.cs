@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Pickup : MonoBehaviour {
-    public bool health = false;
     public float speed = .001f;
     public float healthAmount = 1f;
 	// Update is called once per frame
@@ -15,32 +14,9 @@ public class Pickup : MonoBehaviour {
     {
         if(coll.tag == "Whole" ||  coll.tag == "Top" || coll.tag == "Bottom")
         {
-            if(health)
-            {
-                //TODO: Play Health Sound
-                //IncHealth
-                if(UI.S.together)
-                {
-                    UI.S.fullHealth += healthAmount;
-                }
-                else
-                {
-                    if(coll.tag == "Top")
-                    {
-                        Top.S.health += healthAmount;
-                    }
-                    else if(coll.tag == "Bottom")
-                    {
-                        Bottom.S.health += healthAmount;
-                    }
-                }
-            }
-            else
-            {
-                //TODO: Play Pickup Sound
-                //IncPickup
-                UI.S.Collect();
-            }
+            //TODO: Play Pickup Sound
+            //IncPickup
+            UI.S.Collect();
             Destroy(gameObject);
         }
     }
