@@ -16,7 +16,7 @@ public class Together : State  {
         pc.topController.control_state_machine.ChangeState(new inactive(pc.topController));
         pc.bottomController.control_state_machine.ChangeState(new inactive(pc.bottomController));
         pc.fullController.control_state_machine.ChangeState(new full_movement(pc.fullController, pc.topController, pc.bottomController));
-        pc.pState = playerState.TOGETEHER;
+        pc.pState = playerState.TOGETHER;
     }
 
 }

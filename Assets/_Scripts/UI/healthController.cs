@@ -10,9 +10,9 @@ public class healthController : MonoBehaviour {
     public GameObject TopHealth;
     public GameObject BottomHealth;
 
-    public PartController top;
-    public PartController bottom;
-    public PartController full;
+    public partController top;
+    public partController bottom;
+    public partController full;
 
     public StateMachine sm;
 

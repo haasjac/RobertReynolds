@@ -7,9 +7,9 @@ public class playerController : MonoBehaviour {
 
     public static playerController S;
 
-    public PartController topController;
-    public PartController bottomController;
-    public PartController fullController;
+    public partController topController;
+    public partController bottomController;
+    public partController fullController;
 
     public healthController hc;
 

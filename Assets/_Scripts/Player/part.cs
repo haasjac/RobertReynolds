@@ -3,11 +3,11 @@ using System.Collections;
 
 public class part : MonoBehaviour {
 
-    PartController pc;
+    partController pc;
 
 	// Use this for initialization
 	void Start () {
-        pc = GetComponentInParent<PartController>();
+        pc = GetComponentInParent<partController>();
 	}
 	
 	// Update is called once per frame

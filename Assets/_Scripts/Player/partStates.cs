@@ -3,10 +3,10 @@ using System.Collections;
 
 public class half_movement : State {
 
-    PartController pc;
+    partController pc;
     Rigidbody2D rb;
     float x_input;
-    public half_movement(PartController pc) {
+    public half_movement(partController pc) {
         this.pc = pc;
     }
 
@@ -34,13 +34,13 @@ public class half_movement : State {
 
 public class full_movement : State {
 
-    PartController pc;
-    PartController bottompc;
-    PartController toppc;
+    partController pc;
+    partController bottompc;
+    partController toppc;
     Rigidbody2D rb;
     float x_input;
 
-    public full_movement(PartController pc, PartController toppc, PartController bottompc) {
+    public full_movement(partController pc, partController toppc, partController bottompc) {
         this.pc = pc;
         this.toppc = toppc;
         this.bottompc = bottompc;
@@ -73,9 +73,9 @@ public class full_movement : State {
 
 public class inactive : State {
 
-    PartController pc;
+    partController pc;
 
-    public inactive(PartController pc) {
+    public inactive(partController pc) {
         this.pc = pc;
     }
 
