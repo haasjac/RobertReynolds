@@ -12,7 +12,7 @@ public class playerController : MonoBehaviour {
     public partController bottomController;
     public partController fullController;
 
-    public healthController hc;
+    //public healthController hc;
 
     public playerState pState;
 
