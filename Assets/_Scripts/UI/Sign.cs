@@ -63,13 +63,13 @@ public class Sign : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.transform.parent.CompareTag("Player")) {
+        if (other.CompareTag("Whole")) {
             collided = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        if (other.transform.parent.CompareTag("Player")) {
+        if (other.CompareTag("Whole")) {
             collided = false;
         }
     }

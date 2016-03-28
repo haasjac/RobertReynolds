@@ -7,7 +7,6 @@ public class UI : MonoBehaviour {
     //Whether or not the players are together
     public bool together, stopped;
     public Slider stealthBar;
-    public GameObject Suspicion;
     public float currentSuspicion, maxSuspicion;
     int star = 0;
     public Image star1;
@@ -27,16 +26,20 @@ public class UI : MonoBehaviour {
     }
 
     void Update() {
-        stealth = playerController.S.stealth / playerController.S.max_stealth; ;
+        stealth = currentSuspicion / maxSuspicion ;
         stealthBar.GetComponentInChildren<Image>().GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, stealth);
         stealthBar.value = stealth;
     }
 
 	public void ChangeSuspicion(float toAdd)
     {
-        Vector2 fullSize = Suspicion.GetComponent<RectTransform>().sizeDelta;
-        fullSize.x = (currentSuspicion / maxSuspicion) * 150f;
-        Suspicion.GetComponent<RectTransform>().sizeDelta = fullSize;
+        float test = currentSuspicion + toAdd;
+        if (test > maxSuspicion)
+            test = maxSuspicion;
+        else if (test < 0) {
+            test = 0;
+        }
+        currentSuspicion = test;
     }
     public void Collect()
     {
