@@ -6,6 +6,7 @@ public class UI : MonoBehaviour {
     public static UI S;
     //Whether or not the players are together
     public bool together, stopped;
+    public Slider stealthBar;
     public GameObject Suspicion;
     public float currentSuspicion, maxSuspicion;
     int star = 0;
@@ -13,6 +14,8 @@ public class UI : MonoBehaviour {
     public Image star2;
     public Image star3;
     public AudioSource sound;
+
+    float stealth;
     void Awake()
     {
         S = this;
@@ -22,6 +25,13 @@ public class UI : MonoBehaviour {
     {
         sound = Camera.main.GetComponent<AudioSource>();
     }
+
+    void Update() {
+        stealth = playerController.S.stealth / playerController.S.max_stealth; ;
+        stealthBar.GetComponentInChildren<Image>().GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, stealth);
+        stealthBar.value = stealth;
+    }
+
 	public void ChangeSuspicion(float toAdd)
     {
         Vector2 fullSize = Suspicion.GetComponent<RectTransform>().sizeDelta;
