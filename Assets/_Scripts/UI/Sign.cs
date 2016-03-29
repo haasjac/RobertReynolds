@@ -30,8 +30,8 @@ public class Sign : MonoBehaviour {
     public string invalid_reaction = "";
     public float great_amount = 0.3f;
     public float good_amount = 0.1f;
-    public float bad_amount = 0.1f;
-    public float invalid_amount = 0.3f;
+    public float bad_amount = -0.1f;
+    public float invalid_amount = -0.3f;
 
     //PRIVATE
     [HideInInspector]
@@ -63,13 +63,13 @@ public class Sign : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.transform.parent.CompareTag("Player")) {
+        if (other.CompareTag("Whole")) {
             collided = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        if (other.transform.parent.CompareTag("Player")) {
+        if (other.CompareTag("Whole")) {
             collided = false;
         }
     }

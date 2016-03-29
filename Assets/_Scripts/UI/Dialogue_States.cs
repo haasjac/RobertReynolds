@@ -33,6 +33,7 @@ public class Dialogue_States {
         }
 
         public override void OnStart() {
+            UI.S.stopped = true;
             s.isBeingRead = true;
             s.dialogue_go.gameObject.SetActive(true);
             size = s.messages.Count;
@@ -60,6 +61,7 @@ public class Dialogue_States {
             if (!s.player_response) {
                 s.dialogue_go.gameObject.SetActive(false);
                 s.isBeingRead = false;
+                UI.S.stopped = false;
             }
         }
     }
@@ -237,19 +239,19 @@ public class Dialogue_States {
             switch (ans) {
                 case answers.GREAT:
                     s.dialogue.text = s.great_reaction;
-                    playerController.S.stealth += s.great_amount;
+                    UI.S.ChangeSuspicion(s.great_amount);
                     break;
                 case answers.GOOD:
                     s.dialogue.text = s.good_reaction;
-                    playerController.S.stealth += s.good_amount;
+                    UI.S.ChangeSuspicion(s.good_amount);
                     break;
                 case answers.BAD:
                     s.dialogue.text = s.bad_reaction;
-                    playerController.S.stealth -= s.bad_amount;
+                    UI.S.ChangeSuspicion(s.bad_amount);
                     break;
                 case answers.INVALID:
                     s.dialogue.text = s.invalid_reaction;
-                    playerController.S.stealth -= s.invalid_amount;
+                    UI.S.ChangeSuspicion(s.invalid_amount);
                     break;
             }
         }
@@ -264,6 +266,7 @@ public class Dialogue_States {
         public override void OnFinish() {
             s.dialogue_go.gameObject.SetActive(false);
             s.isBeingRead = false;
+            UI.S.stopped = false;
         }
     }
 
