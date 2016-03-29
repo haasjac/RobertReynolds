@@ -14,7 +14,7 @@ public class UI : MonoBehaviour {
     public Image star3;
     public AudioSource sound;
 
-    float stealth;
+    float ratio;
     void Awake()
     {
         S = this;
@@ -26,9 +26,9 @@ public class UI : MonoBehaviour {
     }
 
     void Update() {
-        stealth = currentSuspicion / maxSuspicion ;
-        stealthBar.GetComponentInChildren<Image>().GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, stealth);
-        stealthBar.value = stealth;
+        ratio = currentSuspicion / maxSuspicion ;
+        stealthBar.GetComponentInChildren<Image>().GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ratio);
+        stealthBar.value = ratio;
     }
 
 	public void ChangeSuspicion(float toAdd)
