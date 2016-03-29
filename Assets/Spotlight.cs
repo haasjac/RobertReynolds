@@ -23,12 +23,14 @@ public class Spotlight : MonoBehaviour {
     {
         while(true)
         {
+            UI.S.PlaySound("Click");
             coll.enabled = false;
             ray_sr.enabled = false;
             yield return new WaitForSeconds(1f);
             UI.S.PlaySound("Click");
             coll.enabled = true;
             ray_sr.enabled = true;
+            yield return new WaitForSeconds(1f);
         }
     }
     void OnTriggerEnter2D(Collider2D coll)
