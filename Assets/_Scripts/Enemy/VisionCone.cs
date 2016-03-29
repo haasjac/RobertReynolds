@@ -16,7 +16,7 @@ public class VisionCone : MonoBehaviour {
         //take into account amount of clothing
         //robot.GetComponent<playerController>().suspicion++;
         print("target in sight");
-        UI.S.ChangeSuspicion(0.001f);
+        UI.S.ChangeSuspicion(-0.001f);
     }
 
 
@@ -48,6 +48,15 @@ public class VisionCone : MonoBehaviour {
         switch (layer) {
             case "Player":
                 i_see_you();
+                if(UI.S.currentSuspicion <= 0.0f) {
+                    Patrol enemy = this.transform.parent.GetComponent<Patrol>();
+                    enemy.enabled = true;
+                    enemy.freak_out = true;
+                    enemy.movement_speed *= 3;
+                    enemy.GetComponent<Animator>().enabled = true;
+                    Destroy(this.gameObject);
+
+                }
                 break;
             default:
                 break;

@@ -10,6 +10,7 @@ public class Bottom : Player {
     // Use this for initialization
     void Start ()
     {
+        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         health = maxHealth;
         boxCol = GetComponent<BoxCollider2D>();

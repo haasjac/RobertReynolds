@@ -12,6 +12,7 @@ public class Top : Player
     // Use this for initialization
     void Start ()
     {
+        sr = GetComponent<SpriteRenderer>();
         rigid = Whole.S.rigid;
         fire = transform.FindChild("Fire");
         anim = GetComponent<Animator>();
