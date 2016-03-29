@@ -37,12 +37,13 @@ public class Enemy : MonoBehaviour {
 //enemy capability.
     public GameObject auto_target(GameObject robot, string enemy_type) {
         //have the players split?
-        if (!UI.S.together) {
+        if (split(robot)) {
             //target closest  player within range
             GameObject torso = robot.transform.FindChild("TopController").gameObject;
             GameObject legs = robot.transform.FindChild("BottomController").gameObject;
 
             if(torso == null || legs == null) {
+                print("ERROR: auto_target");
                 return robot;
             }
 
@@ -121,7 +122,26 @@ public class Enemy : MonoBehaviour {
         }
         this.transform.position = pos;
     }
-    
+
+///////////////////////////////////////////////////////////////////////////////
+//FUNCTION: returns true if the players have split apart
+    public bool split(GameObject robot) {
+        if (robot.GetComponent<playerController>().pState == playerState.APART)
+            return true;
+        else
+            return false;
+    }
+
+///////////////////////////////////////////////////////////////////////////////
+//FUNCTION: spawn the chosen icon above this enemy
+    public GameObject spawn_icon(GameObject prefab) {
+        GameObject icon = Instantiate<GameObject>(prefab);
+        Vector3 pos = this.transform.position;
+        pos.y += 1.6f;
+        icon.transform.position = pos;
+
+        return icon;
+    }
 ///////////////////////////////////////////////////////////////////////////////
 //FUNCTION: list of collisions for enemies
     public void OnCollisionEnter(Collision coll) {

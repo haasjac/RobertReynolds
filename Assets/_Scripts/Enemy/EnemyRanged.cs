@@ -18,14 +18,8 @@ public class EnemyRanged : Enemy {
 	// Update is called once per frame
 	void Update () {
         //target = auto_target(robot, "ranged");
-        if(UI.S.together)
-        {
-            this.transform.LookAt(Whole.S.transform.position);
-        }
-        else
-        {
-            this.transform.LookAt(Bottom.S.container.transform.position);
-        }
+        target = robot;
+        this.transform.LookAt(target.transform.position);
 	}
 
 
