@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
     protected Animator anim;
+    public SpriteRenderer sr;
     protected Rigidbody2D rigid;
     public GameObject containerPrefab;
     public GameObject container;
@@ -58,6 +59,16 @@ public class Player : MonoBehaviour {
             {
                 UI.S.PlaySound("Reject");
             }
+        }
+    }
+    public IEnumerator Flash()
+    {
+        for(int i = 0; i < 3; ++i)
+        {
+            sr.color = Color.red;
+            yield return new WaitForSeconds(.3f);
+            sr.color = Color.white;
+            yield return new WaitForSeconds(.3f);
         }
     }
 }

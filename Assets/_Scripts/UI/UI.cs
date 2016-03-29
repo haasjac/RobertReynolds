@@ -40,6 +40,11 @@ public class UI : MonoBehaviour {
             test = 0;
         }
         currentSuspicion = test;
+        if(toAdd < 0f)
+        {
+            StartCoroutine(Top.S.Flash());
+            StartCoroutine(Bottom.S.Flash());
+        }
     }
     public void Collect()
     {
