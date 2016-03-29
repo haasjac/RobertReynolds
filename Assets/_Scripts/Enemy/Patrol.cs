@@ -19,6 +19,7 @@ public class Patrol : Enemy {
         searching = false;
         freak_out = false;
         spawn = this.transform.position;
+        GetComponent<Animator>().enabled = false;
         //StartCoroutine("suspicious");
         //StartCoroutine_Auto(suspicious);
         //icon.transform.parent = this.transform;
@@ -28,8 +29,10 @@ public class Patrol : Enemy {
 	void Update () {
         if (freak_out) {
             //destroy vision cone and raise the roof!!!
-            Destroy(this.transform.FindChild("vision_cone").gameObject);
-            movement_speed *= 3;
+            //Destroy(this.transform.FindChild("vision_cone").gameObject);
+            //movement_speed *= 3;
+            patrol();
+            return;
         }
 
 
