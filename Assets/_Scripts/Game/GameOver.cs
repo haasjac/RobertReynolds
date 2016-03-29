@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GameOver : MonoBehaviour {
-
+    public GameObject respawn;
 	// Use this for initialization
 	void Start () {
 	
@@ -12,4 +12,13 @@ public class GameOver : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnCollisionEnter(Collider2D col) {
+        gameObject.GetComponent<AudioSource>().enabled = true;
+    }
+
+    void OnCollisionExit(Collider2D col) {
+        Transform temp = respawn.transform;
+        //col.gameObject.transform = respawn.transform;
+    }
 }
