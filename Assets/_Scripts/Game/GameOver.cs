@@ -13,11 +13,11 @@ public class GameOver : MonoBehaviour {
 	
 	}
 
-    void OnCollisionEnter(Collider2D col) {
+    void OnCollisionEnter2D(Collision2D col) {
         gameObject.GetComponent<AudioSource>().enabled = true;
     }
 
-    void OnCollisionExit(Collider2D col) {
+    void OnCollisionExit2D(Collision2D col) {
         Transform temp = respawn.transform;
         //col.gameObject.transform = respawn.transform;
     }
