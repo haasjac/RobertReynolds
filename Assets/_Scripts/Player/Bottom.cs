@@ -11,7 +11,6 @@ public class Bottom : Player {
     new void Start ()
     {
         base.Start();
-        grounded = true;
     }
     new void Update()
     {

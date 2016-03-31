@@ -14,7 +14,6 @@ public class Top : Player
     new void Start ()
     {
         base.Start();
-        rigid = Whole.S.rigid;
         fire = transform.FindChild("Fire");
 	}
 	

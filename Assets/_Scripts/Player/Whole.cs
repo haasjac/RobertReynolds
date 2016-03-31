@@ -33,6 +33,7 @@ public class Whole : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
+                Top.S.grounded = true;
                 Bottom.S.grounded = true;
                 break;
         }
@@ -42,6 +43,7 @@ public class Whole : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
+                Top.S.grounded = false;
                 Bottom.S.grounded = false;
                 break;
         }

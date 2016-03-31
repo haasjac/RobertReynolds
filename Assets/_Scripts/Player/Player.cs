@@ -34,7 +34,15 @@ public class Player : MonoBehaviour {
         if (!UI.S.stopped) {
 
             //MOVING
-            iH = Input.GetAxis("L_XAxis_" + player_num.ToString());
+            if (UI.S.together) {
+                iH = Input.GetAxis("L_XAxis_1") + Input.GetAxis("L_XAxis_2");
+                if (iH > 1)
+                    iH = 1;
+                if (iH < -1)
+                    iH = -1;
+            } else {
+                iH = Input.GetAxis("L_XAxis_" + player_num.ToString());
+            }
             
             //Jump input
             if (Input.GetButtonDown("A_" + player_num.ToString()) && grounded && !UI.S.stopped) {
@@ -84,7 +92,7 @@ public class Player : MonoBehaviour {
             if (jump) {
                 currentRigid.velocity = new Vector2(currentRigid.velocity.x, maxJumpSpeed);
                 jump = false;
-                grounded = false;
+                //grounded = false;
                 anim.SetBool("jumping", false);
             }
             if (jumpCancel) {
