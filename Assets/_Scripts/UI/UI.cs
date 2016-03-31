@@ -8,11 +8,15 @@ public class UI : MonoBehaviour {
     public bool together, stopped;
     public Slider stealthBar;
     public float currentSuspicion, maxSuspicion;
-    int star = 0;
-    public Image star1;
-    public Image star2;
-    public Image star3;
+    public GameObject clothes;
+    public GameObject costume1_go;
+    public GameObject costume2_go;
+    public GameObject costume3_go;
     public AudioSource sound;
+
+    Image costume1_img;
+    Image costume2_img;
+    Image costume3_img;
 
     float ratio;
     void Awake()
@@ -23,6 +27,13 @@ public class UI : MonoBehaviour {
     void Start ()
     {
         sound = Camera.main.GetComponent<AudioSource>();
+        Image[] c = clothes.GetComponentsInChildren<Image>();
+        costume1_img = c[0];
+        costume2_img = c[1];
+        costume3_img = c[2];
+        costume1_img.color = Color.black;
+        costume2_img.color = Color.black;
+        costume3_img.color = Color.black;
     }
 
     void Update() {
@@ -46,19 +57,19 @@ public class UI : MonoBehaviour {
             StartCoroutine(Bottom.S.Flash());
         }
     }
-    public void Collect()
+    public void Collect(GameObject go)
     {
-        if(star == 0)
+        if(go == costume1_go)
         {
-            star1.color = Color.white;
+            costume1_img.color = Color.white;
         }
-        else if(star == 1)
+        else if(go == costume2_go)
         {
-            star2.color = Color.white;
+            costume2_img.color = Color.white;
         }
-        else
+        else if(go == costume3_go)
         {
-            star3.color = Color.white;
+            costume3_img.color = Color.white;
         }
         PlaySound("Success");
     }

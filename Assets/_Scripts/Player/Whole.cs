@@ -35,10 +35,6 @@ public class Whole : MonoBehaviour {
             case "Ground":
                 Bottom.S.grounded = true;
                 break;
-            case "Projectile":
-                Destroy(coll.gameObject);
-                UI.S.ChangeSuspicion(coll.gameObject.GetComponent<Projectile>().damage);
-                break;
         }
     }
     void OnCollisionExit2D(Collision2D coll)

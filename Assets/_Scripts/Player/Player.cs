@@ -27,7 +27,6 @@ public class Player : MonoBehaviour {
     protected void Start() {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        grounded = true;
     }
 
     protected void Update() {
