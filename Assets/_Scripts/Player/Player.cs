@@ -2,24 +2,101 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-    protected Animator anim;
-    public SpriteRenderer sr;
-    protected Rigidbody2D rigid;
+    //PUBLIC
     public GameObject containerPrefab;
-    public GameObject container;
-    public BoxCollider2D boxCol;
     public GameObject wholePrefab;
-    public GameObject whole;
-    public bool facingRight = true;
-    public float maxHealth = 1f;
-    public float health;
     public float moveSpeed = 5f;
     public float maxJumpSpeed = 6f, minJumpSpeed = 3f;
-    private float splitJumpSpeed = 8f;
+    public float splitJumpSpeed = 8f;
     public float attackDur = .5f, attackStart;
-    public bool grounded, jump, jumpCancel, attacking;
-    public float iH;
+    public int player_num = 1;
+    public bool grounded, attacking;
+    [HideInInspector]
+    public GameObject container;
+
+    //PROTECTED
+    protected Animator anim;
+    protected SpriteRenderer sr;
+    protected Rigidbody2D rigid;
+    protected GameObject whole;
+    protected bool facingRight = true;
+    protected bool jump, jumpCancel;
+    protected float iH;
+    
     // Use this for initialization
+    protected void Start() {
+        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        grounded = true;
+    }
+
+    protected void Update() {
+
+        if (!UI.S.stopped) {
+
+            //MOVING
+            iH = Input.GetAxis("L_XAxis_" + player_num.ToString());
+            
+            //Jump input
+            if (Input.GetButtonDown("A_" + player_num.ToString()) && grounded && !UI.S.stopped) {
+                jump = true;
+                if (player_num == 2) {
+                    UI.S.PlaySound("Feet Jumping");
+                } else {
+                    UI.S.PlaySound("Top Jumping");
+                }
+                anim.SetBool("jumping", true);
+            } else if (Input.GetButtonUp("A_" + player_num.ToString()) && !grounded && !UI.S.stopped) {
+                jumpCancel = true;
+            }
+            if (Input.GetKeyDown(KeyCode.RightControl) && !UI.S.stopped) {
+                SplitOrCombine();
+            }
+
+            //SPLIT
+            if (Input.GetButtonDown("RB_" + player_num.ToString()) && !UI.S.stopped) {
+                SplitOrCombine();
+            }
+
+            //Animation Parameters set
+            if (Mathf.Abs(iH) > .01f) {
+                anim.SetBool("walking", true);
+                if (iH > 0) {
+                    facingRight = true;
+                    transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                } else if (iH < 0) {
+                    facingRight = false;
+                    transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                }
+            } else {
+                anim.SetBool("walking", false);
+            }
+        }
+    }
+
+    protected void FixedUpdate() {
+
+        if (!UI.S.stopped) {
+            Rigidbody2D currentRigid = UI.S.together ? Whole.S.rigid : rigid;
+            Vector2 newVel = currentRigid.velocity;
+            newVel.x = iH * moveSpeed;
+            currentRigid.velocity = newVel;
+            //Jump
+            if (jump) {
+                currentRigid.velocity = new Vector2(currentRigid.velocity.x, maxJumpSpeed);
+                jump = false;
+                grounded = false;
+                anim.SetBool("jumping", false);
+            }
+            if (jumpCancel) {
+                if (currentRigid.velocity.y > minJumpSpeed) {
+                    currentRigid.velocity = new Vector2(currentRigid.velocity.x, minJumpSpeed);
+                }
+                jumpCancel = false;
+            }
+        }
+    }
+
     protected void SplitOrCombine()
     {
        

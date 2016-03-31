@@ -33,6 +33,7 @@ public class Dialogue_States {
         }
 
         public override void OnStart() {
+            Time.timeScale = 0;
             UI.S.stopped = true;
             s.isBeingRead = true;
             s.dialogue_go.gameObject.SetActive(true);
@@ -62,6 +63,7 @@ public class Dialogue_States {
                 s.dialogue_go.gameObject.SetActive(false);
                 s.isBeingRead = false;
                 UI.S.stopped = false;
+                Time.timeScale = 1;
             }
         }
     }
@@ -267,6 +269,7 @@ public class Dialogue_States {
             s.dialogue_go.gameObject.SetActive(false);
             s.isBeingRead = false;
             UI.S.stopped = false;
+            Time.timeScale = 1;
         }
     }
 
