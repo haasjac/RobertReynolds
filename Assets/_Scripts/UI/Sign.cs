@@ -51,7 +51,7 @@ public class Sign : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (collided && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) && !isBeingRead) {
+        if (UI.S.together && collided && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) && !isBeingRead) {
             isBeingRead = true;
             sign_state_machine.ChangeState(new Dialogue_States.Play(this));
         }

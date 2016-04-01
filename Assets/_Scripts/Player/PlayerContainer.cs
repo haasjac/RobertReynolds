@@ -35,10 +35,6 @@ public class PlayerContainer : MonoBehaviour {
             case "Ground":
                 childPlayer.grounded = true;
                 break;
-            case "Projectile":
-                Destroy(coll.gameObject);
-                childPlayer.health -= coll.gameObject.GetComponent<Projectile>().damage;
-                break;
         }
     }
     void OnCollisionExit2D(Collision2D coll)

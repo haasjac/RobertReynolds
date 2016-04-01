@@ -33,11 +33,8 @@ public class Whole : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
+                Top.S.grounded = true;
                 Bottom.S.grounded = true;
-                break;
-            case "Projectile":
-                Destroy(coll.gameObject);
-                UI.S.ChangeSuspicion(coll.gameObject.GetComponent<Projectile>().damage);
                 break;
         }
     }
@@ -46,6 +43,7 @@ public class Whole : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
+                Top.S.grounded = false;
                 Bottom.S.grounded = false;
                 break;
         }

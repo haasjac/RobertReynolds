@@ -126,10 +126,10 @@ public class Enemy : MonoBehaviour {
 ///////////////////////////////////////////////////////////////////////////////
 //FUNCTION: returns true if the players have split apart
     public bool split(GameObject robot) {
-        if (robot.GetComponent<playerController>().pState == playerState.APART)
+        //if (robot.GetComponent<playerController>().pState == playerState.APART)
             return true;
-        else
-            return false;
+        //else
+            //return false;
     }
 
 ///////////////////////////////////////////////////////////////////////////////
