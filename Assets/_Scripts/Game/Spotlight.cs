@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Spotlight : MonoBehaviour {
-    SpriteRenderer sr, ray_sr;
-    BoxCollider2D coll;
+    public SpriteRenderer sr, ray_sr;
+    public BoxCollider2D coll;
     public GameObject ray;
 
 	// Use this for initialization
@@ -25,7 +25,7 @@ public class Spotlight : MonoBehaviour {
         {
             UI.S.PlaySound("Click");
             coll.enabled = false;
-            ray_sr.enabled = false;
+            ray_sr.sprite = null;
             yield return new WaitForSeconds(1f);
             UI.S.PlaySound("Click");
             coll.enabled = true;
