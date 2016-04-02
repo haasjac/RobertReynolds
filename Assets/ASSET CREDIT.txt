@@ -5,6 +5,7 @@ Clapboard from http://worldartsme.com/hollywood-clapboard-clipart.html# by Green
 SOUNDS
 Alarm Start, Charging, Explosion, Jump, Laser, Punch, Success, and Walking from GameBurp
 Wagon Wheel by Kevin Macleod
+Ratchet Sound from https://youtu.be/Vtf2gFlBZj4 by Sound Effects
 
 FONTS
 SFTransRobotics by ShyFonts
