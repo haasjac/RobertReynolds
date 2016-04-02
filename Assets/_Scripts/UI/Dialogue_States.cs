@@ -24,22 +24,29 @@ public class Dialogue_States {
     /// Starts the dialogue.
     /// </summary>
     public class Play : State {
-        Sign s;
+        Speach s;
+        State next;
         int current;
         int size;
 
-        public Play(Sign s) {
+        public Play(Speach s, State next = null) {
             this.s = s;
+            this.next = next;
         }
 
         public override void OnStart() {
             Time.timeScale = 0;
             UI.S.stopped = true;
             s.isBeingRead = true;
-            s.dialogue_go.gameObject.SetActive(true);
+            Dialogue.S.gameObject.SetActive(true);
             size = s.messages.Count;
-            current = -1;
-            s.face.sprite = s.person_face;
+            if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+                current = -1;
+            } else {
+                current = 0;
+                Dialogue.S.text.text = s.messages[current];
+            }
+            Dialogue.S.face.sprite = s.person_face;
         }
 
         public override void OnUpdate(float time_delta_fraction) {
@@ -47,10 +54,10 @@ public class Dialogue_States {
             if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
                 current++;
                 if (current < size) {
-                    s.dialogue.text = s.messages[current];
+                    Dialogue.S.text.text = s.messages[current];
                 } else {
-                    if (s.player_response) {
-                        state_machine.ChangeState(new Choose(s));
+                    if (next != null) {
+                        state_machine.ChangeState(next);
                     } else {
                         ConcludeState();
                     }
@@ -59,8 +66,8 @@ public class Dialogue_States {
         }
 
         public override void OnFinish() {
-            if (!s.player_response) {
-                s.dialogue_go.gameObject.SetActive(false);
+            if (next == null) {
+                Dialogue.S.gameObject.SetActive(false);
                 s.isBeingRead = false;
                 UI.S.stopped = false;
                 Time.timeScale = 1;
@@ -75,58 +82,59 @@ public class Dialogue_States {
     /// Players chooses a response.
     /// </summary>
     public class Choose : State {
-        Sign s;
+        NPC s;
         answers ans_1;
         answers ans_2;
         answers a;
         answers b;
         answers y;
 
-        public Choose(Sign s) {
+        public Choose(NPC s) {
             this.s = s;
         }
 
         public override void OnStart() {
             int rand = Mathf.CeilToInt(UnityEngine.Random.Range(0.00001f, 6));
+            Dialogue.S.buttons.SetActive(true);
             switch (rand) {
                 case 1:
-                    s.dialogue.text = "A: " + s.great_option + "\nB: " + s.good_option + "\nY: " + s.bad_option;
+                    Dialogue.S.text.text = s.great_option + "\n" + s.good_option + "\n" + s.bad_option;
                     a = answers.GREAT;
                     b = answers.GOOD;
                     y = answers.BAD;
                     break;
                 case 2:
-                    s.dialogue.text = "A: " + s.good_option + "\nB: " + s.great_option + "\nY: " + s.bad_option;
+                    Dialogue.S.text.text = s.good_option + "\n" + s.great_option + "\n" + s.bad_option;
                     b = answers.GREAT;
                     a = answers.GOOD;
                     y = answers.BAD;
                     break;
                 case 3:
-                    s.dialogue.text = "A: " + s.great_option + "\nB: " + s.bad_option + "\nY: " + s.good_option;
+                    Dialogue.S.text.text = s.great_option + "\n" + s.bad_option + "\n" + s.good_option;
                     a = answers.GREAT;
                     y = answers.GOOD;
                     b = answers.BAD;
                     break;
                 case 4:
-                    s.dialogue.text = "A: " + s.good_option + "\nB: " + s.bad_option + "\nY: " + s.great_option;
+                    Dialogue.S.text.text = s.good_option + "\n" + s.bad_option + "\n" + s.great_option;
                     y = answers.GREAT;
                     a = answers.GOOD;
                     b = answers.BAD;
                     break;
                 case 5:
-                    s.dialogue.text = "A: " + s.bad_option + "\nB: " + s.good_option + "\nY: " + s.great_option;
+                    Dialogue.S.text.text = s.bad_option + "\n" + s.good_option + "\n" + s.great_option;
                     y = answers.GREAT;
                     b = answers.GOOD;
                     a = answers.BAD;
                     break;
                 case 6:
-                    s.dialogue.text = "A: " + s.bad_option + "\nB: " + s.great_option + "\nY: " + s.good_option;
+                    Dialogue.S.text.text = s.bad_option + "\n" + s.great_option + "\n" + s.good_option;
                     b = answers.GREAT;
                     y = answers.GOOD;
                     a = answers.BAD;
                     break;
             }
-            s.face.sprite = s.question_mark;
+            Dialogue.S.face.sprite = Dialogue.S.question_mark;
             ans_1 = answers.INVALID;
             ans_2 = answers.INVALID;
         }
@@ -159,6 +167,7 @@ public class Dialogue_States {
         }
 
         public override void OnFinish() {
+            Dialogue.S.buttons.SetActive(false);
         }
     }
 
@@ -169,43 +178,43 @@ public class Dialogue_States {
     /// Player states response.
     /// </summary>
     public class Respond : State {
-        Sign s;
+        NPC s;
         answers ans;
         answers ans_1;
         answers ans_2;
 
-        public Respond(Sign s, answers ans_1, answers ans_2) {
+        public Respond(NPC s, answers ans_1, answers ans_2) {
             this.s = s;
             this.ans_1 = ans_1;
             this.ans_2 = ans_2;
         }
 
         public override void OnStart() {
-            s.face.sprite = s.player_face;
+            Dialogue.S.face.sprite = Dialogue.S.player_face;
             ans = answers.INVALID;
             if (ans_1 == ans_2) {
                 ans = ans_1;
                 switch (ans) {
                     case answers.GREAT:
-                        s.dialogue.text = s.great_option;
+                        Dialogue.S.text.text = s.great_option;
                         break;
                     case answers.GOOD:
-                        s.dialogue.text = s.good_option;
+                        Dialogue.S.text.text = s.good_option;
                         break;
                     case answers.BAD:
-                        s.dialogue.text = s.bad_option;
+                        Dialogue.S.text.text = s.bad_option;
                         break;
                     case answers.INVALID:
                         MonoBehaviour.print("how did this happen?");
-                        s.dialogue.text = "players didn't agree, why am i here?";
+                        Dialogue.S.text.text = "players didn't agree, why am i here?";
                         break;
                 }
             } else if (ans_1 != answers.GREAT && ans_2 != answers.GREAT) {
-                s.dialogue.text = combine(s.good_option, s.bad_option);
+                Dialogue.S.text.text = combine(s.good_option, s.bad_option);
             } else if (ans_1 != answers.GOOD && ans_2 != answers.GOOD) {
-                s.dialogue.text = combine(s.great_option, s.bad_option);
+                Dialogue.S.text.text = combine(s.great_option, s.bad_option);
             } else {
-                s.dialogue.text = combine(s.great_option, s.good_option);
+                Dialogue.S.text.text = combine(s.great_option, s.good_option);
             }
         }
 
@@ -228,31 +237,31 @@ public class Dialogue_States {
     /// Person reacts to players response.
     /// </summary>
     public class React : State {
-        Sign s;
+        NPC s;
         answers ans;
 
-        public React(Sign s, answers ans) {
+        public React(NPC s, answers ans) {
             this.s = s;
             this.ans = ans;
         }
 
         public override void OnStart() {
-            s.face.sprite = s.person_face;
+            Dialogue.S.face.sprite = s.person_face;
             switch (ans) {
                 case answers.GREAT:
-                    s.dialogue.text = s.great_reaction;
+                    Dialogue.S.text.text = s.great_reaction;
                     UI.S.ChangeSuspicion(s.great_amount);
                     break;
                 case answers.GOOD:
-                    s.dialogue.text = s.good_reaction;
+                    Dialogue.S.text.text = s.good_reaction;
                     UI.S.ChangeSuspicion(s.good_amount);
                     break;
                 case answers.BAD:
-                    s.dialogue.text = s.bad_reaction;
+                    Dialogue.S.text.text = s.bad_reaction;
                     UI.S.ChangeSuspicion(s.bad_amount);
                     break;
                 case answers.INVALID:
-                    s.dialogue.text = s.invalid_reaction;
+                    Dialogue.S.text.text = s.invalid_reaction;
                     UI.S.ChangeSuspicion(s.invalid_amount);
                     break;
             }
@@ -266,7 +275,7 @@ public class Dialogue_States {
         }
 
         public override void OnFinish() {
-            s.dialogue_go.gameObject.SetActive(false);
+            Dialogue.S.gameObject.SetActive(false);
             s.isBeingRead = false;
             UI.S.stopped = false;
             Time.timeScale = 1;

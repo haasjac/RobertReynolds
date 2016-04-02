@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
     public static UI S;
+
+    public Dialogue dialogue;
     //Whether or not the players are together
     public bool together, stopped;
     public Slider stealthBar;
@@ -34,6 +36,8 @@ public class UI : MonoBehaviour {
         costume1_img.color = Color.black;
         costume2_img.color = Color.black;
         costume3_img.color = Color.black;
+
+        dialogue.init();
     }
 
     void Update() {
