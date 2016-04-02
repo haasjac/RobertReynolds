@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class Button : MonoBehaviour {
-
-    public GameObject destroy;
+    
     public float dis = 1;
     public float speed = 0.1f;
+    public UnityEvent onPress;
 
     bool clicked;
     Vector3 target;
@@ -21,14 +22,14 @@ public class Button : MonoBehaviour {
 	    if (clicked) {
             transform.position = Vector3.Lerp(transform.position, target, speed);
             if (Vector3.Distance(transform.position, target) < 0.1) {
-                destroy.SetActive(false);
+                onPress.Invoke();
                 gameObject.SetActive(false);
             }
         }
 	}
 
     void OnCollisionEnter2D(Collision2D coll) {
-        if (coll.gameObject.tag == "Bottom" && coll.contacts[0].normal == Vector2.down)
+        if ((coll.gameObject.tag == "Bottom" || coll.gameObject.tag == "Top" || coll.gameObject.tag == "Whole") && coll.contacts[0].normal == Vector2.down)
         {
             clicked = true;
             UI.S.PlaySound("Button Push");

@@ -2,6 +2,10 @@
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
+
+    public float min_y = -Mathf.Infinity;
+    public float max_y = Mathf.Infinity;
+
     Vector3 pos;
 
 	// Use this for initialization
@@ -21,6 +25,10 @@ public class CameraFollow : MonoBehaviour {
             pos.x = (Top.S.container.transform.position.x + Bottom.S.container.transform.position.x) / 2;
             pos.y = (Top.S.container.transform.position.y + Bottom.S.container.transform.position.y) / 2 + 2;
         }
+        if (pos.y > max_y)
+            pos.y = max_y;
+        if (pos.y < min_y)
+            pos.y = min_y;
         transform.position = pos;
 	}
 }

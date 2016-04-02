@@ -33,6 +33,9 @@ public class UI : MonoBehaviour {
         costume1_img = c[0];
         costume2_img = c[1];
         costume3_img = c[2];
+        costume1_img.sprite = costume1_go.GetComponent<SpriteRenderer>().sprite;
+        costume2_img.sprite = costume2_go.GetComponent<SpriteRenderer>().sprite;
+        costume3_img.sprite = costume3_go.GetComponent<SpriteRenderer>().sprite;
         costume1_img.color = Color.black;
         costume2_img.color = Color.black;
         costume3_img.color = Color.black;
