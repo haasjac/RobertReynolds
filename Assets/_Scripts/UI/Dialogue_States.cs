@@ -251,6 +251,9 @@ public class Dialogue_States {
                 case answers.GREAT:
                     Dialogue.S.text.text = s.great_reaction;
                     UI.S.ChangeSuspicion(s.great_amount);
+                    if (s.uEvent != null) {
+                        s.uEvent.Invoke();
+                    }
                     break;
                 case answers.GOOD:
                     Dialogue.S.text.text = s.good_reaction;

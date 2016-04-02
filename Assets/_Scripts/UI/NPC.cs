@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
 public class NPC : Speach {
     
@@ -14,6 +15,7 @@ public class NPC : Speach {
     public float good_amount = 0.1f;
     public float bad_amount = -0.1f;
     public float invalid_amount = -0.3f;
+    public UnityEvent uEvent;
 
     // Update is called once per frame
     protected override void Update () {

@@ -134,6 +134,7 @@ public class Player : MonoBehaviour {
                 UI.S.PlaySound("Jump");
                 whole = Instantiate(wholePrefab, Top.S.container.transform.position, Quaternion.identity) as GameObject;
                 Top.S.transform.parent = Bottom.S.transform.parent = whole.transform;
+                Bottom.S.transform.localPosition = Vector3.zero;
                 Destroy(Top.S.container.gameObject);
                 Destroy(Bottom.S.container.gameObject);
                 Top.S.rigid = Whole.S.rigid;

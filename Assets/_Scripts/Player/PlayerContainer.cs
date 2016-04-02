@@ -18,13 +18,13 @@ public class PlayerContainer : MonoBehaviour {
         {
             if (!childPlayer.grounded)
             {
-                col.offset = new Vector2(1, -3.3f);
-                col.size = new Vector2(1.27f, 2f);
+                //col.offset = new Vector2(1, -3.3f);
+                //col.size = new Vector2(1.27f, 2f);
             }
             else
             {
-                col.offset = new Vector2(1f, -3.75f);
-                col.size = new Vector2(1.27f, 3.62f);
+                //col.offset = new Vector2(1f, -3.75f);
+                //col.size = new Vector2(1.27f, 3.62f);
             }
         }
     }
