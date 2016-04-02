@@ -92,7 +92,6 @@ public class Player : MonoBehaviour {
             if (jump) {
                 currentRigid.velocity = new Vector2(currentRigid.velocity.x, maxJumpSpeed);
                 jump = false;
-                //grounded = false;
                 anim.SetBool("jumping", false);
             }
             if (jumpCancel) {
