@@ -104,4 +104,8 @@ public class UI : MonoBehaviour {
     {
         sound.PlayOneShot(Resources.Load("Sounds/" + name) as AudioClip);
     }
+
+    public void loadScene(string s) {
+        SceneManager.LoadScene(s);
+    }
 }
