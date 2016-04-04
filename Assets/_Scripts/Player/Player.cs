@@ -61,7 +61,7 @@ public class Player : MonoBehaviour {
             }
 
             //SPLIT
-            if (Input.GetButtonDown("RB_" + player_num.ToString()) && !UI.S.stopped) {
+            if (Input.GetButtonDown("Y_" + player_num.ToString()) && !UI.S.stopped) {
                 Top.S.SplitOrCombine();
             }
 
