@@ -52,7 +52,6 @@ public class Player : MonoBehaviour {
                 } else {
                     UI.S.PlaySound("Top Jumping");
                 }
-                print("Here");
                 Bottom.S.anim.Play("Bottom Jumping");
             } else if (Input.GetButtonUp("A_" + player_num.ToString()) && !grounded && !UI.S.stopped) {
                 jumpCancel = true;
@@ -114,7 +113,6 @@ public class Player : MonoBehaviour {
         //Split
         if (UI.S.together)
         {
-            print("Split");
             UI.S.together = !UI.S.together;
             UI.S.PlaySound("Jump");
             //Need containers for animations to run correctly
@@ -133,7 +131,6 @@ public class Player : MonoBehaviour {
         //Join
         else
         {
-            print("Join");
             if (Top.S.grounded && Bottom.S.grounded && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
             {
                 UI.S.together = !UI.S.together;
