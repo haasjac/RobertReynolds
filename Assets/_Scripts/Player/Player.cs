@@ -134,7 +134,7 @@ public class Player : MonoBehaviour {
             if (Top.S.grounded && Bottom.S.grounded && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
             {
                 UI.S.together = !UI.S.together;
-                UI.S.PlaySound("Jump");
+                UI.S.PlaySound("Recombine");
                 whole = Instantiate(wholePrefab, Top.S.container.transform.position, Quaternion.identity) as GameObject;
                 Top.S.transform.parent = Bottom.S.transform.parent = whole.transform;
                 Bottom.S.transform.localPosition = Vector3.zero;
