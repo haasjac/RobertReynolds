@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour {
     public static UI S;
@@ -54,6 +55,10 @@ public class UI : MonoBehaviour {
         ratio = currentSuspicion / maxSuspicion ;
         stealthBar.GetComponentInChildren<Image>().GetComponent<Image>().color = Color.Lerp(Color.red, Color.green, ratio);
         stealthBar.value = ratio;
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
 	public void ChangeSuspicion(float toAdd)

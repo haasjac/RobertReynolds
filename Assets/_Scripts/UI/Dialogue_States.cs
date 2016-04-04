@@ -103,6 +103,8 @@ public class Dialogue_States {
         public override void OnStart() {
             int rand = Mathf.CeilToInt(UnityEngine.Random.Range(0.00001f, 6));
             Dialogue.S.buttons.SetActive(true);
+            Dialogue.S.textTop.SetActive(true);
+            Dialogue.S.textBottom.SetActive(true);
             switch (rand) {
                 case 1:
                     Dialogue.S.text.text = s.great_option + "\n" + s.good_option + "\n" + s.bad_option;
@@ -171,10 +173,18 @@ public class Dialogue_States {
             if (ans_1 != answers.INVALID && ans_2 != answers.INVALID) {
                 state_machine.ChangeState(new Respond(s, ans_1, ans_2));
             }
+
+            //color
+            Dialogue.S.textTop.GetComponent<Text>().color = 
+                    (ans_1 == answers.INVALID ? Dialogue.S.not_answered : Dialogue.S.answered );
+            Dialogue.S.textBottom.GetComponent<Text>().color =
+                    (ans_2 == answers.INVALID ? Dialogue.S.not_answered : Dialogue.S.answered);
         }
 
         public override void OnFinish() {
             Dialogue.S.buttons.SetActive(false);
+            Dialogue.S.textTop.SetActive(false);
+            Dialogue.S.textBottom.SetActive(false);
         }
     }
 
