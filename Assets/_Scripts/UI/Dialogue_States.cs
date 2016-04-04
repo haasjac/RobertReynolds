@@ -40,7 +40,14 @@ public class Dialogue_States {
             s.isBeingRead = true;
             Dialogue.S.gameObject.SetActive(true);
             size = s.messages.Count;
-            if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+            if (size < 1) {
+                if (next != null) {
+                    state_machine.ChangeState(next);
+                } else {
+                    ConcludeState();
+                }
+            }
+                if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
                 current = -1;
             } else {
                 current = 0;
@@ -285,13 +292,60 @@ public class Dialogue_States {
         }
     }
 
-    
+
+    /// <summary>
+    /// Guard Dialogue
+    /// </summary>
+    public class GuardText : State {
+        Guard s;
+        bool wait;
+
+        public GuardText(Guard s) {
+            this.s = s;
+        }
+
+        public override void OnStart() {
+            if (UI.S.has_costume[0]) {
+                Dialogue.S.text.text = s.pass_statement;
+            } else {
+                Dialogue.S.text.text = s.fail_statement + "\n";
+                if (!UI.S.has_costume[1])
+                    Dialogue.S.text.text += UI.S.costume1_go.name + "\t";
+                if (!UI.S.has_costume[2])
+                    Dialogue.S.text.text += UI.S.costume2_go.name + "\t";
+                if (!UI.S.has_costume[3])
+                    Dialogue.S.text.text += UI.S.costume3_go.name + "\t";
+            }
+            Dialogue.S.face.sprite = s.person_face;
+            wait = false;
+        }
+
+        public override void OnUpdate(float time_delta_fraction) {
+
+            if (wait && Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+                if (UI.S.has_costume[0]) {
+                    s.uEvent.Invoke();
+                    s.enabled = false;
+                }
+                ConcludeState();
+            }
+            wait = true;
+        }
+
+        public override void OnFinish() {
+                Dialogue.S.gameObject.SetActive(false);
+                s.isBeingRead = false;
+                UI.S.stopped = false;
+                Time.timeScale = 1;
+        }
+    }
+
 
 
     /// FUNCTIONS
-    
-    
-    
+
+
+
     /// <summary>
     /// Takes two strings and randomly selects letters from each to form a new string.
     /// </summary>

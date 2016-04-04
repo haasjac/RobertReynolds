@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour {
@@ -19,6 +20,9 @@ public class UI : MonoBehaviour {
     Image costume1_img;
     Image costume2_img;
     Image costume3_img;
+
+    [HideInInspector]
+    public List<bool> has_costume;
 
     float ratio;
     void Awake()
@@ -40,6 +44,9 @@ public class UI : MonoBehaviour {
         costume2_img.color = Color.black;
         costume3_img.color = Color.black;
 
+        for(int i = 0; i < 5; i++) {
+            has_costume.Add(false);
+        }
         dialogue.init();
     }
 
@@ -69,14 +76,22 @@ public class UI : MonoBehaviour {
         if(go == costume1_go)
         {
             costume1_img.color = Color.white;
+            has_costume[1] = true;
         }
         else if(go == costume2_go)
         {
             costume2_img.color = Color.white;
+            has_costume[2] = true;
         }
         else if(go == costume3_go)
         {
             costume3_img.color = Color.white;
+            has_costume[3] = true;
+        } else {
+            print(go.name + " not set correctly in UI!");
+        }
+        if (has_costume[1] && has_costume[2] && has_costume[3]) {
+            has_costume[0] = true;
         }
         PlaySound("Success");
     }
