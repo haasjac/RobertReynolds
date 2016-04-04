@@ -35,6 +35,8 @@ public class Whole : MonoBehaviour {
             case "Ground":
                 Top.S.grounded = true;
                 Bottom.S.grounded = true;
+                Top.S.anim.SetBool("jumping", false);
+                Bottom.S.anim.SetBool("jumping", false);
                 break;
         }
     }

@@ -52,7 +52,8 @@ public class Player : MonoBehaviour {
                 } else {
                     UI.S.PlaySound("Top Jumping");
                 }
-                anim.SetBool("jumping", true);
+                print("Here");
+                Bottom.S.anim.Play("Bottom Jumping");
             } else if (Input.GetButtonUp("A_" + player_num.ToString()) && !grounded && !UI.S.stopped) {
                 jumpCancel = true;
             }
