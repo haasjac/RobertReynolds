@@ -5,10 +5,13 @@ public class Spotlight : MonoBehaviour {
     public SpriteRenderer sr, ray_sr;
     public BoxCollider2D coll;
     public GameObject ray;
-
+    public float timeDelay = 2f;
+    public float damage = .01f;
+    AudioSource sound;
 	// Use this for initialization
 	void Start ()
     {
+        sound = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
         coll = ray.GetComponent<BoxCollider2D>();
         ray_sr = ray.GetComponent<SpriteRenderer>();
@@ -23,22 +26,23 @@ public class Spotlight : MonoBehaviour {
     {
         while(true)
         {
-            UI.S.PlaySound("Click");
+            sound.PlayOneShot(Resources.Load("Sounds/Click") as AudioClip);
             coll.enabled = false;
-            ray_sr.sprite = null;
-            yield return new WaitForSeconds(1f);
-            UI.S.PlaySound("Click");
+            ray_sr.enabled = false;
+            yield return new WaitForSeconds(timeDelay);
+            sound.PlayOneShot(Resources.Load("Sounds/Click") as AudioClip);
             coll.enabled = true;
             ray_sr.enabled = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(timeDelay);
         }
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
-        UI.S.PlaySound("Alarm");
+        sound.PlayOneShot(Resources.Load("Sounds/Alarm") as AudioClip);
     }
     void OnTriggerStay2D(Collider2D coll)
     {
-        UI.S.ChangeSuspicion(-.01f);
+        print("Hit");
+        UI.S.ChangeSuspicion(-damage);
     }
 }
