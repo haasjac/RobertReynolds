@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
     public GameObject respawn_location;
@@ -23,7 +24,9 @@ public class GameOver : MonoBehaviour {
     }
 
     void GameOverScreen() {
-        //Ending screen?
+        //Ending screen
+        GameOverButton.currentLevel = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("GameOver");
         //Spawn Robot mentor?
     }
 }
