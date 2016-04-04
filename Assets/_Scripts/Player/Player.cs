@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     public GameObject container;
 
     //PROTECTED
-    protected Animator anim;
+    public Animator anim;
     protected SpriteRenderer sr;
     protected Rigidbody2D rigid;
     protected GameObject whole;
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour {
             if (jump) {
                 currentRigid.velocity = new Vector2(currentRigid.velocity.x, maxJumpSpeed);
                 jump = false;
-                anim.SetBool("jumping", false);
+                //grounded = false;
             }
             if (jumpCancel) {
                 if (currentRigid.velocity.y > minJumpSpeed) {
