@@ -52,17 +52,17 @@ public class Player : MonoBehaviour {
                 } else {
                     UI.S.PlaySound("Top Jumping");
                 }
-                anim.SetBool("jumping", true);
+                Bottom.S.anim.Play("Bottom Jumping");
             } else if (Input.GetButtonUp("A_" + player_num.ToString()) && !grounded && !UI.S.stopped) {
                 jumpCancel = true;
             }
-            if (Input.GetKeyDown(KeyCode.RightControl) && !UI.S.stopped) {
+            if (Input.GetKeyDown(KeyCode.RightControl) && !UI.S.stopped && player_num == 1) {
                 SplitOrCombine();
             }
 
             //SPLIT
-            if (Input.GetButtonDown("Y_" + player_num.ToString()) && !UI.S.stopped) {
-                SplitOrCombine();
+            if (Input.GetButtonDown("RB_" + player_num.ToString()) && !UI.S.stopped) {
+                Top.S.SplitOrCombine();
             }
 
             //Animation Parameters set
@@ -77,6 +77,10 @@ public class Player : MonoBehaviour {
                 }
             } else {
                 anim.SetBool("walking", false);
+                if(anim.GetBool("jumping"))
+                {
+                    Bottom.S.anim.Play("Idle Bottom");
+                }
             }
         }
     }
@@ -110,7 +114,7 @@ public class Player : MonoBehaviour {
         if (UI.S.together)
         {
             UI.S.together = !UI.S.together;
-            UI.S.PlaySound("Jump");
+            UI.S.PlaySound("Split");
             //Need containers for animations to run correctly
             Top.S.container = Instantiate(Top.S.containerPrefab, Whole.S.transform.position, Quaternion.identity) as GameObject;
             Bottom.S.container = Instantiate(Bottom.S.containerPrefab, Whole.S.transform.position, Quaternion.identity) as GameObject;
@@ -130,7 +134,7 @@ public class Player : MonoBehaviour {
             if (Top.S.grounded && Bottom.S.grounded && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
             {
                 UI.S.together = !UI.S.together;
-                UI.S.PlaySound("Jump");
+                UI.S.PlaySound("Recombine");
                 whole = Instantiate(wholePrefab, Top.S.container.transform.position, Quaternion.identity) as GameObject;
                 Top.S.transform.parent = Bottom.S.transform.parent = whole.transform;
                 Bottom.S.transform.localPosition = Vector3.zero;
