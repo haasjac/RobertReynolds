@@ -44,7 +44,6 @@ public class PlayerContainer : MonoBehaviour {
         {
             case "Ground":
                 childPlayer.grounded = false;
-                childPlayer.anim.SetBool("jumping", true);
                 break;
         }
     }

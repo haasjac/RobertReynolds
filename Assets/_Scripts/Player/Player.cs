@@ -57,13 +57,13 @@ public class Player : MonoBehaviour {
             } else if (Input.GetButtonUp("A_" + player_num.ToString()) && !grounded && !UI.S.stopped) {
                 jumpCancel = true;
             }
-            if (Input.GetKeyDown(KeyCode.RightControl) && !UI.S.stopped) {
+            if (Input.GetKeyDown(KeyCode.RightControl) && !UI.S.stopped && player_num == 1) {
                 SplitOrCombine();
             }
 
             //SPLIT
             if (Input.GetButtonDown("RB_" + player_num.ToString()) && !UI.S.stopped) {
-                SplitOrCombine();
+                Top.S.SplitOrCombine();
             }
 
             //Animation Parameters set
@@ -78,6 +78,10 @@ public class Player : MonoBehaviour {
                 }
             } else {
                 anim.SetBool("walking", false);
+                if(anim.GetBool("jumping"))
+                {
+                    Bottom.S.anim.Play("Idle Bottom");
+                }
             }
         }
     }
@@ -110,6 +114,7 @@ public class Player : MonoBehaviour {
         //Split
         if (UI.S.together)
         {
+            print("Split");
             UI.S.together = !UI.S.together;
             UI.S.PlaySound("Jump");
             //Need containers for animations to run correctly
@@ -128,6 +133,7 @@ public class Player : MonoBehaviour {
         //Join
         else
         {
+            print("Join");
             if (Top.S.grounded && Bottom.S.grounded && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
             {
                 UI.S.together = !UI.S.together;
