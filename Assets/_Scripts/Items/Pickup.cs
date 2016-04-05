@@ -19,33 +19,43 @@ public class Pickup : MonoBehaviour
             //IncPickup
             UI.S.Collect(gameObject);
             //Destroy(gameObject);
-            this.GetComponent<BoxCollider2D>().enabled = false;
             Vector3 clothing = Vector3.zero;
             switch (this.tag)
             {
                 case "shirt":
+                    if (coll.gameObject.tag != "Top" && coll.gameObject.tag != "Whole")
+                        return;
                     clothing = new Vector3(0.2f, 1.7f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
                     break;
                 case "pants":
+                    if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
+                        return;
                     clothing = new Vector3(-0.2f, -2.8f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
                     break;
                 case "shoes":
+                    if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
+                        return;
                     clothing = new Vector3(0.43f, -6.5f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
                     break;
                 case "hat":
+                    if (coll.gameObject.tag != "Top" && coll.gameObject.tag != "Whole")
+                        return;
                     clothing = new Vector3(-0.01f, -0.59f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
                     break;
                 case "prop":
+                    if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
+                        return;
                     clothing = new Vector3(-0.01f, -0.59f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
                     break;
                 default:
                     break;
             }
+            this.GetComponent<BoxCollider2D>().enabled = false;
             this.transform.localPosition = clothing;
         }
     }
