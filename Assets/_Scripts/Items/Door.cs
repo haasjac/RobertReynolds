@@ -3,14 +3,11 @@ using System.Collections;
 
 public class Door : MonoBehaviour {
 
-    public GameObject clothing;
-
-    public float timer = 2f;
-    float count = 0.0f;
+    public GameObject button_icon;
 
 	// Use this for initialization
 	void Start () {
-	
+        button_icon.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -18,18 +15,14 @@ public class Door : MonoBehaviour {
 	
 	}
 
-    void OnTriggerStay2D(Collider2D coll) {
-        Vector3 pos = coll.gameObject.transform.position;
-        if (count >= timer)
-        {
-            //move the player to the other room
-            pos.x -= 7.5f;
-            coll.gameObject.transform.position = pos;
+    void OnCollisionStay2D(Collision2D coll) {
+        button_icon.SetActive(true);
+        if(UI.S.together && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2"))) {
+            this.gameObject.SetActive(false);
         }
-        else {
-            if (clothing != null)
-                return;
-            count += Time.deltaTime;
-        }
+    }
+
+    void OnCollisionExit2D(Collision2D coll) {
+        button_icon.SetActive(false);
     }
 }
