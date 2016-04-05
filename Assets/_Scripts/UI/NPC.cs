@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Events;
 
-public class NPC : Speach {
+public class NPC : Speech {
     
     public string great_option = "";
     public string good_option = "";

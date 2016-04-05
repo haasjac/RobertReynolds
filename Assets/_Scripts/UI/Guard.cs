@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Events;
 
-public class Guard : Speach {
+public class Guard : Speech {
 
     public string fail_statement = "I can't let you pass without:";
     public string pass_statement = "Right this way sir.";

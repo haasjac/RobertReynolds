@@ -24,12 +24,12 @@ public class Dialogue_States {
     /// Starts the dialogue.
     /// </summary>
     public class Play : State {
-        Speach s;
+        Speech s;
         State next;
         int current;
         int size;
 
-        public Play(Speach s, State next = null) {
+        public Play(Speech s, State next = null) {
             this.s = s;
             this.next = next;
         }

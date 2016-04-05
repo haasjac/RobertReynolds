@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class Speach : MonoBehaviour {
+public class Speech : MonoBehaviour {
 
     //HIDE IN INSPECTOR
     public StateMachine sm;
