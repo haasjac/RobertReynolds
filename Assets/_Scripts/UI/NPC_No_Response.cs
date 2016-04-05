@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NPC_No_Response : Speach {
+public class NPC_No_Response : Speech {
 
     bool done = false;
 	

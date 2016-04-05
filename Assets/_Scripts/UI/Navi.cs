@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Navi : Speach {
+public class Navi : Speech {
 
     bool done = false;
 	
