@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class UI : MonoBehaviour {
     public static UI S;
@@ -57,11 +59,16 @@ public class UI : MonoBehaviour {
         else if (test < 0) {
             test = 0;
         }
+
         currentSuspicion = test;
         if(toAdd < 0f)
         {
             StartCoroutine(Top.S.Flash());
             StartCoroutine(Bottom.S.Flash());
+        }
+
+        if (currentSuspicion <= 0) {
+            GameOverScreen();
         }
     }
     public void Collect(GameObject go)
@@ -83,5 +90,12 @@ public class UI : MonoBehaviour {
     public void PlaySound(string name)
     {
         sound.PlayOneShot(Resources.Load("Sounds/" + name) as AudioClip);
+    }
+
+    void GameOverScreen() {
+        //Ending screen
+        GameOverButton.currentLevel = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("GameOver");
+        //Spawn Robot mentor?
     }
 }
