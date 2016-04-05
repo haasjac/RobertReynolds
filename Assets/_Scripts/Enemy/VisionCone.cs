@@ -3,12 +3,12 @@ using System.Collections;
 
 public class VisionCone : MonoBehaviour {
 
-    public GameObject robot;
+    //public GameObject robot;
 
-    public bool collision;
+    //public bool collision;
 
     void Start() {
-        robot = this.transform.parent.GetComponent<Patrol>().robot;
+        //robot = this.transform.parent.GetComponent<Patrol>().robot;
     }
 
 
@@ -52,6 +52,7 @@ public class VisionCone : MonoBehaviour {
                     Patrol enemy = this.transform.parent.GetComponent<Patrol>();
                     enemy.enabled = true;
                     enemy.freak_out = true;
+                    enemy.turn_cooldown = 0.0f;
                     enemy.movement_speed *= 3;
                     enemy.GetComponent<Animator>().enabled = true;
                     Destroy(this.gameObject);
