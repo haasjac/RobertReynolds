@@ -26,7 +26,10 @@ public class Speech : MonoBehaviour {
     protected virtual void Start() {
         sm = new StateMachine();
         collided = false;
-        button.SetActive(false);
+        if(button)
+        {
+            button.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -37,7 +40,10 @@ public class Speech : MonoBehaviour {
     protected virtual void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Whole")) {
             collided = true;
-            button.SetActive(true);
+            if (button)
+            {
+                button.SetActive(true);
+            }
         }
     }
 
