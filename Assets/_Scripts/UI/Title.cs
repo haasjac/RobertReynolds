@@ -53,7 +53,7 @@ public class Title : MonoBehaviour {
             switch(selectionNum)
             {
                 case 0:
-                    SceneManager.LoadScene("Level1-1");
+                    SceneManager.LoadScene("_Scene_3_29");
                     break;
                 case 1:
                     SceneManager.LoadScene("Controls");
