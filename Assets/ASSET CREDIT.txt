@@ -7,6 +7,7 @@ SOUNDS
 Alarm Start, Charging, Explosion, Jump, Laser, Punch, Success, and Walking from GameBurp
 Wagon Wheel by Kevin Macleod
 Ratchet Sound from https://youtu.be/Vtf2gFlBZj4 by Sound Effects
+Alarm from https://www.youtube.com/watch?v=2dE4lQYuY5Q by Audio Productions
 
 FONTS
 SFTransRobotics by ShyFonts

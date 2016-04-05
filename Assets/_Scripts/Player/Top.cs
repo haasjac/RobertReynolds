@@ -4,7 +4,9 @@ using System.Collections;
 public class Top : Player
 {
     public Transform fire;
+    public Transform ps;
     public static Top S;
+    bool throwing;
     void Awake()
     {
         S = this;
@@ -15,6 +17,7 @@ public class Top : Player
     {
         base.Start();
         fire = transform.FindChild("Fire");
+        ps = transform.FindChild("Particle System");
 	}
 	
 	// Update is called once per frame
@@ -34,6 +37,15 @@ public class Top : Player
             attacking = false;
             anim.SetBool("attacking", false);
         }
+        //Throw
+        if(!UI.S.together)
+        {
+            anim.Play("ThrowStart");
+        }
+        if(throwing)
+        {
+           // Bottom.S.container 
+        }
     }
     new void FixedUpdate()
     {
@@ -44,7 +56,6 @@ public class Top : Player
         }
         else
         {
-           
         }
     }
 }
