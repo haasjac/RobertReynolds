@@ -6,6 +6,7 @@ public class Spotlight : MonoBehaviour {
     public BoxCollider2D coll;
     public float timeDelay = 2f;
     public float damage = .01f;
+    public bool going = false, running = false;
     AudioSource sound;
 	// Use this for initialization
 	void Start ()
@@ -14,29 +15,30 @@ public class Spotlight : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
         sr = GetComponent<SpriteRenderer>();
-        StartCoroutine(OnOff());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if(going && !running)
+        {
+            StartCoroutine(OnOff());
+        }
+    }
     IEnumerator OnOff()
     {
-        while(true)
-        {
-            if (!UI.S.stopped)
+            if (!UI.S.stopped && going)
             {
-                sound.PlayOneShot(Resources.Load("Sounds/Click") as AudioClip);
-                coll.enabled = false;
-                sr.enabled = false;
-                yield return new WaitForSeconds(timeDelay);
+                running = true;
                 sound.PlayOneShot(Resources.Load("Sounds/Click") as AudioClip);
                 coll.enabled = true;
                 sr.enabled = true;
                 yield return new WaitForSeconds(timeDelay);
+                sound.PlayOneShot(Resources.Load("Sounds/Click") as AudioClip);
+                coll.enabled = false;
+                sr.enabled = false;
+                yield return new WaitForSeconds(timeDelay);
             }
-        }
+        running = false;
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
