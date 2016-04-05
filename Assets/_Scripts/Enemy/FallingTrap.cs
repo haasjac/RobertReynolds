@@ -38,6 +38,6 @@ public class FallingTrap : MonoBehaviour
         {
             UI.S.ChangeSuspicion(-damage);
         }
-        Destroy(transform.parent);
+        Destroy(transform.parent.gameObject);
     }
 }
