@@ -18,6 +18,9 @@ public class FemaleStar : MonoBehaviour {
         if(!collided && start)
         {
             transform.position -= Vector3.right / 100f;
+            Bottom.S.anim.SetBool("walking", true);
+            Whole.S.transform.position += Vector3.right / 200f;
+            UI.S.stopped = true;
         }
     }
     void OnTriggerEnter2D(Collider2D coll)
@@ -33,6 +36,8 @@ public class FemaleStar : MonoBehaviour {
     IEnumerator Finish()
     {
         Instantiate(heartPrefab, (Whole.S.transform.position + transform.position) / 2f, Quaternion.identity);
+        UI.S.stopped = true;
+        UI.S.PlaySound("Success");
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("Title");
     }
