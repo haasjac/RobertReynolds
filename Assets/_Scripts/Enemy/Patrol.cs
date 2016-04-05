@@ -8,10 +8,10 @@ public class Patrol : Enemy {
     public GameObject detected;
     public GameObject search;
     public GameObject icon;
-
+    
     public bool searching;
     public bool freak_out;
-
+    
     public float search_cooldown;
 
 	// Use this for initialization
@@ -20,18 +20,14 @@ public class Patrol : Enemy {
         freak_out = false;
         spawn = this.transform.position;
         GetComponent<Animator>().enabled = false;
-        //StartCoroutine("suspicious");
-        //StartCoroutine_Auto(suspicious);
-        //icon.transform.parent = this.transform;
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (freak_out) {
-            //destroy vision cone and raise the roof!!!
-            //Destroy(this.transform.FindChild("vision_cone").gameObject);
-            //movement_speed *= 3;
-            patrol();
+            turn_cooldown = 0.0f;
+            if (!turning)
+                StartCoroutine("patrol");
             return;
         }
 
@@ -52,23 +48,9 @@ public class Patrol : Enemy {
             icon.transform.parent = this.transform;
         }
         else {
-            patrol();
+            //patrol();
+            if (turning == false)
+                StartCoroutine("patrol");
         }
     }
-
-
-    //public IEnumerator suspicious() {
-    //    for (;;) {
-    //        if (searching)
-    //        {
-    //            searching = false;
-    //            yield return new WaitForSeconds(3f);
-    //        }
-    //        else
-    //        {
-    //            patrol();
-    //            yield return new WaitForEndOfFrame();
-    //        }
-    //    }
-    //}
 }

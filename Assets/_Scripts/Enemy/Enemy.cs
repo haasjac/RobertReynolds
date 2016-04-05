@@ -20,6 +20,9 @@ public class Enemy : MonoBehaviour {
     public float left_bound;
     public float detection_range;
 
+    public float turn_cooldown;
+    public bool turning;
+
     //public int state_1, state_2;
 
 	// Use this for initialization
@@ -102,29 +105,56 @@ public class Enemy : MonoBehaviour {
         this.transform.position = pos;
     }
 
-///////////////////////////////////////////////////////////////////////////////
-//FUNCTION: move back and forth between left and right bounds
-    public void patrol() {
+    ///////////////////////////////////////////////////////////////////////////////
+    //FUNCTION: move back and forth between left and right bounds
+    //public void patrol() {
+    //    Vector3 pos = this.transform.position;
+    //    //if you're facing left
+    //    if (this.transform.localScale.x == 1) {
+    //        if (pos.x <= spawn.x - left_bound)
+    //            this.transform.localScale = new Vector3(-1f, 1f, 1f);
+    //        else
+    //            pos.x -= Time.deltaTime * movement_speed;
+    //    }
+    //    //if you're facing right
+    //    else {
+    //        if (pos.x >= spawn.x + right_bound)
+    //            this.transform.localScale = new Vector3(1f, 1f, 1f);
+    //        else
+    //            pos.x += Time.deltaTime * movement_speed;
+    //    }
+    //    this.transform.position = pos;
+    //}
+
+    //coroutine patrol for turn delays
+    public IEnumerator patrol() {
+        turning = true;
         Vector3 pos = this.transform.position;
         //if you're facing left
-        if(this.transform.localScale.x == 1) {
-            if (pos.x <= spawn.x - left_bound)
+        if (this.transform.localScale.x == 1) {
+            if (pos.x <= spawn.x - left_bound) {
+                yield return new WaitForSeconds(turn_cooldown);
                 this.transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
             else
                 pos.x -= Time.deltaTime * movement_speed;
         }
         //if you're facing right
         else {
-            if (pos.x >= spawn.x + right_bound)
+            if (pos.x >= spawn.x + right_bound) {
+                yield return new WaitForSeconds(turn_cooldown);
                 this.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
             else
                 pos.x += Time.deltaTime * movement_speed;
         }
         this.transform.position = pos;
+        turning = false;
+        yield return new WaitForEndOfFrame();
     }
 
-///////////////////////////////////////////////////////////////////////////////
-//FUNCTION: returns true if the players have split apart
+    ///////////////////////////////////////////////////////////////////////////////
+    //FUNCTION: returns true if the players have split apart
     public bool split(GameObject robot) {
         //if (robot.GetComponent<playerController>().pState == playerState.APART)
             return true;
