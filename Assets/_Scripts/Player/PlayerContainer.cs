@@ -3,10 +3,10 @@ using System.Collections;
 
 public class PlayerContainer : MonoBehaviour {
     Player childPlayer;
-    BoxCollider2D col;
+    //BoxCollider2D col;
     void Start()
     {
-        col = GetComponent<BoxCollider2D>();
+        //col = GetComponent<BoxCollider2D>();
         foreach(Transform child in transform)
         {
             childPlayer = child.GetComponent<Player>();

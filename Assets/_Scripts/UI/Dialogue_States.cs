@@ -40,7 +40,14 @@ public class Dialogue_States {
             s.isBeingRead = true;
             Dialogue.S.gameObject.SetActive(true);
             size = s.messages.Count;
-            if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+            if (size < 1) {
+                if (next != null) {
+                    state_machine.ChangeState(next);
+                } else {
+                    ConcludeState();
+                }
+            }
+                if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
                 current = -1;
             } else {
                 current = 0;
@@ -96,6 +103,8 @@ public class Dialogue_States {
         public override void OnStart() {
             int rand = Mathf.CeilToInt(UnityEngine.Random.Range(0.00001f, 6));
             Dialogue.S.buttons.SetActive(true);
+            Dialogue.S.textTop.SetActive(true);
+            Dialogue.S.textBottom.SetActive(true);
             switch (rand) {
                 case 1:
                     Dialogue.S.text.text = s.great_option + "\n" + s.good_option + "\n" + s.bad_option;
@@ -164,10 +173,18 @@ public class Dialogue_States {
             if (ans_1 != answers.INVALID && ans_2 != answers.INVALID) {
                 state_machine.ChangeState(new Respond(s, ans_1, ans_2));
             }
+
+            //color
+            Dialogue.S.textTop.GetComponent<Text>().color = 
+                    (ans_1 == answers.INVALID ? Dialogue.S.not_answered : Dialogue.S.answered );
+            Dialogue.S.textBottom.GetComponent<Text>().color =
+                    (ans_2 == answers.INVALID ? Dialogue.S.not_answered : Dialogue.S.answered);
         }
 
         public override void OnFinish() {
             Dialogue.S.buttons.SetActive(false);
+            Dialogue.S.textTop.SetActive(false);
+            Dialogue.S.textBottom.SetActive(false);
         }
     }
 
@@ -239,10 +256,12 @@ public class Dialogue_States {
     public class React : State {
         NPC s;
         answers ans;
+        bool great;
 
         public React(NPC s, answers ans) {
             this.s = s;
             this.ans = ans;
+            great = false;
         }
 
         public override void OnStart() {
@@ -252,7 +271,7 @@ public class Dialogue_States {
                     Dialogue.S.text.text = s.great_reaction;
                     UI.S.ChangeSuspicion(s.great_amount);
                     if (s.uEvent != null) {
-                        s.uEvent.Invoke();
+                        great = true;
                     }
                     break;
                 case answers.GOOD:
@@ -282,16 +301,65 @@ public class Dialogue_States {
             s.isBeingRead = false;
             UI.S.stopped = false;
             Time.timeScale = 1;
+            if (great)
+                s.uEvent.Invoke();
         }
     }
 
-    
+
+    /// <summary>
+    /// Guard Dialogue
+    /// </summary>
+    public class GuardText : State {
+        Guard s;
+        bool wait;
+
+        public GuardText(Guard s) {
+            this.s = s;
+        }
+
+        public override void OnStart() {
+            if (UI.S.has_costume[0]) {
+                Dialogue.S.text.text = s.pass_statement;
+            } else {
+                Dialogue.S.text.text = s.fail_statement + "\n";
+                if (!UI.S.has_costume[1])
+                    Dialogue.S.text.text += UI.S.costume1_go.name + " ; ";
+                if (!UI.S.has_costume[2])
+                    Dialogue.S.text.text += UI.S.costume2_go.name + " ; ";
+                if (!UI.S.has_costume[3])
+                    Dialogue.S.text.text += UI.S.costume3_go.name + " ; ";
+            }
+            Dialogue.S.face.sprite = s.person_face;
+            wait = false;
+        }
+
+        public override void OnUpdate(float time_delta_fraction) {
+
+            if (wait && Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+                if (UI.S.has_costume[0]) {
+                    s.uEvent.Invoke();
+                    s.enabled = false;
+                }
+                ConcludeState();
+            }
+            wait = true;
+        }
+
+        public override void OnFinish() {
+                Dialogue.S.gameObject.SetActive(false);
+                s.isBeingRead = false;
+                UI.S.stopped = false;
+                Time.timeScale = 1;
+        }
+    }
+
 
 
     /// FUNCTIONS
-    
-    
-    
+
+
+
     /// <summary>
     /// Takes two strings and randomly selects letters from each to form a new string.
     /// </summary>

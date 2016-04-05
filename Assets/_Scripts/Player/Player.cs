@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     public float splitJumpSpeed = 8f;
     public float attackDur = .5f, attackStart;
     public int player_num = 1;
-    public bool grounded, attacking;
+    public bool grounded, attacking, flashing;
     [HideInInspector]
     public GameObject container;
 
@@ -22,7 +22,8 @@ public class Player : MonoBehaviour {
     protected bool facingRight = true;
     protected bool jump, jumpCancel;
     protected float iH;
-    
+    protected bool walking = false;
+
     // Use this for initialization
     protected void Start() {
         sr = GetComponent<SpriteRenderer>();
@@ -47,12 +48,12 @@ public class Player : MonoBehaviour {
             //Jump input
             if (Input.GetButtonDown("A_" + player_num.ToString()) && grounded && !UI.S.stopped) {
                 jump = true;
-                if (player_num == 2) {
-                    UI.S.PlaySound("Feet Jumping");
+                if (UI.S.together || player_num == 1) {
+                    UI.S.PlaySound("Jump");
+                    Bottom.S.anim.Play("Bottom Jumping");
                 } else {
                     UI.S.PlaySound("Top Jumping");
                 }
-                Bottom.S.anim.Play("Bottom Jumping");
             } else if (Input.GetButtonUp("A_" + player_num.ToString()) && !grounded && !UI.S.stopped) {
                 jumpCancel = true;
             }
@@ -61,13 +62,14 @@ public class Player : MonoBehaviour {
             }
 
             //SPLIT
-            if (Input.GetButtonDown("RB_" + player_num.ToString()) && !UI.S.stopped) {
+            if (Input.GetButtonDown("Y_" + player_num.ToString()) && !UI.S.stopped) {
                 Top.S.SplitOrCombine();
             }
 
             //Animation Parameters set
             if (Mathf.Abs(iH) > .01f) {
                 anim.SetBool("walking", true);
+                walking = true;
                 if (iH > 0) {
                     facingRight = true;
                     transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
@@ -76,6 +78,7 @@ public class Player : MonoBehaviour {
                     transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
                 }
             } else {
+                walking = false;
                 anim.SetBool("walking", false);
                 if(anim.GetBool("jumping"))
                 {
@@ -123,10 +126,12 @@ public class Player : MonoBehaviour {
             Top.S.transform.parent = Top.S.container.transform;
             Bottom.S.transform.parent = Bottom.S.container.transform;
             Top.S.fire.gameObject.SetActive(true);
+            Top.S.ps.gameObject.SetActive(true);
             Bottom.S.transform.position = Whole.S.transform.position;
             Destroy(Whole.S.gameObject);
             //Split Jump
             Top.S.rigid.velocity = new Vector2(Top.S.rigid.velocity.x, splitJumpSpeed);
+            Top.S.grounded = false;
         }
         //Join
         else
@@ -142,6 +147,7 @@ public class Player : MonoBehaviour {
                 Destroy(Bottom.S.container.gameObject);
                 Top.S.rigid = Whole.S.rigid;
                 Top.S.fire.gameObject.SetActive(false);
+                Top.S.ps.gameObject.SetActive(false);
             }
             else
             {
@@ -151,12 +157,18 @@ public class Player : MonoBehaviour {
     }
     public IEnumerator Flash()
     {
-        for(int i = 0; i < 3; ++i)
+        if (!flashing)
         {
-            sr.color = Color.red;
-            yield return new WaitForSeconds(.3f);
-            sr.color = Color.white;
-            yield return new WaitForSeconds(.3f);
+            UI.S.PlaySound("Alarm");
+            flashing = true;
+            for (int i = 0; i < 3; ++i)
+            {
+                sr.color = Color.red;
+                yield return new WaitForSeconds(.15f);
+                sr.color = Color.white;
+                yield return new WaitForSeconds(.15f);
+            }
+            flashing = false;
         }
     }
 }
