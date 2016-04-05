@@ -49,6 +49,7 @@ public class UI : MonoBehaviour {
             has_costume.Add(false);
         }
         dialogue.init();
+        stopped = false;
     }
 
     void Update() {
@@ -72,8 +73,8 @@ public class UI : MonoBehaviour {
         currentSuspicion = test;
         if(toAdd < 0f)
         {
-            StartCoroutine(Top.S.Flash());
-            StartCoroutine(Bottom.S.Flash());
+            //StartCoroutine(Top.S.Flash());
+            //StartCoroutine(Bottom.S.Flash());
         }
     }
     public void Collect(GameObject go)

@@ -256,10 +256,12 @@ public class Dialogue_States {
     public class React : State {
         NPC s;
         answers ans;
+        bool great;
 
         public React(NPC s, answers ans) {
             this.s = s;
             this.ans = ans;
+            great = false;
         }
 
         public override void OnStart() {
@@ -269,7 +271,7 @@ public class Dialogue_States {
                     Dialogue.S.text.text = s.great_reaction;
                     UI.S.ChangeSuspicion(s.great_amount);
                     if (s.uEvent != null) {
-                        s.uEvent.Invoke();
+                        great = true;
                     }
                     break;
                 case answers.GOOD:
@@ -299,6 +301,8 @@ public class Dialogue_States {
             s.isBeingRead = false;
             UI.S.stopped = false;
             Time.timeScale = 1;
+            if (great)
+                s.uEvent.Invoke();
         }
     }
 
