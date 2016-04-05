@@ -14,13 +14,10 @@ public class Pickup : MonoBehaviour {
     {
         if(coll.tag == "Whole" ||  coll.tag == "Top" || coll.tag == "Bottom")
         {
-            //TODO: Play Pickup Sound
-            //IncPickup
             UI.S.Collect(gameObject);
-            //Destroy(gameObject);
             if (this.tag == "shirt") {
                 Vector3 shirt = new Vector3(0.505f, -6.93f, 0.0f);
-                this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                this.transform.parent = coll.gameObject.transform;
                 this.transform.localPosition = shirt;
             }
             else if(this.tag == "pants") {
@@ -35,12 +32,12 @@ public class Pickup : MonoBehaviour {
             }
             else if (this.tag == "hat") {
                 Vector3 shoes = new Vector3(0.33f, 13.5f, 0.0f);
-                this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                this.transform.parent = coll.gameObject.transform;
                 this.transform.localPosition = shoes;
             }
             else if (this.tag == "prop") {
                 Vector3 shoes = new Vector3(6f, -0.4f, 0.0f);
-                this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
+                this.transform.parent = coll.gameObject.transform;
                 this.transform.localPosition = shoes;
             }
         }

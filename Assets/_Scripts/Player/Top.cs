@@ -6,7 +6,7 @@ public class Top : Player
     public Transform fire;
     public Transform ps;
     public static Top S;
-    bool throwing;
+    //bool throwing = false;
     void Awake()
     {
         S = this;
@@ -42,10 +42,10 @@ public class Top : Player
         //{
           //  anim.Play("ThrowStart");
         //}
-        if(throwing)
-        {
+        //if(throwing)
+        //{
            // Bottom.S.container 
-        }
+        //}
     }
     new void FixedUpdate()
     {
