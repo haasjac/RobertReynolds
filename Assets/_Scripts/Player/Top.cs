@@ -38,10 +38,10 @@ public class Top : Player
             anim.SetBool("attacking", false);
         }
         //Throw
-        if(!UI.S.together)
-        {
-            anim.Play("ThrowStart");
-        }
+       // if(!UI.S.together)
+        //{
+          //  anim.Play("ThrowStart");
+        //}
         if(throwing)
         {
            // Bottom.S.container 
