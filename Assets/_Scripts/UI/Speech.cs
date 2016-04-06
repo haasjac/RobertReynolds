@@ -50,7 +50,10 @@ public class Speech : MonoBehaviour {
     protected virtual void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Whole")) {
             collided = false;
-            button.SetActive(false);
+            if(button)
+            {
+                button.SetActive(false);
+            }
         }
     }
 }
