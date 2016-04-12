@@ -2,6 +2,8 @@ SPRITES
 Wood Planks by http://pre03.deviantart.net/42b8/th/pre/f/2015/092/e/6/seamless_wood_planks_texture_by_bcmartini77-d8o6qf9.png by bcmartini77
 Clapboard from http://worldartsme.com/hollywood-clapboard-clipart.html# by GreenBean<3
 Steel Texture from http://webtreats.mysitemyway.com/8-tileable-metal-textures/
+Hockey Mask from http://photos.gograph.com/thumbs/CSP/CSP990/k10749164.jpg
+
 
 SOUNDS
 Alarm Start, Charging, Explosion, Jump, Laser, Punch, Success, and Walking from GameBurp
