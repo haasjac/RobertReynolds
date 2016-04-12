@@ -20,7 +20,7 @@ public class Title : MonoBehaviour {
     // Update is called once per frame
     void Update()
 {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetAxis("L_XAxis_1") > .1f || Input.GetAxis("L_XAxis_2") > .1f)
         {
             sound.PlayOneShot(Resources.Load("Sounds/Ratchet") as AudioClip);
             img[selectionNum].sprite = defaultSprite[selectionNum];
@@ -37,7 +37,7 @@ public class Title : MonoBehaviour {
             img[selectionNum].sprite = selected[selectionNum];
             ps[selectionNum].SetActive(true);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetAxis("L_XAxis_1") < .1f || Input.GetAxis("L_XAxis_2") < .1f)
         {
             sound.PlayOneShot(Resources.Load("Sounds/Ratchet") as AudioClip);
             img[selectionNum].sprite = defaultSprite[selectionNum];
@@ -48,7 +48,8 @@ public class Title : MonoBehaviour {
             ps[selectionNum].SetActive(true);
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) 
+            || Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A_1") || Input.GetButtonDown("A_2"))
         {
             switch(selectionNum)
             {
