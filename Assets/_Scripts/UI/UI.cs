@@ -9,6 +9,7 @@ public class UI : MonoBehaviour
     public static UI S;
 
     public Dialogue dialogue;
+    public bool mega= true;
     //Whether or not the players are together
     public bool together, stopped;
     public Slider stealthBar;
@@ -54,8 +55,10 @@ public class UI : MonoBehaviour
             has_costume.Add(false);
         }
         dialogue.init();
-        print("Here");
-        StartCoroutine(StartLevel());
+        if (mega)
+        {
+            StartCoroutine(StartLevel());
+        }
     }
 
     void Update()

@@ -23,7 +23,7 @@ public class Bottom : Player {
     {
         base.FixedUpdate();
         //Legs only attack together/fall down?
-/*        if (walking && !sound.isPlaying)
+       if (walking && !sound.isPlaying)
         {
             sound.Play();
         }
@@ -31,6 +31,5 @@ public class Bottom : Player {
         {
             sound.Stop();
         }
-*/
     }
 }
