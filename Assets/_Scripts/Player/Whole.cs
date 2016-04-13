@@ -45,11 +45,12 @@ public class Whole : MonoBehaviour {
     }
     void OnCollisionExit2D(Collision2D coll)
     {
-        switch (coll.gameObject.tag)
-        {
+        switch (coll.gameObject.tag) {
             case "Ground":
-                Top.S.grounded = false;
-                Bottom.S.grounded = false;
+                if (coll.contacts[0].normal == Vector2.up) {
+                    Top.S.grounded = false;
+                    Bottom.S.grounded = false;
+                }
                 break;
         }
     }

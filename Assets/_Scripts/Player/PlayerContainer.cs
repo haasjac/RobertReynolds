@@ -33,7 +33,9 @@ public class PlayerContainer : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
-                childPlayer.grounded = false;
+                if (coll.contacts[0].normal == Vector2.up) {
+                    childPlayer.grounded = false;
+                }
                 break;
         }
     }
