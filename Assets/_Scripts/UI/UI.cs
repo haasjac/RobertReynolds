@@ -90,6 +90,14 @@ public class UI : MonoBehaviour
     }
     public void ChangeSuspicion(float toAdd)
     {
+        if(toAdd < 0f)
+        {
+            if (together)
+            {
+                StartCoroutine(Top.S.Flash());
+                StartCoroutine(Bottom.S.Flash());
+            }
+        }
         float test = currentSuspicion + toAdd;
         if (test > maxSuspicion)
             test = maxSuspicion;
@@ -98,7 +106,7 @@ public class UI : MonoBehaviour
             test = 0;
         }
         currentSuspicion = test;
-        if (currentSuspicion <= 0) {
+        if (currentSuspicion <= 0f) {
             SceneManager.LoadScene("GameOver");
         }
     }

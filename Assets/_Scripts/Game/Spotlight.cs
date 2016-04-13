@@ -47,18 +47,5 @@ public class Spotlight : MonoBehaviour {
     void OnTriggerStay2D(Collider2D coll)
     {
         UI.S.ChangeSuspicion(-damage);
-        if(coll.tag == "Whole")
-        {
-            StartCoroutine(Top.S.Flash());
-            StartCoroutine(Bottom.S.Flash());
-        }
-        else if (coll.tag == "Top")
-        {
-            StartCoroutine(Top.S.Flash());
-        }
-        else if (coll.tag == "Bottom")
-        {
-            StartCoroutine(Bottom.S.Flash());
-        }
     }
 }
