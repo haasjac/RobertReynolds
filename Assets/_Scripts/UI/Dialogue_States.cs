@@ -285,6 +285,7 @@ public class Dialogue_States {
                 case answers.INVALID:
                     Dialogue.S.text.text = s.invalid_reaction;
                     UI.S.ChangeSuspicion(s.invalid_amount);
+
                     break;
             }
         }
