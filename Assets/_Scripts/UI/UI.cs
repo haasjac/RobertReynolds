@@ -19,7 +19,7 @@ public class UI : MonoBehaviour
     public GameObject costume2_go;
     public GameObject costume3_go;
     public AudioSource sound;
-    public Image megaphone, action;
+    public Image megaphone, action, startBack;
     Image costume1_img;
     Image costume2_img;
     Image costume3_img;
@@ -76,6 +76,7 @@ public class UI : MonoBehaviour
     {
         if (startAction)
         {
+            startBack.color = new Color(startBack.color.r, startBack.color.g, startBack.color.b, Mathf.Lerp(startBack.color.a, 0f, .05f));
             action.transform.localScale += (.1f * Vector3.one);
             action.transform.Rotate(0f, 0f, 7.5f);
         }
@@ -129,6 +130,7 @@ public class UI : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Destroy(action.gameObject);
         Destroy(megaphone.gameObject);
+        Destroy(startBack.gameObject);
         sound.Play();
         UI.S.stopped = false;
     }
