@@ -18,6 +18,7 @@ public class Pickup : MonoBehaviour
             //TODO: Play Pickup Sound
             //IncPickup
             UI.S.Collect(gameObject);
+            Destroy(transform.FindChild("Clothes Outline").gameObject);
             //Destroy(gameObject);
             Vector3 clothing = Vector3.zero;
             switch (this.tag)

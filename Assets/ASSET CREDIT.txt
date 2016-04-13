@@ -11,6 +11,8 @@ Wagon Wheel by Kevin Macleod
 Ratchet Sound from https://youtu.be/Vtf2gFlBZj4 by Sound Effects
 Alarm from https://www.youtube.com/watch?v=2dE4lQYuY5Q by Audio Productions
 Tutorial Panel Mumbling from https://www.youtube.com/watch?v=37ps9Zvor2Q by HD sound effects
+Clapboard Sound by aaronholmquist from https://www.freesound.org/people/aaronholmquist/sounds/91292/
+Game Over Music by Kevin Macleod from https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100208
 
 FONTS
 SFTransRobotics by ShyFonts
