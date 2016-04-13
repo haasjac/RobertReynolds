@@ -35,6 +35,9 @@ public class UI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        megaphone.gameObject.SetActive(true);
+        action.gameObject.SetActive(true);
+        startBack.gameObject.SetActive(true);
         sound = Camera.main.GetComponent<AudioSource>();
         Image[] c = clothes.GetComponentsInChildren<Image>();
         costume1_img = c[0];
@@ -77,7 +80,8 @@ public class UI : MonoBehaviour
         if (startAction)
         {
             startBack.color = new Color(startBack.color.r, startBack.color.g, startBack.color.b, Mathf.Lerp(startBack.color.a, 0f, .05f));
-            action.transform.localScale += (.1f * Vector3.one);
+            float newScale = Mathf.Lerp(action.transform.localScale.x, 10f, .05f);
+            action.transform.localScale = new Vector3(newScale, newScale, 1f);
             action.transform.Rotate(0f, 0f, 7.5f);
         }
     }
@@ -131,7 +135,6 @@ public class UI : MonoBehaviour
         Destroy(action.gameObject);
         Destroy(megaphone.gameObject);
         Destroy(startBack.gameObject);
-        sound.Play();
         UI.S.stopped = false;
     }
     public void PlaySound(string name)
