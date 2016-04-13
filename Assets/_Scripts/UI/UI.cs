@@ -35,9 +35,9 @@ public class UI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        megaphone.gameObject.SetActive(true);
-        action.gameObject.SetActive(true);
-        startBack.gameObject.SetActive(true);
+        //megaphone.gameObject.SetActive(true);
+        //action.gameObject.SetActive(true);
+        //startBack.gameObject.SetActive(true);
         sound = Camera.main.GetComponent<AudioSource>();
         Image[] c = clothes.GetComponentsInChildren<Image>();
         costume1_img = c[0];
@@ -60,7 +60,9 @@ public class UI : MonoBehaviour
         dialogue.init();
         if (mega)
         {
-            StartCoroutine(StartLevel());
+            //StartCoroutine(StartLevel());
+        } else {
+            stopped = false;
         }
     }
 

@@ -31,6 +31,7 @@ public class IAmTheOneWhoKnocks : MonoBehaviour {
         Vector3 pos = this.transform.position;
         pos.x -= 7f;
         pos.y += 7f;
+        pos.z = 0;
         player.transform.position = pos;
         UI.S.ChangeSuspicion(-penalty);
     }
