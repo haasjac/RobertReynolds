@@ -4,7 +4,7 @@ using System.Collections;
 public class Whole : MonoBehaviour {
     public static Whole S;
     public Rigidbody2D rigid;
-    BoxCollider2D coll;
+    BoxCollider2D col;
     Vector2 orig;
     void Awake()
     {
@@ -13,19 +13,19 @@ public class Whole : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-        coll = GetComponent<BoxCollider2D>();
-        orig = coll.size;
+        col = GetComponent<BoxCollider2D>();
+        orig = col.size;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	    if(Top.S.attacking)
         {
-            coll.size = new Vector2(orig.x * 2, orig.y);
+            col.size = new Vector2(orig.x * 2, orig.y);
         }
         else
         {
-            coll.size = orig;
+            col.size = orig;
         }
 	}
     void OnCollisionEnter2D(Collision2D coll)
@@ -33,10 +33,13 @@ public class Whole : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
-                Top.S.grounded = true;
-                Bottom.S.grounded = true;
-                Top.S.anim.SetBool("jumping", false);
-                Bottom.S.anim.SetBool("jumping", false);
+                if (coll.collider.bounds.max.y < col.bounds.min.y + .1f)
+                {
+                    Top.S.grounded = true;
+                    Bottom.S.grounded = true;
+                    Top.S.anim.SetBool("jumping", false);
+                    Bottom.S.anim.SetBool("jumping", false);
+                }
                 break;
         }
     }
