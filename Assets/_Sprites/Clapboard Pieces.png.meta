@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 94751a6cbb643fc43b6bc43e0d36d41e
-timeCreated: 1460559248
+timeCreated: 1460559692
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,19 +59,19 @@ TextureImporter:
         y: 1483
         width: 1937
         height: 275
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.0032426778, y: 0.016657937}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 800.18713, y: 31.670898}
-        - {x: 798.18713, y: 33.6709}
-        - {x: 798.18713, y: 114.6709}
-        - {x: -799.81287, y: 114.6709}
-        - {x: -799.81287, y: -113.3291}
-        - {x: 797.18713, y: -113.3291}
-        - {x: 798.18713, y: -112.3291}
-        - {x: 798.18713, y: -94.3291}
-        - {x: 800.18713, y: -93.3291}
+      - - {x: 1594.7937, y: 141.43628}
+        - {x: 1592.7937, y: 143.43628}
+        - {x: 1592.7937, y: 224.43628}
+        - {x: -5.2063293, y: 224.43628}
+        - {x: -5.2063293, y: -3.5637207}
+        - {x: 1591.7937, y: -3.5637207}
+        - {x: 1592.7937, y: -2.5637207}
+        - {x: 1592.7937, y: 15.436279}
+        - {x: 1594.7937, y: 16.43628}
     - name: Clapboard Pieces_1
       rect:
         serializedVersion: 2
@@ -80,7 +80,7 @@ TextureImporter:
         width: 1963
         height: 1262
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
       - - {x: 811, y: 229.5}
