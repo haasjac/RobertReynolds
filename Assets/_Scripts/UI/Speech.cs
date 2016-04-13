@@ -17,6 +17,7 @@ public class Speech : MonoBehaviour {
 
     //PUBLIC
     public Sprite person_face;
+    [TextArea(3, 10)]
     public List<string> messages;
     public GameObject button;
 

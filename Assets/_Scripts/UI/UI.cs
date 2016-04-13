@@ -98,6 +98,9 @@ public class UI : MonoBehaviour
             test = 0;
         }
         currentSuspicion = test;
+        if (currentSuspicion <= 0) {
+            SceneManager.LoadScene("GameOver");
+        }
     }
     public void Collect(GameObject go)
     {
