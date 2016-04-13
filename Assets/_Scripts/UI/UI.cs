@@ -135,6 +135,8 @@ public class UI : MonoBehaviour
         Destroy(action.gameObject);
         Destroy(megaphone.gameObject);
         Destroy(startBack.gameObject);
+        clothes.SetActive(true);
+        stealthBar.gameObject.SetActive(true);
         UI.S.stopped = false;
     }
     public void PlaySound(string name)
