@@ -33,7 +33,7 @@ public class GameOverScene : MonoBehaviour {
     {
         if(start)
         {
-            prompt1.color = new Color(prompt1.color.r, prompt1.color.g, prompt1.color.b, Mathf.Sin(1.2f * Time.fixedTime) + .3f);
+            prompt1.color = new Color(prompt1.color.r, prompt1.color.g, prompt1.color.b, Mathf.Sin(1.2f * Time.fixedTime) + 1f);
             prompt2.color = prompt1.color;
             button1.color = prompt1.color;
             button2.color = prompt1.color;
