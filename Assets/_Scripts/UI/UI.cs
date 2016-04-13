@@ -35,6 +35,7 @@ public class UI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        PlayerPrefs.SetString("PrevScene", SceneManager.GetActiveScene().name);
         megaphone.gameObject.SetActive(true);
         action.gameObject.SetActive(true);
         startBack.gameObject.SetActive(true);
