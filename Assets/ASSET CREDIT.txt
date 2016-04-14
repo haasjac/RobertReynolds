@@ -2,12 +2,19 @@ SPRITES
 Wood Planks by http://pre03.deviantart.net/42b8/th/pre/f/2015/092/e/6/seamless_wood_planks_texture_by_bcmartini77-d8o6qf9.png by bcmartini77
 Clapboard from http://worldartsme.com/hollywood-clapboard-clipart.html# by GreenBean<3
 Steel Texture from http://webtreats.mysitemyway.com/8-tileable-metal-textures/
+Hockey Mask from http://photos.gograph.com/thumbs/CSP/CSP990/k10749164.jpg
+Metal Wall Texture from http://images.naldzgraphics.net/2014/08/18-wall-metal-texture.jpg by naldzgraphics
+Wood Planks by http://img10.deviantart.net/af7f/i/2010/100/c/0/wooden_planks_new_texture_03_by_goodtextures.jpg from GoodTextures
+Wood by WallpapersXL from http://www.wallpapersxl.com/wallpapers/1024x1024/cartoon-wood-texture/1214771/cartoon-wood-texture-1214771.2.jpg
 
 SOUNDS
 Alarm Start, Charging, Explosion, Jump, Laser, Punch, Success, and Walking from GameBurp
 Wagon Wheel by Kevin Macleod
 Ratchet Sound from https://youtu.be/Vtf2gFlBZj4 by Sound Effects
 Alarm from https://www.youtube.com/watch?v=2dE4lQYuY5Q by Audio Productions
+Tutorial Panel Mumbling from https://www.youtube.com/watch?v=37ps9Zvor2Q by HD sound effects
+Clapboard Sound by aaronholmquist from https://www.freesound.org/people/aaronholmquist/sounds/91292/
+Game Over Music by Kevin Macleod from https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100208
 
 FONTS
 SFTransRobotics by ShyFonts

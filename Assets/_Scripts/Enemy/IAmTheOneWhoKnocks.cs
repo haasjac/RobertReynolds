@@ -4,34 +4,23 @@ using System.Collections;
 public class IAmTheOneWhoKnocks : MonoBehaviour {
 
     public GameObject cam;
-    public GameObject robot;
+    public float timer = 2f;
+    public float penalty = 0.3f;
+    
 
-    public bool collided;
-	// Use this for initialization
-	void Start () {
-        collided = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
-
-    public IEnumerator restart() {
-        //stop the camera and reload the level
-        cam.GetComponent<CameraFollow>().enabled = false;
-        print("hello, ");
-        yield return new WaitForSeconds(5f);
-        print("world!");
-        Application.LoadLevel(Application.loadedLevel);
+    public IEnumerator restart(GameObject player) {
+        yield return new WaitForSeconds(timer);
+        Vector3 pos = this.transform.position;
+        pos.x -= 7f;
+        pos.y += 7f;
+        pos.z = 0;
+        player.transform.position = pos;
+        UI.S.ChangeSuspicion(-penalty);
     }
 
-    public void OnCollisionEnter2D(Collision2D coll) {
-        //no switch -- the only thing that should ever collide is the player
-        if (collided == false) {
-            collided = true;
-            print("collision");
-            StartCoroutine("restart");
-        }
+    public void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(coll.gameObject.tag == "Whole" || coll.gameObject.tag == "Top" || coll.gameObject.tag == "Bottom")
+            StartCoroutine("restart", coll.gameObject);
     }
 }

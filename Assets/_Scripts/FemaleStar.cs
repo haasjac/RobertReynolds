@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class FemaleStar : MonoBehaviour {
     bool collided = false;
     public bool start = false;
+    bool end = false;
     public GameObject heartPrefab;
     Animator anim;
 	// Use this for initialization
@@ -18,6 +19,13 @@ public class FemaleStar : MonoBehaviour {
         if(!collided && start)
         {
             transform.position -= Vector3.right / 100f;
+            Bottom.S.anim.SetBool("walking", true);
+            Whole.S.transform.position += Vector3.right / 150f;
+            UI.S.stopped = true;
+        }
+        if(end)
+        {
+            UI.S.stopped = true;
         }
     }
     void OnTriggerEnter2D(Collider2D coll)
@@ -33,6 +41,9 @@ public class FemaleStar : MonoBehaviour {
     IEnumerator Finish()
     {
         Instantiate(heartPrefab, (Whole.S.transform.position + transform.position) / 2f, Quaternion.identity);
+        UI.S.stopped = true;
+        end = true;
+        UI.S.PlaySound("Success");
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("Title");
     }

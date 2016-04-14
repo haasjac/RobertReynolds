@@ -23,14 +23,13 @@ public class Bottom : Player {
     {
         base.FixedUpdate();
         //Legs only attack together/fall down?
-/*        if (walking && !sound.isPlaying)
+       if (grounded && walking && !sound.isPlaying)
         {
             sound.Play();
         }
-        else if(!walking && sound.isPlaying)
+        else if(!grounded || (!walking && sound.isPlaying))
         {
             sound.Stop();
         }
-*/
     }
 }

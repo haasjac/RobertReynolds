@@ -9,16 +9,17 @@ public class UI : MonoBehaviour
     public static UI S;
 
     public Dialogue dialogue;
+    public bool mega= true;
     //Whether or not the players are together
     public bool together, stopped;
     public Slider stealthBar;
-    public float currentSuspicion, maxSuspicion;
+    public float currentSuspicion, maxSuspicion, desSuspicion;
     public GameObject clothes;
     public GameObject costume1_go;
     public GameObject costume2_go;
     public GameObject costume3_go;
     public AudioSource sound;
-    public Image megaphone, action;
+    public Image megaphone, action, startBack;
     Image costume1_img;
     Image costume2_img;
     Image costume3_img;
@@ -31,10 +32,15 @@ public class UI : MonoBehaviour
     void Awake()
     {
         S = this;
+        Time.timeScale = 1;
     }
     // Use this for initialization
     void Start()
     {
+        PlayerPrefs.SetString("PrevScene", SceneManager.GetActiveScene().name);
+        megaphone.gameObject.SetActive(true);
+        action.gameObject.SetActive(true);
+        startBack.gameObject.SetActive(true);
         sound = Camera.main.GetComponent<AudioSource>();
         //stealthBarHiding = UI.S.GetComponent<RectTransform>().FindChild("Stealth Bar").gameObject;
         Image[] c = clothes.GetComponentsInChildren<Image>();
@@ -56,8 +62,13 @@ public class UI : MonoBehaviour
             has_costume.Add(false);
         }
         dialogue.init();
-        print("Here");
-        StartCoroutine(StartLevel());
+        if (mega)
+        {
+            StartCoroutine(StartLevel());
+        } else {
+            stopped = false;
+        }
+        desSuspicion = currentSuspicion;
     }
 
     void Update()
@@ -73,14 +84,18 @@ public class UI : MonoBehaviour
     }
     void FixedUpdate()
     {
+        currentSuspicion = Mathf.Lerp(currentSuspicion, desSuspicion, Time.fixedDeltaTime);
         if (startAction)
         {
-            action.transform.localScale += (.1f * Vector3.one);
+            startBack.color = new Color(startBack.color.r, startBack.color.g, startBack.color.b, Mathf.Lerp(startBack.color.a, 0f, .05f));
+            float newScale = Mathf.Lerp(action.transform.localScale.x, 10f, .05f);
+            action.transform.localScale = new Vector3(newScale, newScale, 1f);
             action.transform.Rotate(0f, 0f, 7.5f);
         }
     }
     public void ChangeSuspicion(float toAdd)
     {
+<<<<<<< HEAD
         if (!InteractableHideObject.characterHidden) {
             float test = currentSuspicion + toAdd;
             if (test > maxSuspicion)
@@ -100,6 +115,29 @@ public class UI : MonoBehaviour
             }
         }
 
+=======
+        if(toAdd < 0f)
+        {
+                StartCoroutine(Top.S.Flash());
+                StartCoroutine(Bottom.S.Flash());
+        }
+        else if(toAdd > 0f)
+        {
+            PlaySound("Charging");
+        }
+        float test = desSuspicion + toAdd;
+        if (test > maxSuspicion)
+            test = maxSuspicion;
+        else if (test < 0)
+        {
+            test = 0;
+        }
+        desSuspicion = test;
+        if (desSuspicion <= 0f) {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("GameOver");
+        }
+>>>>>>> master
     }
     public void Collect(GameObject go)
     {
@@ -139,7 +177,9 @@ public class UI : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Destroy(action.gameObject);
         Destroy(megaphone.gameObject);
-        sound.Play();
+        Destroy(startBack.gameObject);
+        //clothes.SetActive(true);
+        stealthBar.gameObject.SetActive(true);
         UI.S.stopped = false;
     }
     public void PlaySound(string name)

@@ -285,6 +285,7 @@ public class Dialogue_States {
                 case answers.INVALID:
                     Dialogue.S.text.text = s.invalid_reaction;
                     UI.S.ChangeSuspicion(s.invalid_amount);
+
                     break;
             }
         }
@@ -324,11 +325,11 @@ public class Dialogue_States {
             } else {
                 Dialogue.S.text.text = s.fail_statement + "\n";
                 if (!UI.S.has_costume[1])
-                    Dialogue.S.text.text += UI.S.costume1_go.name + " ; ";
+                    Dialogue.S.text.text += UI.S.costume1_go.name + "... ";
                 if (!UI.S.has_costume[2])
-                    Dialogue.S.text.text += UI.S.costume2_go.name + " ; ";
+                    Dialogue.S.text.text += UI.S.costume2_go.name + "... ";
                 if (!UI.S.has_costume[3])
-                    Dialogue.S.text.text += UI.S.costume3_go.name + " ; ";
+                    Dialogue.S.text.text += UI.S.costume3_go.name + "... ";
             }
             Dialogue.S.face.sprite = s.person_face;
             wait = false;

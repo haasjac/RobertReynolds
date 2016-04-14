@@ -137,7 +137,7 @@ public class Player : MonoBehaviour {
         //Join
         else
         {
-            if (Top.S.grounded && Bottom.S.grounded && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
+            if (/*Top.S.grounded && Bottom.S.grounded && */(Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
             {
                 UI.S.together = !UI.S.together;
                 UI.S.PlaySound("Recombine");

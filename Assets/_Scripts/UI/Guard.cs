@@ -4,7 +4,9 @@ using UnityEngine.Events;
 
 public class Guard : Speech {
 
+    [TextArea(3, 10)]
     public string fail_statement = "I can't let you pass without:";
+    [TextArea(3, 10)]
     public string pass_statement = "Right this way sir.";
     public UnityEvent uEvent;
 

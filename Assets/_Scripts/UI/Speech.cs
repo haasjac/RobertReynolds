@@ -17,6 +17,7 @@ public class Speech : MonoBehaviour {
 
     //PUBLIC
     public Sprite person_face;
+    [TextArea(3, 10)]
     public List<string> messages;
     public GameObject button;
 
@@ -50,7 +51,10 @@ public class Speech : MonoBehaviour {
     protected virtual void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Whole")) {
             collided = false;
-            button.SetActive(false);
+            if(button)
+            {
+                button.SetActive(false);
+            }
         }
     }
 }

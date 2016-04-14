@@ -7,8 +7,8 @@ public class Navi : Speech {
 	
 	// Update is called once per frame
 	protected override void Update () {
-        if (UI.S.together && collided && !isBeingRead && !done) {
-            button.SetActive(false);
+        if (UI.S.together && collided && !isBeingRead && !done)
+        {
             done = true;
             isBeingRead = true;
             sm.ChangeState(new Dialogue_States.Play(this));

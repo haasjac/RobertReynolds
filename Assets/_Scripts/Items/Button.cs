@@ -19,6 +19,7 @@ public class Button : MonoBehaviour {
 	    if (clicked) {
             sr.sprite = on;
             onPress.Invoke();
+            clicked = false;
         }
 	}
 
@@ -27,6 +28,7 @@ public class Button : MonoBehaviour {
         {
             clicked = true;
             UI.S.PlaySound("Button Push");
+            GetComponent<EdgeCollider2D>().enabled = false;
         }
     }
 }

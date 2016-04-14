@@ -3,13 +3,20 @@ using System.Collections;
 using UnityEngine.Events;
 
 public class NPC : Speech {
-    
+
+    [TextArea(3, 10)]
     public string great_option = "";
+    [TextArea(3, 10)]
     public string good_option = "";
+    [TextArea(3, 10)]
     public string bad_option = "";
+    [TextArea(3, 10)]
     public string great_reaction = "";
+    [TextArea(3, 10)]
     public string good_reaction = "";
+    [TextArea(3, 10)]
     public string bad_reaction = "";
+    [TextArea(3, 10)]
     public string invalid_reaction = "";
     public float great_amount = 0.3f;
     public float good_amount = 0.1f;
