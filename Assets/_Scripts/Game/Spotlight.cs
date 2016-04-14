@@ -5,7 +5,7 @@ public class Spotlight : MonoBehaviour {
     public SpriteRenderer sr;
     public BoxCollider2D coll;
     public float timeDelay = 2f;
-    public float damage = .01f;
+    public float damage = .1f;
     public bool going = false, running = false;
     AudioSource sound;
 	// Use this for initialization

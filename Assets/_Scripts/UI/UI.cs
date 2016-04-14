@@ -13,7 +13,7 @@ public class UI : MonoBehaviour
     //Whether or not the players are together
     public bool together, stopped;
     public Slider stealthBar;
-    public float currentSuspicion, maxSuspicion;
+    public float currentSuspicion, maxSuspicion, desSuspicion;
     public GameObject clothes;
     public GameObject costume1_go;
     public GameObject costume2_go;
@@ -65,6 +65,7 @@ public class UI : MonoBehaviour
         } else {
             stopped = false;
         }
+        desSuspicion = currentSuspicion;
     }
 
     void Update()
@@ -80,6 +81,7 @@ public class UI : MonoBehaviour
     }
     void FixedUpdate()
     {
+        currentSuspicion = Mathf.Lerp(currentSuspicion, desSuspicion, Time.fixedDeltaTime);
         if (startAction)
         {
             startBack.color = new Color(startBack.color.r, startBack.color.g, startBack.color.b, Mathf.Lerp(startBack.color.a, 0f, .05f));
@@ -95,15 +97,15 @@ public class UI : MonoBehaviour
                 StartCoroutine(Top.S.Flash());
                 StartCoroutine(Bottom.S.Flash());
         }
-        float test = currentSuspicion + toAdd;
+        float test = desSuspicion + toAdd;
         if (test > maxSuspicion)
             test = maxSuspicion;
         else if (test < 0)
         {
             test = 0;
         }
-        currentSuspicion = test;
-        if (currentSuspicion <= 0f) {
+        desSuspicion = test;
+        if (desSuspicion <= 0f) {
             SceneManager.LoadScene("GameOver");
         }
     }
