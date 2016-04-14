@@ -31,6 +31,7 @@ public class UI : MonoBehaviour
     void Awake()
     {
         S = this;
+        Time.timeScale = 1;
     }
     // Use this for initialization
     void Start()
@@ -110,6 +111,7 @@ public class UI : MonoBehaviour
         }
         desSuspicion = test;
         if (desSuspicion <= 0f) {
+            Time.timeScale = 1;
             SceneManager.LoadScene("GameOver");
         }
     }
@@ -152,7 +154,7 @@ public class UI : MonoBehaviour
         Destroy(action.gameObject);
         Destroy(megaphone.gameObject);
         Destroy(startBack.gameObject);
-        clothes.SetActive(true);
+        //clothes.SetActive(true);
         stealthBar.gameObject.SetActive(true);
         UI.S.stopped = false;
     }

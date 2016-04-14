@@ -20,7 +20,7 @@ public class Title : MonoBehaviour {
     // Update is called once per frame
     void Update()
 {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetAxis("L_XAxis_1") > .9f || Input.GetAxis("L_XAxis_2") > .9f)
+        /*if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetAxis("L_XAxis_1") > .9f || Input.GetAxis("L_XAxis_2") > .9f)
         {
             sound.PlayOneShot(Resources.Load("Sounds/Ratchet") as AudioClip);
             img[selectionNum].sprite = defaultSprite[selectionNum];
@@ -46,7 +46,7 @@ public class Title : MonoBehaviour {
             selectionNum %= 3;
             img[selectionNum].sprite = selected[selectionNum];
             ps[selectionNum].SetActive(true);
-        }
+        }*/
         
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl) 
             || Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("A_1") || Input.GetButtonDown("A_2"))
@@ -54,7 +54,7 @@ public class Title : MonoBehaviour {
             switch(selectionNum)
             {
                 case 0:
-                    SceneManager.LoadScene("Character_Select");
+                    SceneManager.LoadScene("CharacterSelect");
                     break;
                 case 1:
                     SceneManager.LoadScene("Controls");
