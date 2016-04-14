@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     public float attackDur = .5f, attackStart;
     public int player_num = 1;
     public bool grounded, attacking, flashing;
+    public static bool hiding = false;
     [HideInInspector]
     public GameObject container;
 
@@ -35,7 +36,7 @@ public class Player : MonoBehaviour {
         if (!UI.S.stopped) {
 
             //MOVING
-            if (UI.S.together) {
+            if (UI.S.together && !hiding) {
                 iH = Input.GetAxis("L_XAxis_1") + Input.GetAxis("L_XAxis_2");
                 if (iH > 1)
                     iH = 1;
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour {
             }
             
             //Jump input
-            if (Input.GetButtonDown("A_" + player_num.ToString()) && grounded && !UI.S.stopped) {
+            if (Input.GetButtonDown("A_" + player_num.ToString()) && grounded && !UI.S.stopped && !hiding) {
                 jump = true;
                 if (UI.S.together || player_num == 1) {
                     UI.S.PlaySound("Jump");
@@ -54,15 +55,15 @@ public class Player : MonoBehaviour {
                 } else {
                     UI.S.PlaySound("Top Jumping");
                 }
-            } else if (Input.GetButtonUp("A_" + player_num.ToString()) && !grounded && !UI.S.stopped) {
+            } else if (Input.GetButtonUp("A_" + player_num.ToString()) && !grounded && !UI.S.stopped && !hiding) {
                 jumpCancel = true;
             }
-            if (Input.GetKeyDown(KeyCode.RightControl) && !UI.S.stopped && player_num == 1) {
+            if (Input.GetKeyDown(KeyCode.RightControl) && !UI.S.stopped && !hiding && player_num == 1) {
                 SplitOrCombine();
             }
 
             //SPLIT
-            if (Input.GetButtonDown("Y_" + player_num.ToString()) && !UI.S.stopped) {
+            if (Input.GetButtonDown("Y_" + player_num.ToString()) && !UI.S.stopped && !hiding) {
                 Top.S.SplitOrCombine();
             }
 
