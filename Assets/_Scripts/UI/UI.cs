@@ -92,11 +92,8 @@ public class UI : MonoBehaviour
     {
         if(toAdd < 0f)
         {
-            if (together)
-            {
                 StartCoroutine(Top.S.Flash());
                 StartCoroutine(Bottom.S.Flash());
-            }
         }
         float test = currentSuspicion + toAdd;
         if (test > maxSuspicion)

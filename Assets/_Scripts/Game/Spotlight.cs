@@ -43,9 +43,6 @@ public class Spotlight : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D coll)
     {
         sound.PlayOneShot(Resources.Load("Sounds/Alarm") as AudioClip);
-    }
-    void OnTriggerStay2D(Collider2D coll)
-    {
         UI.S.ChangeSuspicion(-damage);
     }
 }
