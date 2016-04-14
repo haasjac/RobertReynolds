@@ -97,6 +97,10 @@ public class UI : MonoBehaviour
                 StartCoroutine(Top.S.Flash());
                 StartCoroutine(Bottom.S.Flash());
         }
+        else if(toAdd > 0f)
+        {
+            PlaySound("Charging");
+        }
         float test = desSuspicion + toAdd;
         if (test > maxSuspicion)
             test = maxSuspicion;
