@@ -1,32 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
     public GameObject respawn_location;
 	
-	// Update is called once per frame
-	void Update () {
-	    if(UI.S.currentSuspicion == UI.S.maxSuspicion) {
-            GameOverScreen();
-        }
-	}
 
-    void OnCollisionEnter2D(Collision2D col) {
-        //Enviomental hazard, crowd booing
-        gameObject.GetComponent<AudioSource>().enabled = true;
+    void OnTriggerEnter2D(Collider2D col) {
+        //Enviomental hazard
+        //Debug.Log("TouchWater");
+        UI.S.PlaySound("Cut");
     }
 
-    void OnCollisionExit2D(Collision2D col) {
+    void OnTriggerExit2D(Collider2D col) {
         //Respawn @ checkpoint
-        //Transform temp = respawn.transform;
-        //col.gameObject.transform = respawn.transform;
+        //Debug.Log("LeftWater");
+        col.gameObject.transform.position = respawn_location.transform.position;
     }
 
-    void GameOverScreen() {
-        //Ending screen
-        GameOverButton.currentLevel = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("GameOver");
-        //Spawn Robot mentor?
-    }
+
 }

@@ -24,6 +24,7 @@ public class UI : MonoBehaviour
     Image costume2_img;
     Image costume3_img;
     bool startAction;
+    
     [HideInInspector]
     public List<bool> has_costume;
 
@@ -41,6 +42,7 @@ public class UI : MonoBehaviour
         action.gameObject.SetActive(true);
         startBack.gameObject.SetActive(true);
         sound = Camera.main.GetComponent<AudioSource>();
+        //stealthBarHiding = UI.S.GetComponent<RectTransform>().FindChild("Stealth Bar").gameObject;
         Image[] c = clothes.GetComponentsInChildren<Image>();
         costume1_img = c[0];
         costume2_img = c[1];
@@ -93,6 +95,27 @@ public class UI : MonoBehaviour
     }
     public void ChangeSuspicion(float toAdd)
     {
+<<<<<<< HEAD
+        if (!InteractableHideObject.characterHidden) {
+            float test = currentSuspicion + toAdd;
+            if (test > maxSuspicion)
+                test = maxSuspicion;
+            else if (test < 0) {
+                test = 0;
+            }
+
+            currentSuspicion = test;
+            if (toAdd < 0f) {
+                StartCoroutine(Top.S.Flash());
+                StartCoroutine(Bottom.S.Flash());
+            }
+
+            if (currentSuspicion <= 0) {
+                GameOverScreen();
+            }
+        }
+
+=======
         if(toAdd < 0f)
         {
                 StartCoroutine(Top.S.Flash());
@@ -114,6 +137,7 @@ public class UI : MonoBehaviour
             Time.timeScale = 1;
             SceneManager.LoadScene("GameOver");
         }
+>>>>>>> master
     }
     public void Collect(GameObject go)
     {
@@ -163,9 +187,17 @@ public class UI : MonoBehaviour
         sound.PlayOneShot(Resources.Load("Sounds/" + name) as AudioClip);
     }
 
+    void GameOverScreen() {
+        //Ending screen
+        GameOverButton.currentLevel = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("GameOver");
+        //Spawn Robot mentor?
+    }
+
     public void loadScene(string s)
     {
         SceneManager.LoadScene(s);
     }
+
 }
 
