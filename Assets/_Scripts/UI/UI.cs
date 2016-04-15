@@ -95,49 +95,25 @@ public class UI : MonoBehaviour
     }
     public void ChangeSuspicion(float toAdd)
     {
-<<<<<<< HEAD
         if (!InteractableHideObject.characterHidden) {
-            float test = currentSuspicion + toAdd;
+            if (toAdd < 0f) {
+                StartCoroutine(Top.S.Flash());
+                StartCoroutine(Bottom.S.Flash());
+            } else if (toAdd > 0f) {
+                PlaySound("Charging");
+            }
+            float test = desSuspicion + toAdd;
             if (test > maxSuspicion)
                 test = maxSuspicion;
             else if (test < 0) {
                 test = 0;
             }
-
-            currentSuspicion = test;
-            if (toAdd < 0f) {
-                StartCoroutine(Top.S.Flash());
-                StartCoroutine(Bottom.S.Flash());
-            }
-
-            if (currentSuspicion <= 0) {
-                GameOverScreen();
+            desSuspicion = test;
+            if (desSuspicion <= 0f) {
+                Time.timeScale = 1;
+                SceneManager.LoadScene("GameOver");
             }
         }
-
-=======
-        if(toAdd < 0f)
-        {
-                StartCoroutine(Top.S.Flash());
-                StartCoroutine(Bottom.S.Flash());
-        }
-        else if(toAdd > 0f)
-        {
-            PlaySound("Charging");
-        }
-        float test = desSuspicion + toAdd;
-        if (test > maxSuspicion)
-            test = maxSuspicion;
-        else if (test < 0)
-        {
-            test = 0;
-        }
-        desSuspicion = test;
-        if (desSuspicion <= 0f) {
-            Time.timeScale = 1;
-            SceneManager.LoadScene("GameOver");
-        }
->>>>>>> master
     }
     public void Collect(GameObject go)
     {
