@@ -14,8 +14,9 @@ public class Dialogue_States {
 
     public enum answers { GREAT, GOOD, BAD, INVALID };
 
-
-
+    static float cooldown_time = 0.5f;
+    static bool off_cooldown;
+    static float cooldown;
 
     /// STATES
 
@@ -46,19 +47,19 @@ public class Dialogue_States {
                 } else {
                     ConcludeState();
                 }
-            }
-                if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
-                current = -1;
             } else {
                 current = 0;
                 Dialogue.S.text.text = s.messages[current];
+                Dialogue.S.face.sprite = s.person_face;
+                Dialogue.S.textContinue.SetActive(false);
+                cooldown = Time.unscaledTime;
+                off_cooldown = false;
             }
-            Dialogue.S.face.sprite = s.person_face;
         }
 
         public override void OnUpdate(float time_delta_fraction) {
 
-            if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+            if (off_cooldown && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2"))) {
                 current++;
                 if (current < size) {
                     Dialogue.S.text.text = s.messages[current];
@@ -69,6 +70,14 @@ public class Dialogue_States {
                         ConcludeState();
                     }
                 }
+                cooldown = Time.unscaledTime;
+                off_cooldown = false;
+                Dialogue.S.textContinue.SetActive(false);
+            }
+
+            if (Time.unscaledTime - cooldown > cooldown_time) {
+                off_cooldown = true;
+                Dialogue.S.textContinue.SetActive(true);
             }
         }
 
@@ -101,11 +110,11 @@ public class Dialogue_States {
         }
 
         public override void OnStart() {
-            int rand = Mathf.CeilToInt(UnityEngine.Random.Range(0.00001f, 6));
             Dialogue.S.buttons.SetActive(true);
             Dialogue.S.textTop.SetActive(true);
             Dialogue.S.textBottom.SetActive(true);
-            switch (rand) {
+            Dialogue.S.textContinue.SetActive(false);
+            switch (s.rand) {
                 case 1:
                     Dialogue.S.text.text = s.great_option + "\n" + s.good_option + "\n" + s.bad_option;
                     a = answers.GREAT;
@@ -185,6 +194,7 @@ public class Dialogue_States {
             Dialogue.S.buttons.SetActive(false);
             Dialogue.S.textTop.SetActive(false);
             Dialogue.S.textBottom.SetActive(false);
+            Dialogue.S.textContinue.SetActive(true);
         }
     }
 
@@ -233,12 +243,23 @@ public class Dialogue_States {
             } else {
                 Dialogue.S.text.text = combine(s.great_option, s.good_option);
             }
+            Dialogue.S.textContinue.SetActive(false);
+            cooldown = Time.unscaledTime;
+            off_cooldown = false;
         }
 
         public override void OnUpdate(float time_delta_fraction) {
 
-            if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+            if (off_cooldown && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2"))) {
                 state_machine.ChangeState(new React(s, ans));
+                cooldown = Time.unscaledTime;
+                off_cooldown = false;
+                Dialogue.S.textContinue.SetActive(false);
+            }
+
+            if (Time.unscaledTime - cooldown > cooldown_time) {
+                off_cooldown = true;
+                Dialogue.S.textContinue.SetActive(true);
             }
         }
 
@@ -288,12 +309,23 @@ public class Dialogue_States {
 
                     break;
             }
+            Dialogue.S.textContinue.SetActive(false);
+            cooldown = Time.unscaledTime;
+            off_cooldown = false;
         }
 
         public override void OnUpdate(float time_delta_fraction) {
 
-            if (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+            if (off_cooldown && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2"))) {
                 ConcludeState();
+                cooldown = Time.unscaledTime;
+                off_cooldown = false;
+                Dialogue.S.textContinue.SetActive(false);
+            }
+
+            if (Time.unscaledTime - cooldown > cooldown_time) {
+                off_cooldown = true;
+                Dialogue.S.textContinue.SetActive(true);
             }
         }
 
@@ -313,7 +345,6 @@ public class Dialogue_States {
     /// </summary>
     public class GuardText : State {
         Guard s;
-        bool wait;
 
         public GuardText(Guard s) {
             this.s = s;
@@ -332,19 +363,25 @@ public class Dialogue_States {
                     Dialogue.S.text.text += UI.S.costume3_go.name + "... ";
             }
             Dialogue.S.face.sprite = s.person_face;
-            wait = false;
+            Dialogue.S.textContinue.SetActive(false);
+            cooldown = Time.unscaledTime;
+            off_cooldown = false;
         }
 
         public override void OnUpdate(float time_delta_fraction) {
 
-            if (wait && Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) {
+            if (off_cooldown && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2"))) {
                 if (UI.S.has_costume[0]) {
                     s.uEvent.Invoke();
                     s.enabled = false;
                 }
                 ConcludeState();
             }
-            wait = true;
+
+            if (Time.unscaledTime - cooldown > cooldown_time) {
+                off_cooldown = true;
+                Dialogue.S.textContinue.SetActive(true);
+            }
         }
 
         public override void OnFinish() {

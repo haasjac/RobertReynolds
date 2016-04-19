@@ -18,6 +18,8 @@ public class Dialogue : MonoBehaviour {
     public GameObject textTop;
     [HideInInspector]
     public GameObject textBottom;
+    [HideInInspector]
+    public GameObject textContinue;
     public Color not_answered = new Color(90.0f/255, 90.0f/255, 90.0f/255f, 1);
     public Color answered = Color.black;
     public Sprite player_face;
@@ -33,6 +35,7 @@ public class Dialogue : MonoBehaviour {
         buttons = text.transform.FindChild("Buttons").gameObject;
         textTop = text.transform.FindChild("top").gameObject;
         textBottom = text.transform.FindChild("bottom").gameObject;
+        textContinue = text.transform.FindChild("continue").gameObject;
 
         buttons.SetActive(false);
         textTop.SetActive(false);

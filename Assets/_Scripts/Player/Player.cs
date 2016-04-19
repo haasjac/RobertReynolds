@@ -24,6 +24,9 @@ public class Player : MonoBehaviour {
     protected bool jump, jumpCancel;
     protected float iH;
     protected bool walking = false;
+    static protected bool can_split = true;
+    static protected float split_cooldown = 1;
+    static protected float split_timer = 0;
 
     // Use this for initialization
     protected void Start() {
@@ -63,9 +66,18 @@ public class Player : MonoBehaviour {
             }
 
             //SPLIT
-            if (Input.GetButtonDown("Y_" + player_num.ToString()) && !UI.S.stopped && !hiding) {
+            if (Input.GetButtonDown("Y_" + player_num.ToString()) && !UI.S.stopped && !hiding && can_split) {
+                can_split = false;
+                split_timer = 0;
                 Top.S.SplitOrCombine();
             }
+            if (!can_split) {
+                split_timer += Time.deltaTime;
+                if (split_timer > split_cooldown) {
+                    can_split = true;
+                }
+            }
+
 
             //Animation Parameters set
             if (Mathf.Abs(iH) > .01f) {

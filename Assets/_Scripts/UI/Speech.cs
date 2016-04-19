@@ -13,6 +13,8 @@ public class Speech : MonoBehaviour {
     public bool isBeingRead = false;
     [HideInInspector]
     public bool collided;
+    [HideInInspector]
+    public int rand;
     
 
     //PUBLIC
@@ -31,6 +33,7 @@ public class Speech : MonoBehaviour {
         {
             button.SetActive(false);
         }
+        rand = Mathf.CeilToInt(UnityEngine.Random.Range(0.00001f, 6));
     }
 
     // Update is called once per frame
