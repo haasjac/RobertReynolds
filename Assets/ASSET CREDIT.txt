@@ -6,6 +6,7 @@ Hockey Mask from http://photos.gograph.com/thumbs/CSP/CSP990/k10749164.jpg
 Metal Wall Texture from http://images.naldzgraphics.net/2014/08/18-wall-metal-texture.jpg by naldzgraphics
 Wood Planks by http://img10.deviantart.net/af7f/i/2010/100/c/0/wooden_planks_new_texture_03_by_goodtextures.jpg from GoodTextures
 Wood by WallpapersXL from http://www.wallpapersxl.com/wallpapers/1024x1024/cartoon-wood-texture/1214771/cartoon-wood-texture-1214771.2.jpg
+Outer Space from http://static.freepsdfiles.net/uploads/2010/12/Red-Version4.jpg
 
 SOUNDS
 Alarm Start, Charging, Explosion, Jump, Laser, Punch, Success, and Walking from GameBurp
@@ -17,6 +18,7 @@ Clapboard Sound by aaronholmquist from https://www.freesound.org/people/aaronhol
 Game Over Music by Kevin Macleod from https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100208
 Magnet Sound by yacinknn2 from http://www.4shared.com/get/aNIOh4rKce/Magnetic_sound_effect.html?simpleLogin=true&startDownload=true#_=_
 Throw Sound by GamingSoundEffects from http://www.mediafire.com/download/z6t74s3yf6x8wdl/Whoosh.wav
+Sci Fi theme from https://www.youtube.com/watch?v=17fnnEQgXY8&feature=youtu.be by Kevin Macleod
 
 FONTS
 SFTransRobotics by ShyFonts
