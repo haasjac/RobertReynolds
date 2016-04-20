@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     public float maxJumpSpeed = 6f, minJumpSpeed = 3f;
     public float splitJumpSpeed = 8f;
     public float attackDur = .5f, attackStart;
+    public float lastSplitTime = 0f;
     public int player_num = 1;
     public bool grounded, attacking, flashing;
     public static bool hiding = false;
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour {
     protected SpriteRenderer sr;
     protected Rigidbody2D rigid;
     protected GameObject whole;
-    protected bool facingRight = true;
+    public bool facingRight = true;
     protected bool jump, jumpCancel;
     protected float iH;
     protected bool walking = false;
@@ -129,28 +130,37 @@ public class Player : MonoBehaviour {
         //Split
         if (UI.S.together)
         {
-            UI.S.together = !UI.S.together;
-            UI.S.PlaySound("Split");
-            //Need containers for animations to run correctly
-            Top.S.container = Instantiate(Top.S.containerPrefab, Whole.S.transform.position, Quaternion.identity) as GameObject;
-            Bottom.S.container = Instantiate(Bottom.S.containerPrefab, Whole.S.transform.position, Quaternion.identity) as GameObject;
-            Top.S.rigid = Top.S.container.GetComponent<Rigidbody2D>();
-            Bottom.S.rigid = Bottom.S.container.GetComponent<Rigidbody2D>();
-            Top.S.transform.parent = Top.S.container.transform;
-            Bottom.S.transform.parent = Bottom.S.container.transform;
-            Top.S.fire.gameObject.SetActive(true);
-            Top.S.ps.gameObject.SetActive(true);
-            Bottom.S.transform.position = Whole.S.transform.position;
-            Destroy(Whole.S.gameObject);
-            //Split Jump
-            Top.S.rigid.velocity = new Vector2(Top.S.rigid.velocity.x, splitJumpSpeed);
-            Top.S.grounded = false;
+            if(Time.time - lastSplitTime > 1f)
+            {
+                lastSplitTime = Time.time;
+                UI.S.together = !UI.S.together;
+                UI.S.PlaySound("Split");
+                //Need containers for animations to run correctly
+                Top.S.container = Instantiate(Top.S.containerPrefab, Whole.S.transform.position, Quaternion.identity) as GameObject;
+                Bottom.S.container = Instantiate(Bottom.S.containerPrefab, Whole.S.transform.position, Quaternion.identity) as GameObject;
+                Top.S.rigid = Top.S.container.GetComponent<Rigidbody2D>();
+                Bottom.S.rigid = Bottom.S.container.GetComponent<Rigidbody2D>();
+                Top.S.transform.parent = Top.S.container.transform;
+                Bottom.S.transform.parent = Bottom.S.container.transform;
+                Top.S.fire.gameObject.SetActive(true);
+                Top.S.ps.gameObject.SetActive(true);
+                Bottom.S.transform.position = Whole.S.transform.position;
+                Destroy(Whole.S.gameObject);
+                //Split Jump
+                Top.S.rigid.velocity = new Vector2(Top.S.rigid.velocity.x, splitJumpSpeed);
+                Top.S.grounded = false;
+            }
+            else
+            {
+                UI.S.PlaySound("Reject");
+            }
         }
         //Join
         else
         {
-            if (/*Top.S.grounded && Bottom.S.grounded && */(Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
+            if (Time.time - lastSplitTime > 1f && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
             {
+                lastSplitTime = Time.time;
                 UI.S.together = !UI.S.together;
                 UI.S.PlaySound("Recombine");
                 whole = Instantiate(wholePrefab, Top.S.container.transform.position, Quaternion.identity) as GameObject;
