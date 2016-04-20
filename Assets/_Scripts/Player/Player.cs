@@ -130,7 +130,7 @@ public class Player : MonoBehaviour {
         //Split
         if (UI.S.together)
         {
-            if(Time.time - lastSplitTime > 1f)
+            if(Time.time - lastSplitTime > .6f)
             {
                 lastSplitTime = Time.time;
                 UI.S.together = !UI.S.together;
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour {
         //Join
         else
         {
-            if (Time.time - lastSplitTime > 1f && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
+            if (Time.time - lastSplitTime > .6f && (Top.S.container.transform.position - Bottom.S.container.transform.position).magnitude < 1f)
             {
                 lastSplitTime = Time.time;
                 UI.S.together = !UI.S.together;

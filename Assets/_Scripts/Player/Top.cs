@@ -61,6 +61,10 @@ public class Top : Player
                 Top.S.carrying = false;
                 Bottom.S.container.transform.parent = null;
             }
+            if(Mathf.Abs(Input.GetAxis("L_XAxis_2")) > .5f || Mathf.Abs(Input.GetAxis("L_XAxis_1")) > .5f)
+            {
+                UI.S.PlaySound("Reject");
+            }
         }
         /*
         if(Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !UI.S.stopped)

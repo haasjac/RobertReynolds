@@ -20,7 +20,7 @@ public class FemaleStar : MonoBehaviour {
         {
             transform.position -= Vector3.right / 100f;
             Bottom.S.anim.SetBool("walking", true);
-            Whole.S.transform.position += Vector3.right / 150f;
+            Whole.S.transform.position += Vector3.right / 300f;
             UI.S.stopped = true;
         }
         if(end)
