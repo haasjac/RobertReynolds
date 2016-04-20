@@ -17,6 +17,11 @@ public class PlayerContainer : MonoBehaviour {
     }
     void OnCollisionEnter2D(Collision2D coll)
     {
+        if(childPlayer == Bottom.S && !Top.S.carrying)
+        {
+            Bottom.S.carried = false;
+        }
+        childPlayer.rigid.gravityScale = 1f;
         switch (coll.gameObject.tag)
         {
             case "Ground":

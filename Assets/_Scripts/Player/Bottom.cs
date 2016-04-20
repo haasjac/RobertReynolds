@@ -7,7 +7,9 @@ public class Bottom : Player {
     public bool carried = false;
     public GameObject arrow, arrowHead;
     public SpriteRenderer arrow_sr;
+    public float throwSpeed = 3f;
     public float maxArrow = 3f;
+    public GameObject magnet;
     void Awake()
     {
         S = this;
@@ -27,12 +29,23 @@ public class Bottom : Player {
         }
         else
         {
-            arrow.transform.localScale = new Vector3(2f + Mathf.Cos(2 * Mathf.PI * Time.time) * maxArrow, arrow.transform.localScale.y, arrow.transform.localScale.z);
-            if (Input.GetButtonDown("B_1"))
+            if (Top.S.carrying)
             {
-                container.transform.parent = null;
-                carried = false;
-                Top.S.carrying = false;
+                container.transform.position = new Vector2(Top.S.container.transform.position.x + (facingRight ? 1.3f : -1.3f), Top.S.container.transform.position.y + .7f);
+                arrow.transform.localScale = new Vector3(2f + Mathf.Cos(2 * Mathf.PI * Time.time) * maxArrow, 1f, 1f);
+                arrowHead.transform.position = new Vector3(facingRight ? arrow_sr.bounds.max.x : arrow_sr.bounds.min.x, arrowHead.transform.position.y, arrowHead.transform.position.z);
+                if (Input.GetButtonDown("B_1"))
+                {
+                    magnet.SetActive(true);
+                    rigid.velocity = new Vector2(arrow.transform.localScale.x * (facingRight ? 1f : -1f) * throwSpeed, 0f);
+                    Bottom.S.arrow.SetActive(false);
+                    Bottom.S.arrowHead.SetActive(false);
+                    container.transform.parent = null;
+                    anim.SetBool("walking", false);
+                    Top.S.carrying = false;
+                    rigid.gravityScale = 0f;
+                    StartCoroutine(throwGravity());
+                }
             }
         }
     }
@@ -52,5 +65,13 @@ public class Bottom : Player {
                 sound.Stop();
             }
         }
+    }
+    IEnumerator throwGravity()
+    {
+        UI.S.PlaySound("Throw");
+        yield return new WaitForSeconds(1.3f);
+        rigid.gravityScale = 1f;
+        magnet.SetActive(false);
+        Top.S.magnet.SetActive(false);
     }
 }

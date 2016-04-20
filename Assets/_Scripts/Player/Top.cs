@@ -34,19 +34,34 @@ public class Top : Player
             {
                 if(Bottom.S.facingRight != facingRight)
                 {
+                    print("H");
                     Bottom.S.facingRight = !Bottom.S.facingRight;
-                    Bottom.S.container.transform.localRotation = facingRight ? Quaternion.Euler(0f, 0f, 0f): Quaternion.Euler(0f, 180f, 0f);
+                    Bottom.S.transform.localRotation = facingRight ? Quaternion.Euler(0f, 0f, 0f): Quaternion.Euler(0f, 180f, 0f);
                 }
                 magnet.SetActive(true);
                 Bottom.S.arrow.SetActive(true);
+                Bottom.S.arrowHead.SetActive(true);
                 Bottom.S.anim.SetBool("walking", true);
                 Bottom.S.carried = true;
                 Top.S.carrying = true;
                 Bottom.S.container.transform.parent = container.transform;
-                Bottom.S.container.transform.position = new Vector2(container.transform.position.x + (facingRight ? 1.3f : -1.3f), container.transform.position.y);
+                UI.S.PlaySound("Pickup");
             }
         }
-
+        else
+        {
+            if (Input.GetButtonDown("B_2"))
+            {
+                UI.S.PlaySound("Reject");
+                magnet.SetActive(false);
+                Bottom.S.arrow.SetActive(false);
+                Bottom.S.arrowHead.SetActive(false);
+                Bottom.S.anim.SetBool("walking", false);
+                Bottom.S.carried = false;
+                Top.S.carrying = false;
+                Bottom.S.container.transform.parent = null;
+            }
+        }
         /*
         if(Input.GetKeyDown(KeyCode.LeftShift) && !attacking && !UI.S.stopped)
         {

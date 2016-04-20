@@ -13,15 +13,15 @@ public class Player : MonoBehaviour {
     public int player_num = 1;
     public bool grounded, attacking, flashing;
     public static bool hiding = false;
+    public bool facingRight = true;
+    public Rigidbody2D rigid;
     [HideInInspector]
     public GameObject container;
 
     //PROTECTED
     public Animator anim;
     protected SpriteRenderer sr;
-    protected Rigidbody2D rigid;
     protected GameObject whole;
-    public bool facingRight = true;
     protected bool jump, jumpCancel;
     protected float iH;
     protected bool walking = false;
