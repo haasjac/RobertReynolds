@@ -24,7 +24,7 @@ public class Button : MonoBehaviour {
 	}
 
     void OnCollisionEnter2D(Collision2D coll) {
-        if (!clicked && (coll.gameObject.tag == "Bottom" || coll.gameObject.tag == "Top" || coll.gameObject.tag == "Whole") && coll.contacts[0].normal == Vector2.down)
+        if (!clicked /*&& (coll.gameObject.tag == "Bottom" || coll.gameObject.tag == "Top" || coll.gameObject.tag == "Whole")*/ && coll.contacts[0].normal == Vector2.down)
         {
             clicked = true;
             UI.S.PlaySound("Button Push");
