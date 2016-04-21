@@ -72,7 +72,6 @@ public class Pickup : MonoBehaviour
             Destroy(transform.FindChild("Clothes Outline").gameObject);
             this.GetComponent<BoxCollider2D>().enabled = false;
             this.transform.localPosition = clothing;
-            print("hi2");
         }
     }
 }
