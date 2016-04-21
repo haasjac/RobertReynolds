@@ -15,9 +15,12 @@ public class Pickup : MonoBehaviour
     {
         if (coll.tag == "Whole" || coll.tag == "Top" || coll.tag == "Bottom")
         {
-            //TODO: Play Pickup Sound
             //IncPickup
             UI.S.Collect(gameObject);
+            if (GetComponent<Move>())
+            {
+                Destroy(GetComponent<Move>());
+            }
             Destroy(transform.FindChild("Clothes Outline").gameObject);
             //Destroy(gameObject);
             Vector3 clothing = Vector3.zero;
@@ -39,6 +42,12 @@ public class Pickup : MonoBehaviour
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
                         return;
                     clothing = new Vector3(0.43f, -6.5f, 0.0f);
+                    this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
+                    break;
+                case "pony":
+                    if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
+                        return;
+                    clothing = new Vector3(2.8f, -1.7f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
                     break;
                 case "hat":

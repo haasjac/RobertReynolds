@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Oscillate : MonoBehaviour {
-    public float speed = .001f;
+    public float speed = .001f, actualSpeed = 1f;
     Vector3 startPos;
 	// Update is called once per frame
     void Start()
@@ -11,6 +11,6 @@ public class Oscillate : MonoBehaviour {
     }
 	void Update ()
     {
-        transform.position = startPos - (new Vector3(0, Mathf.Cos(2 * Mathf.PI * Time.timeSinceLevelLoad) * speed, 0f));
+            transform.position = startPos - (new Vector3(0, Mathf.Cos(2 * Mathf.PI * Time.time  * actualSpeed) * speed, 0f));
     }
 }

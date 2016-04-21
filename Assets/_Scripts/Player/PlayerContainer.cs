@@ -27,7 +27,7 @@ public class PlayerContainer : MonoBehaviour {
             case "Ground":
                 foreach(ContactPoint2D hitPoint in coll.contacts)
                 {
-                    if(hitPoint.point.y >= col.bounds.min.y - .01f)
+                    if(hitPoint.point.y >= col.bounds.min.y - .1f)
                     {
                         childPlayer.grounded = true;
                         childPlayer.anim.SetBool("jumping", false);
