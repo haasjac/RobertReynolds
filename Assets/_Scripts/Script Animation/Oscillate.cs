@@ -11,6 +11,6 @@ public class Oscillate : MonoBehaviour {
     }
 	void Update ()
     {
-        transform.position = startPos - (new Vector3(0, Mathf.Cos(2 * Mathf.PI * Time.timeSinceLevelLoad * actualSpeed) * speed, 0f));
+            transform.position = startPos - (new Vector3(0, Mathf.Cos(2 * Mathf.PI * Time.time  * actualSpeed) * speed, 0f));
     }
 }
