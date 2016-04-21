@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class IAmTheOneWhoKnocks : MonoBehaviour {
-
-    public GameObject cam;
     public float timer = 2f;
     public float penalty = 0.3f;
     
@@ -22,5 +20,9 @@ public class IAmTheOneWhoKnocks : MonoBehaviour {
     {
         if(coll.gameObject.tag == "Whole" || coll.gameObject.tag == "Top" || coll.gameObject.tag == "Bottom")
             StartCoroutine("restart", coll.gameObject);
+    }
+    public void Dest()
+    {
+        Destroy(gameObject);
     }
 }

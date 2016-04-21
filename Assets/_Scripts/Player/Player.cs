@@ -36,9 +36,7 @@ public class Player : MonoBehaviour {
     }
 
     protected void Update() {
-
         if (!UI.S.stopped) {
-
             //MOVING
             if (UI.S.together && !hiding) {
                 iH = Input.GetAxis("L_XAxis_1") + Input.GetAxis("L_XAxis_2");

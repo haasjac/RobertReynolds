@@ -7,6 +7,7 @@ Metal Wall Texture from http://images.naldzgraphics.net/2014/08/18-wall-metal-te
 Wood Planks by http://img10.deviantart.net/af7f/i/2010/100/c/0/wooden_planks_new_texture_03_by_goodtextures.jpg from GoodTextures
 Wood by WallpapersXL from http://www.wallpapersxl.com/wallpapers/1024x1024/cartoon-wood-texture/1214771/cartoon-wood-texture-1214771.2.jpg
 Outer Space from http://static.freepsdfiles.net/uploads/2010/12/Red-Version4.jpg
+UFO texture from http://www.terminal26.de/texturen/e_vorschau.php/5/76
 
 SOUNDS
 Alarm Start, Charging, Explosion, Jump, Laser, Punch, Success, and Walking from GameBurp

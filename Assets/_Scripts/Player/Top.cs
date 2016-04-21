@@ -7,6 +7,8 @@ public class Top : Player
     public Transform ps;
     public bool carrying = false;
     public GameObject magnet;
+    public float laserDur = 2f, lastLaser = 0f;
+    public GameObject laserOrigin, laserBeam;
     public static Top S;
     //bool throwing = false;
     void Awake()
@@ -21,13 +23,25 @@ public class Top : Player
         fire = transform.FindChild("Fire");
         ps = transform.FindChild("Particle System");
 	}
-	
-	// Update is called once per frame
-	new void Update ()
+
+    IEnumerator Laser()
+    {
+        lastLaser = Time.time;
+        UI.S.PlaySound("Charging");
+        yield return new WaitForSeconds(1f);
+        UI.S.PlaySound("Laser");
+        Instantiate(laserBeam, laserOrigin.transform.position, Quaternion.identity);
+    }
+    // Update is called once per frame
+    new void Update ()
     {
         if(!carrying)
         {
             base.Update();
+            if(Input.GetButtonDown("TriggersR_2") && Time.time - lastLaser > laserDur)
+            {
+                StartCoroutine(Laser());
+            }
             //Throw
             if (Input.GetButtonDown("B_2") && !UI.S.stopped && !UI.S.together && 
                 (facingRight ? (Bottom.S.container.transform.position.x - Top.S.container.transform.position.x) : (Top.S.container.transform.position.x - Bottom.S.container.transform.position.x)) >  0f && (Bottom.S.container.transform.position - Top.S.container.transform.position).magnitude < 1f)
@@ -105,4 +119,3 @@ public class Top : Player
         }
     }
 }
-

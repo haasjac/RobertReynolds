@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: efba6179ce54f034aa9af6efc3e47296
+timeCreated: 1461237991
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: UFO Trap Pieces_0
+    21300002: UFO Trap Pieces_1
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: UFO Trap Pieces_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1107
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 109.5, y: -239}
+        - {x: 124.5, y: -233}
+        - {x: 138.5, y: -227}
+        - {x: 163.5, y: -215}
+        - {x: 197.5, y: -195}
+        - {x: 215.5, y: -183}
+        - {x: 230.5, y: -172}
+        - {x: 264.5, y: -145}
+        - {x: 293.5, y: -118}
+        - {x: 327.5, y: -84}
+        - {x: 340.5, y: -70}
+        - {x: 356.5, y: -52}
+        - {x: 373.5, y: -33}
+        - {x: 401.5, y: 1}
+        - {x: 407.5, y: 9}
+        - {x: 440.5, y: 56}
+        - {x: 466.5, y: 95}
+        - {x: 486.5, y: 127}
+        - {x: 509.5, y: 166}
+        - {x: 524.5, y: 193}
+        - {x: 532.5, y: 208}
+        - {x: 553.5, y: 251}
+        - {x: 553.5, y: 258}
+        - {x: 320.5, y: 258}
+        - {x: 311.5, y: 237}
+        - {x: 296.5, y: 204}
+        - {x: 287.5, y: 185}
+        - {x: 287.5, y: 183}
+        - {x: 270.5, y: 152}
+        - {x: 261.5, y: 135}
+        - {x: 250.5, y: 115}
+        - {x: 231.5, y: 83}
+        - {x: 218.5, y: 62}
+        - {x: 188.5, y: 19}
+        - {x: 162.5, y: -12}
+        - {x: 134.5, y: -41}
+        - {x: 133.5, y: -41}
+        - {x: 125.5, y: -48}
+        - {x: 95.5, y: -70}
+        - {x: 84.5, y: -76}
+        - {x: 65.5, y: -86}
+        - {x: 39.5, y: -95}
+        - {x: 14.5, y: -100}
+        - {x: -1.5, y: -101}
+        - {x: -20.5, y: -100}
+        - {x: -42.5, y: -96}
+        - {x: -67.5, y: -88}
+        - {x: -74.5, y: -85}
+        - {x: -93.5, y: -75}
+        - {x: -114.5, y: -62}
+        - {x: -134.5, y: -48}
+        - {x: -157.5, y: -28}
+        - {x: -178.5, y: -7}
+        - {x: -195.5, y: 12}
+        - {x: -219.5, y: 43}
+        - {x: -233.5, y: 62}
+        - {x: -250.5, y: 86}
+        - {x: -264.5, y: 108}
+        - {x: -283.5, y: 141}
+        - {x: -301.5, y: 174}
+        - {x: -322.5, y: 213}
+        - {x: -322.5, y: 215}
+        - {x: -337.5, y: 248}
+        - {x: -342.5, y: 258}
+        - {x: -553.5, y: 258}
+        - {x: -553.5, y: 251}
+        - {x: -538.5, y: 220}
+        - {x: -514.5, y: 175}
+        - {x: -485.5, y: 124}
+        - {x: -452.5, y: 70}
+        - {x: -441.5, y: 53}
+        - {x: -431.5, y: 38}
+        - {x: -397.5, y: -10}
+        - {x: -365.5, y: -51}
+        - {x: -355.5, y: -63}
+        - {x: -323.5, y: -98}
+        - {x: -287.5, y: -134}
+        - {x: -261.5, y: -158}
+        - {x: -219.5, y: -191}
+        - {x: -201.5, y: -202}
+        - {x: -186.5, y: -211}
+        - {x: -146.5, y: -231}
+        - {x: -118.5, y: -242}
+        - {x: -103.5, y: -247}
+        - {x: -71.5, y: -255}
+        - {x: -53.5, y: -258}
+        - {x: 35.5, y: -258}
+        - {x: 63.5, y: -254}
+        - {x: 86.5, y: -247}
+    - name: UFO Trap Pieces_1
+      rect:
+        serializedVersion: 2
+        x: 1587
+        y: 317
+        width: 138
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 107}
+        - {x: -69, y: -77}
+        - {x: -69, y: -106}
+        - {x: -62, y: -107}
+        - {x: 69, y: -107}
+        - {x: 69, y: -56}
+        - {x: 18, y: 107}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
