@@ -8,6 +8,7 @@ public class FemaleStar : MonoBehaviour {
     bool end = false;
     public GameObject heartPrefab;
     Animator anim;
+    public string scene;
 	// Use this for initialization
 	void Start ()
     {
@@ -45,6 +46,6 @@ public class FemaleStar : MonoBehaviour {
         end = true;
         UI.S.PlaySound("Success");
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("Title");
+        SceneManager.LoadScene(scene);
     }
 }

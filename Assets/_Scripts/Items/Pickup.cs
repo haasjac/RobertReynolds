@@ -14,14 +14,7 @@ public class Pickup : MonoBehaviour
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.tag == "Whole" || coll.tag == "Top" || coll.tag == "Bottom")
-        {
-            //IncPickup
-            UI.S.Collect(gameObject);
-            if (GetComponent<Move>())
-            {
-                Destroy(GetComponent<Move>());
-            }
-            Destroy(transform.FindChild("Clothes Outline").gameObject);
+        {   
             //Destroy(gameObject);
             Vector3 clothing = Vector3.zero;
             switch (this.tag)
@@ -56,6 +49,12 @@ public class Pickup : MonoBehaviour
                     clothing = new Vector3(-0.01f, 14f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
                     break;
+                case "shades":
+                    if (coll.gameObject.tag != "Top" && coll.gameObject.tag != "Whole")
+                        return;
+                    clothing = new Vector3(1.26f, 9.71f, 0.0f);
+                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    break;
                 case "prop":
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
                         return;
@@ -65,8 +64,15 @@ public class Pickup : MonoBehaviour
                 default:
                     break;
             }
+            //IncPickup
+            UI.S.Collect(gameObject);
+            if (GetComponent<Move>()) {
+                Destroy(GetComponent<Move>());
+            }
+            Destroy(transform.FindChild("Clothes Outline").gameObject);
             this.GetComponent<BoxCollider2D>().enabled = false;
             this.transform.localPosition = clothing;
+            print("hi2");
         }
     }
 }
