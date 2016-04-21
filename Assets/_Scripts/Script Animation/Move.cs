@@ -17,13 +17,9 @@ public class Move : MonoBehaviour {
         {
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, dest.x, speed * Time.fixedDeltaTime), Mathf.Lerp(transform.position.y, dest.y, speed * Time.fixedDeltaTime), dest.z);
         }	
-        if(delete && transform.position == dest)
+        if(delete && Mathf.Abs(transform.position.x - dest.x) < .01f && Mathf.Abs(transform.position.y - dest.y) < .01f)
         {
             Destroy(gameObject);
-        }
-        else if(transform.position == dest)
-        {
-            Destroy(this);
         }
 	}
     public void startMove()
