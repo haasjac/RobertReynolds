@@ -15,9 +15,12 @@ public class Pickup : MonoBehaviour
     {
         if (coll.tag == "Whole" || coll.tag == "Top" || coll.tag == "Bottom")
         {
-            //TODO: Play Pickup Sound
             //IncPickup
             UI.S.Collect(gameObject);
+            if (GetComponent<Move>())
+            {
+                Destroy(GetComponent<Move>());
+            }
             Destroy(transform.FindChild("Clothes Outline").gameObject);
             //Destroy(gameObject);
             Vector3 clothing = Vector3.zero;
