@@ -38,7 +38,7 @@ public class Top : Player
         if(!carrying)
         {
             base.Update();
-            if(Input.GetButtonDown("RR_2") && Time.time - lastLaser > laserDur)
+            if(Input.GetButtonDown("RB_2") && Time.time - lastLaser > laserDur)
             {
                 StartCoroutine(Laser());
             }
