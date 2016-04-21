@@ -22,8 +22,9 @@ public class LaserBeam : MonoBehaviour {
 	}
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.collider.tag == "Target")
+        if(coll.collider.tag ==  "Target")
         {
+
 
         }
         else if(coll.collider.tag == "Mirror")
