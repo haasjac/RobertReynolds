@@ -6,21 +6,24 @@ public class InteractableHideObject : MonoBehaviour {
     public GameObject gameObject; //Object player can hide behind
     public SpriteRenderer floatingButton; //button that floats overhead
     public static bool characterHidden = false;
-
-    static float objectRotation = 45f;
-
-   // GameObject stealthBarHiding;
+    static bool canHide = false;
 
     void Start() {
-        //floatingButton = gameObject.GetComponentInChildren<SpriteRenderer>();
-        //startpos = gameObject.GetComponent<Transform>().
+
         floatingButton.enabled = false;
     }
     
+    void Update() {
+        if (canHide && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2"))) {
+            Debug.Log("Player has entered");
+
+            Hide_UnHidePlayers();
+        }
+    }
+
     void FixedUpdate() {
         if (characterHidden) {
-            objectRotation *= -1;
-            gameObject.GetComponent<Rigidbody2D>().MoveRotation(objectRotation);//must fix
+            gameObject.GetComponent<Rigidbody2D>().MoveRotation(Mathf.LerpAngle(-45f, 45f, Time.time));//must fix
         }
         else {
             gameObject.GetComponent<Rigidbody2D>().MoveRotation(0);// = (0, 0, objectRotation * -1);// = objectRotation * -1f;
@@ -28,25 +31,14 @@ public class InteractableHideObject : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        //Debug.Log("Player has entered");
-        //if(col.gameObject.tag == "Whole") {
-            floatingButton.enabled = true;
-        //}
-    }
-
-    void OnTriggerStay2D(Collider2D col) {
-        //players are whole 
-        //players are separate
-        if((col.gameObject.layer == 8) && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2"))) {
-            Debug.Log("Player has entered");
-
-            Hide_UnHidePlayers();
-        }
+        floatingButton.enabled = true;
+        canHide = true;
     }
 
     void OnTriggerExit2D(Collider2D col) {
         Debug.Log("Player has left");
         floatingButton.enabled = false;
+        canHide = false;
     }
 
     public static bool MovementFreeze(bool canMove) {
@@ -64,8 +56,6 @@ public class InteractableHideObject : MonoBehaviour {
             //disable character movement & splitting
             Player.hiding = MovementFreeze(true);
             //suspicion bar dimmed
-            //UI.S.GetComponentInChildren<CanvasRenderer>().SetAlpha(0f);
-            //UI.S.stealthBarHiding.G = false;
             UI.S.enabled = false;
         }
         else {
