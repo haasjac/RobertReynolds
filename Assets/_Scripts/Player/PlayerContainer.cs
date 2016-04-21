@@ -25,13 +25,10 @@ public class PlayerContainer : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
-                foreach(ContactPoint2D hitPoint in coll.contacts)
+                if (coll.collider.bounds.max.y < col.bounds.min.y + .1f)
                 {
-                    if(hitPoint.point.y >= col.bounds.min.y - .1f)
-                    {
-                        childPlayer.grounded = true;
-                        childPlayer.anim.SetBool("jumping", false);
-                    }
+                    childPlayer.grounded = true;
+                    childPlayer.anim.SetBool("jumping", false);
                 }
                 break;
         }
