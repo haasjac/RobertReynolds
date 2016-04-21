@@ -29,7 +29,8 @@ public class LaserBeam : MonoBehaviour {
         }
         else if(coll.collider.tag == "Mirror")
         {
-
+            ContactPoint2D contact = coll.contacts[0];
+            rigid.velocity = contact.normal * 15f;
         }
         else
         {
