@@ -14,6 +14,7 @@ public class InteractableHideObject : MonoBehaviour {
     void Start() {
         //floatingButton = gameObject.GetComponentInChildren<SpriteRenderer>();
         //startpos = gameObject.GetComponent<Transform>().
+        floatingButton.enabled = false;
     }
     
     void FixedUpdate() {
@@ -27,7 +28,7 @@ public class InteractableHideObject : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        Debug.Log("Player has entered");
+        //Debug.Log("Player has entered");
         //if(col.gameObject.tag == "Whole") {
             floatingButton.enabled = true;
         //}
@@ -37,6 +38,8 @@ public class InteractableHideObject : MonoBehaviour {
         //players are whole 
         //players are separate
         if((col.gameObject.layer == 8) && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2"))) {
+            Debug.Log("Player has entered");
+
             Hide_UnHidePlayers();
         }
     }
@@ -52,6 +55,7 @@ public class InteractableHideObject : MonoBehaviour {
 
     public void Hide_UnHidePlayers() {
         //public functions for player to hide behind objects
+        Debug.Log("Player is trying to hide");
         characterHidden = !characterHidden;
         if (characterHidden) {//character is hiding behind object
             Debug.Log("Character Hidden");
