@@ -41,6 +41,12 @@ public class Pickup : MonoBehaviour
                     clothing = new Vector3(0.43f, -6.5f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
                     break;
+                case "pony":
+                    if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
+                        return;
+                    clothing = new Vector3(2.8f, -1.7f, 0.0f);
+                    this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
+                    break;
                 case "hat":
                     if (coll.gameObject.tag != "Top" && coll.gameObject.tag != "Whole")
                         return;
