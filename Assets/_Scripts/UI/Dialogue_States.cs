@@ -59,6 +59,7 @@ public class Dialogue_States {
                 cooldown = Time.unscaledTime;
                 off_cooldown = false;
                 writing = true;
+                UI.S.PlaySound("Dialogue");
             }
         }
 
@@ -70,6 +71,7 @@ public class Dialogue_States {
                     Dialogue.S.text.text = "";
                     writing = true;
                     c = 0;
+                    UI.S.PlaySound("Dialogue");
                 } else {
                     if (next != null) {
                         state_machine.ChangeState(next);
@@ -274,6 +276,7 @@ public class Dialogue_States {
             c = 0;
             cooldown = Time.unscaledTime;
             off_cooldown = false;
+            UI.S.PlaySound("Dialogue");
         }
 
         public override void OnUpdate(float time_delta_fraction) {
@@ -363,6 +366,7 @@ public class Dialogue_States {
             Dialogue.S.textContinue.SetActive(false);
             cooldown = Time.unscaledTime;
             off_cooldown = false;
+            UI.S.PlaySound("Dialogue");
         }
 
         public override void OnUpdate(float time_delta_fraction) {
@@ -440,6 +444,7 @@ public class Dialogue_States {
             Dialogue.S.textContinue.SetActive(false);
             cooldown = Time.unscaledTime;
             off_cooldown = false;
+            UI.S.PlaySound("Dialogue");
         }
 
         public override void OnUpdate(float time_delta_fraction) {
