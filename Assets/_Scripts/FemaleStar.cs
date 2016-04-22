@@ -17,15 +17,10 @@ public class FemaleStar : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(!collided && start)
-        {
-            transform.position -= Vector3.right / 100f;
-            Bottom.S.anim.SetBool("walking", true);
-            Whole.S.transform.position += Vector3.right / 300f;
-            UI.S.stopped = true;
-        }
         if(end)
         {
+            Bottom.S.anim.Stop();
+            Whole.S.rigid.velocity = Vector3.zero;
             UI.S.stopped = true;
         }
     }
