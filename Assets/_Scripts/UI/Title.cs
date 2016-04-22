@@ -8,11 +8,11 @@ public class Title : MonoBehaviour {
     public Sprite[] selected = new Sprite[3];
     public GameObject[] ps = new GameObject[3];
     public int selectionNum = 0;
-    AudioSource sound;
+    //AudioSource sound;
 	// Use this for initialization
 	void Start ()
     {
-        sound = Camera.main.GetComponent<AudioSource>();
+        //sound = Camera.main.GetComponent<AudioSource>();
         img[0] = transform.FindChild("Start").GetComponent<Image>();
         img[1] = transform.FindChild("Controls").GetComponent<Image>();
         img[2] = transform.FindChild("Level Select").GetComponent<Image>();

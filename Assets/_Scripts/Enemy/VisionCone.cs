@@ -15,7 +15,6 @@ public class VisionCone : MonoBehaviour {
     public void i_see_you() {
         //take into account amount of clothing
         //robot.GetComponent<playerController>().suspicion++;
-        print("target in sight");
         UI.S.ChangeSuspicion(-0.001f);
     }
 
@@ -24,7 +23,6 @@ public class VisionCone : MonoBehaviour {
         string layer = LayerMask.LayerToName(coll.gameObject.layer);
         switch (layer) {
             case "Player":
-                print("whatzat???");
                 Patrol enemy = this.transform.parent.GetComponent<Patrol>();
                 enemy.enabled = false;
                 i_see_you();
@@ -69,7 +67,6 @@ public class VisionCone : MonoBehaviour {
         string layer = LayerMask.LayerToName(coll.gameObject.layer);
         switch (layer) {
             case "Player":
-                print("break stare");
                 Patrol enemy = this.transform.parent.GetComponent<Patrol>();
                 enemy.enabled = true;
                 enemy.searching = true;

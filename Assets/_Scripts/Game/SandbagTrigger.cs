@@ -12,7 +12,6 @@ public class SandbagTrigger : MonoBehaviour {
         button = this.transform.parent.gameObject.transform.FindChild("button_float").gameObject;
         //button = this.transform.FindChild("button_float").gameObject;
         if (button == null) {
-            print("boop");
             return;
         }
         button.SetActive(false);

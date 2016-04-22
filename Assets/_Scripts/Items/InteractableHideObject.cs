@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InteractableHideObject : MonoBehaviour {
 
-    public GameObject gameObject; //Object player can hide behind
+    public new GameObject gameObject; //Object player can hide behind
     public SpriteRenderer floatingButton; //button that floats overhead
     public static bool characterHidden = false;
     static bool canHide = false;

@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
     public Animator anim;
     protected SpriteRenderer sr;
     protected GameObject whole;
-    protected bool jump, jumpCancel;
+    public bool jump, jumpCancel;
     protected float iH;
     protected bool walking = false;
     static protected bool can_split = true;
@@ -124,7 +124,6 @@ public class Player : MonoBehaviour {
 
     protected void SplitOrCombine()
     {
-       
         //Split
         if (UI.S.together)
         {
