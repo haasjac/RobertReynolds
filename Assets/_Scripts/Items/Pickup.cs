@@ -61,6 +61,28 @@ public class Pickup : MonoBehaviour
                     clothing = new Vector3(-0.01f, -0.59f, 0.0f);
                     this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
                     break;
+                case "ET Hand":
+                    if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole" && coll.gameObject.tag != "Bottom")
+                        return;
+
+                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    clothing = new Vector3(-1f, -4.2f, 0.0f);
+                    this.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+                    break;
+                case "Shades":
+                    if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole" && coll.gameObject.tag != "Bottom")
+                        return;
+
+                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    clothing = new Vector3(.78f, 9.73f, 0.0f);
+                    break;
+                case "Spock Ears":
+                    if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole" && coll.gameObject.tag != "Bottom")
+                        return;
+
+                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    clothing = new Vector3(.05f, 2.13f, 0.0f);
+                    break;
                 default:
                     break;
             }
