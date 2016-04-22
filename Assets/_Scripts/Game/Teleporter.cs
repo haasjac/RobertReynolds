@@ -19,7 +19,6 @@ public class Teleporter : MonoBehaviour {
         {
             UI.S.PlaySound("Teleporter");
             Bottom.S.container.transform.position = teleporter.transform.position;
-            print("Here");
         }
     }
 }

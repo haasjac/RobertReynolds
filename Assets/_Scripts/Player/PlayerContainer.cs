@@ -25,11 +25,8 @@ public class PlayerContainer : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
-                if (coll.collider.bounds.max.y < col.bounds.min.y + .1f)
-                {
                     childPlayer.grounded = true;
                     childPlayer.anim.SetBool("jumping", false);
-                }
                 break;
         }
     }
@@ -38,9 +35,7 @@ public class PlayerContainer : MonoBehaviour {
         switch (coll.gameObject.tag)
         {
             case "Ground":
-                if (coll.contacts[0].normal == Vector2.up) {
-                    childPlayer.grounded = false;
-                }
+                childPlayer.grounded = false;
                 break;
         }
     }
