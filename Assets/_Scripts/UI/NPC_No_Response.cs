@@ -7,7 +7,7 @@ public class NPC_No_Response : Speech {
 	
 	// Update is called once per frame
 	protected override void Update () {
-        if (UI.S.together && (Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) && collided && !isBeingRead && !done) {
+        if ((Input.GetButtonDown("X_1") || Input.GetButtonDown("X_2")) && collided && !isBeingRead && !done) {
             button.SetActive(false);
             if (GetComponent<NPC>() != null) {
                 done = true;

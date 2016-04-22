@@ -42,7 +42,7 @@ public class Speech : MonoBehaviour {
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Whole")) {
+        if (other.CompareTag("Whole") || other.CompareTag("Top")) {
             collided = true;
             if (button)
             {
@@ -52,7 +52,7 @@ public class Speech : MonoBehaviour {
     }
 
     protected virtual void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("Whole")) {
+        if (other.CompareTag("Whole") || other.CompareTag("Top")) {
             collided = false;
             if(button)
             {
