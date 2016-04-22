@@ -23,49 +23,49 @@ public class Pickup : MonoBehaviour
                     if (coll.gameObject.tag != "Top" && coll.gameObject.tag != "Whole")
                         return;
                     clothing = new Vector3(0.2f, 1.7f, 0.0f);
-                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    this.transform.parent = Top.S.transform;
                     break;
                 case "pants":
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
                         return;
                     clothing = new Vector3(-0.2f, -2.8f, 0.0f);
-                    this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
+                    this.transform.parent = Bottom.S.transform;
                     break;
                 case "shoes":
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
                         return;
                     clothing = new Vector3(0.43f, -6.5f, 0.0f);
-                    this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
+                    this.transform.parent = Bottom.S.transform;
                     break;
                 case "pony":
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
                         return;
                     clothing = new Vector3(2.8f, -1.7f, 0.0f);
-                    this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
+                    this.transform.parent = Bottom.S.transform;
                     break;
                 case "hat":
                     if (coll.gameObject.tag != "Top" && coll.gameObject.tag != "Whole")
                         return;
                     clothing = new Vector3(-0.01f, 14f, 0.0f);
-                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    this.transform.parent = Top.S.transform;
                     break;
                 case "shades":
                     if (coll.gameObject.tag != "Top" && coll.gameObject.tag != "Whole")
                         return;
                     clothing = new Vector3(1.26f, 9.71f, 0.0f);
-                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    this.transform.parent = Top.S.transform;
                     break;
                 case "prop":
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole")
                         return;
                     clothing = new Vector3(-0.01f, -0.59f, 0.0f);
-                    this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
+                    this.transform.parent = Bottom.S.transform;
                     break;
                 case "ET Hand":
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole" && coll.gameObject.tag != "Bottom")
                         return;
 
-                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    this.transform.parent = Top.S.transform;
                     clothing = new Vector3(-1f, -4.2f, 0.0f);
                     this.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
                     break;
@@ -73,7 +73,7 @@ public class Pickup : MonoBehaviour
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole" && coll.gameObject.tag != "Top")
                         return;
 
-                    this.transform.parent = coll.gameObject.transform.FindChild("Bottom").transform;
+                    this.transform.parent = Bottom.S.transform;
                     clothing = new Vector3(.84f, -.67f, 0.0f);
                     this.transform.localRotation = Quaternion.Euler(0f, 30f, 0f);
                     break;
@@ -81,7 +81,7 @@ public class Pickup : MonoBehaviour
                     if (coll.gameObject.tag != "Bottom" && coll.gameObject.tag != "Whole" && coll.gameObject.tag != "Top")
                         return;
 
-                    this.transform.parent = coll.gameObject.transform.FindChild("Top").transform;
+                    this.transform.parent = Top.S.transform;
                     clothing = new Vector3(.5f, 14.13f, 0.0f);
                     break;
                 default:

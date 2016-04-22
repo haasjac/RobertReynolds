@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class Top : Player
 {
     public Transform fire;
@@ -38,12 +38,12 @@ public class Top : Player
         if(!carrying)
         {
             base.Update();
-            if(Input.GetButtonDown("RB_2") && Time.time - lastLaser > laserDur)
+            if(Input.GetButtonDown("RB_2") && Time.time - lastLaser > laserDur && SceneManager.GetActiveScene().name == "SciFiLevel")
             {
                 StartCoroutine(Laser());
             }
             //Throw
-            if (Input.GetButtonDown("B_2") && !UI.S.stopped && !UI.S.together && 
+            if (Input.GetButtonDown("B_2") && !UI.S.stopped && SceneManager.GetActiveScene().name != "VentLevel" && !UI.S.together && 
                 (facingRight ? (Bottom.S.container.transform.position.x - Top.S.container.transform.position.x) : (Top.S.container.transform.position.x - Bottom.S.container.transform.position.x)) >  0f && (Bottom.S.container.transform.position - Top.S.container.transform.position).magnitude < 1f)
             {
                 if(Bottom.S.facingRight != facingRight)
